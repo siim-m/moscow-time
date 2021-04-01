@@ -21,7 +21,7 @@ export default function Home({ initialData }) {
 
     const moscowTime =
       timeData
-        ? ((1 / parseInt(timeData.bpi.USD.rate.replace(",", ""))) * 100000000)
+        ? ((1 / timeData.bpi.USD.rate_float) * 100000000)
             .toFixed(2)
             .toString()
             .replace(".", "")
