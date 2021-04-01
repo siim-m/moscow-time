@@ -15,43 +15,76 @@ export default function Home({ initialData }) {
     }
   );
 
-  const [satsPerDollar, setSatsPerDollar] = useState();
+  const [activeData, setActiveData] = useState(initialData);
+  const [displayArray, setDisplayArray] = useState([]);
 
   useEffect(() => {
-    const timeData = !isLoading && !error ? data : initialData;
+    const usingData = !isLoading && !error ? data : initialData;
 
-    const satsPerDollarString = timeData
-      ? Math.round((1 / timeData.bpi.USD.rate_float) * 100000000).toString()
+    setActiveData(usingData);
+  }, [data, initialData]);
+
+  useEffect(() => {
+    const satsPerDollarString = activeData
+      ? Math.round((1 / activeData.bpi.USD.rate_float) * 100000000).toString()
       : undefined;
-
-    let displayArray;
 
     switch (satsPerDollarString.length) {
       case 0:
-        displayArray = [];
+        setDisplayArray([]);
         break;
       case 1:
-        displayArray = ["S", "", "", "", "", "", satsPerDollarString[0]];
+        setDisplayArray(["S", "", "", "", "", "", satsPerDollarString[0]]);
         break;
       case 2:
-        displayArray = ["S", "", "", "", "", satsPerDollarString[0], satsPerDollarString[1]];
+        setDisplayArray([
+          "S",
+          "",
+          "",
+          "",
+          "",
+          satsPerDollarString[0],
+          satsPerDollarString[1],
+        ]);
         break;
       case 3:
-        displayArray = ["S", "", "", "", satsPerDollarString[0], satsPerDollarString[1], satsPerDollarString[2]];
+        setDisplayArray([
+          "S",
+          "",
+          "",
+          "",
+          satsPerDollarString[0],
+          satsPerDollarString[1],
+          satsPerDollarString[2],
+        ]);
         break;
       case 4:
-        displayArray = ["S", "", "", satsPerDollarString[0], satsPerDollarString[1], satsPerDollarString[2], satsPerDollarString[3]];
+        setDisplayArray([
+          "S",
+          "",
+          "",
+          satsPerDollarString[0],
+          satsPerDollarString[1],
+          satsPerDollarString[2],
+          satsPerDollarString[3],
+        ]);
         break;
       case 5:
-        displayArray = ["S", "", satsPerDollarString[0], satsPerDollarString[1], satsPerDollarString[2], satsPerDollarString[3], satsPerDollarString[4]];
+        setDisplayArray([
+          "S",
+          "",
+          satsPerDollarString[0],
+          satsPerDollarString[1],
+          satsPerDollarString[2],
+          satsPerDollarString[3],
+          satsPerDollarString[4],
+        ]);
         break;
       default:
-        displayArray = []
+        setDisplayArray([]);
         break;
     }
-
-    setSatsPerDollar(displayArray);
-  }, [data, initialData]);
+  }, []);
 
   return (
     <div className="h-screen dark:bg-black dark:text-white">
@@ -60,9 +93,7 @@ export default function Home({ initialData }) {
         <title>Moscow Time</title>
       </Head>
       <div className="flex flex-col items-center justify-center h-full">
-        <Clock
-          digits={satsPerDollar}
-        />
+        <Clock digits={displayArray} />
       </div>
     </div>
   );
