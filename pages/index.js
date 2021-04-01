@@ -20,24 +20,39 @@ export default function Home({ initialData }) {
   useEffect(() => {
     const timeData = !isLoading && !error ? data : initialData;
 
-    const moscowTime = timeData
-      ? ((1 / timeData.bpi.USD.rate_float) * 100000000)
-          .toFixed(2)
-          .toString()
-          .replace(".", "")
+    const satsPerDollarString = timeData
+      ? Math.round((1 / timeData.bpi.USD.rate_float) * 100000000).toString()
       : undefined;
 
-    const displayData = moscowTime
-      ? [
-          moscowTime.slice(0, moscowTime.length - 4),
-          ":",
-          moscowTime.slice(moscowTime.length - 4, moscowTime.length - 2),
-          ":",
-          moscowTime.slice(moscowTime.length - 2),
-        ].join("")
-      : undefined;
+    let displayArray;
 
-    setSatsPerDollar(displayData);
+    switch (satsPerDollarString.length) {
+      case 0:
+        displayArray = [];
+        break;
+      case 1:
+        displayArray = ["S", "", "", "", "", "", satsPerDollarString[0]];
+        break;
+      case 2:
+        displayArray = ["S", "", "", "", "", satsPerDollarString[0], satsPerDollarString[1]];
+        break;
+      case 3:
+        displayArray = ["S", "", "", "", satsPerDollarString[0], satsPerDollarString[1], satsPerDollarString[2]];
+        break;
+      case 4:
+        displayArray = ["S", "", "", satsPerDollarString[0], satsPerDollarString[1], satsPerDollarString[2], satsPerDollarString[3]];
+        break;
+      case 5:
+        displayArray = ["S", "", satsPerDollarString[0], satsPerDollarString[1], satsPerDollarString[2], satsPerDollarString[3], satsPerDollarString[4]];
+        break;
+      default:
+        displayArray = []
+        break;
+    }
+
+    setSatsPerDollar(displayArray);
+
+    console.log(satsPerDollar);
   }, [data, initialData]);
 
   return (
@@ -47,10 +62,9 @@ export default function Home({ initialData }) {
         <title>Moscow Time</title>
       </Head>
       <div className="flex flex-col items-center justify-center h-full">
-        <p className="font-semibold text-7xl">It's</p>
-        <p className="mt-10 font-bold text-9xl">{satsPerDollar}</p>
-        <p className="mt-10 font-semibold text-7xl ">in Moscow</p>
-        <Clock />
+        <Clock
+          digits={satsPerDollar}
+        />
       </div>
     </div>
   );
