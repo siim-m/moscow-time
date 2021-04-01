@@ -3,7 +3,7 @@ function Digit({ className, digit }) {
     <div
       className={`relative w-1/12 text-white border border-yellow-200 rounded pb-digit ${className}`}
     >
-      <div class="absolute w-full h-full flex items-center justify-center text-9xl">
+      <div className="absolute flex items-center justify-center w-full h-full text-9xl">
         <p>{digit}</p>
       </div>
     </div>

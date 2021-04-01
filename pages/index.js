@@ -51,8 +51,6 @@ export default function Home({ initialData }) {
     }
 
     setSatsPerDollar(displayArray);
-
-    console.log(satsPerDollar);
   }, [data, initialData]);
 
   return (
