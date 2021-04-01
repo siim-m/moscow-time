@@ -1,65 +1,62 @@
-import Head from 'next/head'
-import styles from '../styles/Home.module.css'
+import Head from "next/head";
+import { useEffect, useState } from "react";
+import { useQuery } from "react-query";
 
 export default function Home() {
+  const { isLoading, error, data } = useQuery(
+    "data",
+    () =>
+      fetch("https://api.coindesk.com/v1/bpi/currentprice.json").then((res) =>
+        res.json()
+      ),
+    {
+      refetchInterval: 30000,
+    }
+  );
+
+  const [satsPerDollar, setSatsPerDollar] = useState();
+
+  useEffect(() => {
+    const apiData =
+      !isLoading && !error
+        ? ((1 / parseInt(data.bpi.USD.rate.replace(",", ""))) * 100000000)
+            .toFixed(2)
+            .toString()
+            .replace(".", "")
+        : undefined;
+
+    const displayData = apiData
+      ? [
+          apiData.slice(0, apiData.length - 4),
+          ":",
+          apiData.slice(apiData.length - 4, apiData.length - 2),
+          ":",
+          apiData.slice(apiData.length - 2),
+        ].join("")
+      : undefined;
+
+    setSatsPerDollar(displayData);
+  }, [data]);
+
+  if (isLoading) return "Loading...";
+
+  if (error) return "An error has occurred: " + error.message;
+
   return (
-    <div className={styles.container}>
+    <div>
       <Head>
-        <title>Create Next App</title>
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="shortcut icon" href="/bitcoin.svg" />
+        <title>Moscow Time</title>
       </Head>
-
-      <main className={styles.main}>
-        <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
-        </h1>
-
-        <p className={styles.description}>
-          Get started by editing{' '}
-          <code className={styles.code}>pages/index.js</code>
+      <div className="flex flex-col items-center justify-center h-screen lg:flex-row">
+        <p className="font-semibold text-7xl">It's</p>
+        <p className="mt-10 font-bold lg:ml-10 lg:mt-0 text-9xl">
+          {satsPerDollar}
         </p>
-
-        <div className={styles.grid}>
-          <a href="https://nextjs.org/docs" className={styles.card}>
-            <h3>Documentation &rarr;</h3>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
-
-          <a href="https://nextjs.org/learn" className={styles.card}>
-            <h3>Learn &rarr;</h3>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
-
-          <a
-            href="https://github.com/vercel/next.js/tree/master/examples"
-            className={styles.card}
-          >
-            <h3>Examples &rarr;</h3>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
-
-          <a
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-          >
-            <h3>Deploy &rarr;</h3>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
-        </div>
-      </main>
-
-      <footer className={styles.footer}>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <img src="/vercel.svg" alt="Vercel Logo" className={styles.logo} />
-        </a>
-      </footer>
+        <p className="mt-10 font-semibold lg:mt-0 text-7xl lg:ml-10">
+          in Moscow
+        </p>
+      </div>
     </div>
-  )
+  );
 }
