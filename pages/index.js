@@ -43,19 +43,15 @@ export default function Home() {
   if (error) return "An error has occurred: " + error.message;
 
   return (
-    <div>
+    <div className="h-screen dark:bg-black dark:text-white">
       <Head>
         <link rel="shortcut icon" href="/bitcoin.svg" />
         <title>Moscow Time</title>
       </Head>
-      <div className="flex flex-col items-center justify-center h-screen lg:flex-row">
+      <div className="flex flex-col items-center justify-center h-full">
         <p className="font-semibold text-7xl">It's</p>
-        <p className="mt-10 font-bold lg:ml-10 lg:mt-0 text-9xl">
-          {satsPerDollar}
-        </p>
-        <p className="mt-10 font-semibold lg:mt-0 text-7xl lg:ml-10">
-          in Moscow
-        </p>
+        <p className="mt-10 font-bold text-9xl">{satsPerDollar}</p>
+        <p className="mt-10 font-semibold text-7xl ">in Moscow</p>
       </div>
     </div>
   );
