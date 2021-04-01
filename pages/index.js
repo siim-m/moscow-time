@@ -2,7 +2,7 @@ import Head from "next/head";
 import { useEffect, useState } from "react";
 import { useQuery } from "react-query";
 
-export default function Home() {
+export default function Home({ initialData }) {
   const { isLoading, error, data } = useQuery(
     "data",
     () =>
@@ -17,30 +17,28 @@ export default function Home() {
   const [satsPerDollar, setSatsPerDollar] = useState();
 
   useEffect(() => {
-    const apiData =
-      !isLoading && !error
-        ? ((1 / parseInt(data.bpi.USD.rate.replace(",", ""))) * 100000000)
+    const timeData = !isLoading && !error ? data : initialData
+
+    const moscowTime =
+      timeData
+        ? ((1 / parseInt(timeData.bpi.USD.rate.replace(",", ""))) * 100000000)
             .toFixed(2)
             .toString()
             .replace(".", "")
         : undefined;
 
-    const displayData = apiData
+    const displayData = moscowTime
       ? [
-          apiData.slice(0, apiData.length - 4),
+          moscowTime.slice(0, moscowTime.length - 4),
           ":",
-          apiData.slice(apiData.length - 4, apiData.length - 2),
+          moscowTime.slice(moscowTime.length - 4, moscowTime.length - 2),
           ":",
-          apiData.slice(apiData.length - 2),
+          moscowTime.slice(moscowTime.length - 2),
         ].join("")
       : undefined;
 
     setSatsPerDollar(displayData);
-  }, [data]);
-
-  if (isLoading) return "Loading...";
-
-  if (error) return "An error has occurred: " + error.message;
+  }, [data, initialData]);
 
   return (
     <div className="h-screen dark:bg-black dark:text-white">
@@ -55,4 +53,14 @@ export default function Home() {
       </div>
     </div>
   );
+}
+
+export async function getServerSideProps(context) {
+  const initialData = await (await fetch("https://api.coindesk.com/v1/bpi/currentprice.json")).json()
+
+  return {
+    props: {
+      initialData,
+    },
+  };
 }
