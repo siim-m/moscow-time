@@ -98,6 +98,7 @@ export default function Home({ initialData }) {
         <meta name="twitter:card" content="summary" />
         <meta name="twitter:title" content="Moscow Time" />
         <meta name="twitter:description" content="The best bitcoin meme of 2021" />
+        <meta name="description" content="The best bitcoin meme of 2021" />
         <title>Moscow Time</title>
       </Head>
       <div className="flex flex-col items-center justify-center h-full">
