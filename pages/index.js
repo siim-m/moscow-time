@@ -84,7 +84,7 @@ export default function Home({ initialData }) {
         setDisplayArray([]);
         break;
     }
-  }, []);
+  }, [activeData]);
 
   return (
     <div className="h-screen bg-black">
