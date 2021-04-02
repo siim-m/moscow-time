@@ -1,7 +1,7 @@
 function Digit({ digit }) {
   return (
     <div
-      className={`relative text-white border-2 border-yellow-200 bg-black rounded font-mono`}
+      className={`relative text-yellow-100 border-2 border-yellow-200 bg-black rounded font-mono`}
       style={{ width: "12%" }}
     >
       <div className="absolute flex items-center justify-center w-full h-full text-7xl">
@@ -9,7 +9,7 @@ function Digit({ digit }) {
         {isNaN(parseInt(digit)) && digit == "S" && (
           <div className="font-semibold leading-tight text-center" style={{ fontSize: "2.5vw", fontFamily: 'Roboto Mono'}}>
             <p>MSK</p>
-            <hr />
+            <hr className="border border-yellow-100" />
             <p>TIME</p>
           </div>
         )}
