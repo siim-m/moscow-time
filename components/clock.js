@@ -1,16 +1,16 @@
 function Digit({ digit }) {
   return (
     <div
-      className={`relative rounded-lg font-mono`}
+      className={`relative rounded-lg`}
       style={{ width: "11.675%" }}
     >
       <div className="absolute flex items-center justify-center w-full h-full text-7xl">
-        {!isNaN(parseInt(digit)) && <p className="text-yellow-100" style={{fontSize: "10vw", transform: `scale(1, 1.5`, fontFamily: 'Roboto Mono' }}>{digit}</p>}
+        {!isNaN(parseInt(digit)) && <p className="pb-3 text-digit" style={{fontSize: "11vw", transform: `scale(1, 1.4`, fontFamily: 'Inconsolata' }}>{digit}</p>}
         {isNaN(parseInt(digit)) && digit == "S" && (
-          <div className="font-semibold leading-tight text-center text-yellow-100" style={{ fontFamily: 'Roboto Mono'}}>
-            <p style={{fontSize: "1.75vw"}}>MOSCOW</p>
-            <hr className="border border-yellow-100" />
-            <p style={{fontSize: "1.75vw"}}>TIME</p>
+          <div className="font-semibold leading-tight text-center text-digit" style={{ fontFamily: 'Inconsolata'}}>
+            <p style={{fontSize: "2vw"}}>MOSCOW</p>
+            <hr className="border border-digit" />
+            <p style={{fontSize: "2vw"}}>TIME</p>
           </div>
         )}
       </div>

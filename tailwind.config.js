@@ -7,6 +7,9 @@ module.exports = {
         clock: "25.4%",
         digit: "19.5%",
       },
+      colors: {
+        digit: "#CFBC7A",
+      },
       borderRadius: {
         "4xl": "2rem",
       },

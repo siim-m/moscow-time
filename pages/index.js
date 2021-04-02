@@ -92,7 +92,7 @@ export default function Home({ initialData }) {
         <link rel="shortcut icon" href="/bitcoin.svg" />
         <link rel="preconnect" href="https://fonts.gstatic.com" />
         <link
-          href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@500&display=swap"
+          href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@800&display=swap"
           rel="stylesheet"
         />
         <meta name="twitter:card" content="summary" />
