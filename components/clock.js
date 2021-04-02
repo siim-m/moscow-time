@@ -1,8 +1,8 @@
 function Digit({ digit }) {
   return (
     <div
-      className={`relative border-2 border-yellow-200 bg-black rounded font-mono`}
-      style={{ width: "12%" }}
+      className={`relative rounded-lg font-mono`}
+      style={{ width: "11.675%" }}
     >
       <div className="absolute flex items-center justify-center w-full h-full text-7xl">
         {!isNaN(parseInt(digit)) && <p className="text-yellow-100" style={{fontSize: "10vw", transform: `scale(1, 1.5`, fontFamily: 'Roboto Mono' }}>{digit}</p>}
@@ -23,10 +23,10 @@ function Digits({ digits = ["0", "0", "0", "0", "0", "0", "0"] }) {
     <div
       className="flex justify-between"
       style={{
-        width: "85%",
-        height: "59.75%",
-        marginLeft: "7.4%",
-        marginTop: "2.65%",
+        width: "84.55%",
+        height: "57.5%",
+        marginLeft: "7.8%",
+        marginTop: "3.2%",
         // marginRight: "12%",
       }}
     >
@@ -44,8 +44,8 @@ function Digits({ digits = ["0", "0", "0", "0", "0", "0", "0"] }) {
 export default function Clock({ digits }) {
   return (
     <div
-      className="relative w-3/4 overflow-hidden bg-gray-700 bg-contain rounded-3xl pb-clock"
-      style={{ backgroundImage: `url('/bg.jpg')` }}
+      className="relative w-3/4 overflow-hidden bg-gray-700 bg-contain rounded-4xl pb-clock"
+      style={{ backgroundImage: `url('/blockclock.jpg')` }}
     >
       <div className="absolute w-full h-full">
         <Digits digits={digits} />

@@ -4,8 +4,11 @@ module.exports = {
   theme: {
     extend: {
       spacing: {
-        clock: "25.3%",
-        digit: "19.5%"
+        clock: "25.4%",
+        digit: "19.5%",
+      },
+      borderRadius: {
+        "4xl": "2rem",
       },
     },
   },
