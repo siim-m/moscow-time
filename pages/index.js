@@ -87,9 +87,14 @@ export default function Home({ initialData }) {
   }, []);
 
   return (
-    <div className="h-screen dark:bg-black dark:text-white">
+    <div className="h-screen bg-black">
       <Head>
         <link rel="shortcut icon" href="/bitcoin.svg" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@500&display=swap"
+          rel="stylesheet"
+        />
         <title>Moscow Time</title>
       </Head>
       <div className="flex flex-col items-center justify-center h-full">
