@@ -1,5 +1,3 @@
-import Image from "next/image";
-
 function Digit({ digit }) {
   return (
     <div

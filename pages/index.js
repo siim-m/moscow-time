@@ -95,6 +95,7 @@ export default function Home({ initialData }) {
           href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@500&display=swap"
           rel="stylesheet"
         />
+        <meta name="description" content="In honour of Chris Vickery, who on 26th March 2021 confused a Blockclock for an actual clock." />
         <title>Moscow Time</title>
       </Head>
       <div className="flex flex-col items-center justify-center h-full">
