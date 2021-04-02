@@ -47,7 +47,7 @@ export default function Clock({ digits }) {
   return (
     <div
       className="relative w-3/4 overflow-hidden bg-gray-700 bg-contain rounded-3xl pb-clock"
-      style={{ backgroundImage: `url('/bg.png')` }}
+      style={{ backgroundImage: `url('/bg.jpg')` }}
     >
       <div className="absolute w-full h-full">
         <Digits digits={digits} />
