@@ -87,7 +87,7 @@ export default function Home({ initialData }) {
   }, [activeData]);
 
   return (
-    <div className="h-screen bg-black">
+    <div className="h-full bg-black">
       <Head>
         <link rel="shortcut icon" href="/bitcoin.svg" />
         <link rel="preconnect" href="https://fonts.gstatic.com" />
