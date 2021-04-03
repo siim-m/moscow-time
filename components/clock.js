@@ -44,7 +44,7 @@ function Digits({ digits = ["0", "0", "0", "0", "0", "0", "0"] }) {
 export default function Clock({ digits }) {
   return (
     <div
-      className="relative w-3/4 overflow-hidden bg-gray-700 bg-contain rounded-md cursor-default pointer-events-none lg:rounded-2xl xl:rounded-3xl 2xl:rounded-4xl md:rounded-xl sm:rounded-lg pb-clock"
+      className="relative w-3/4 overflow-hidden bg-contain rounded-md cursor-default pointer-events-none lg:rounded-2xl xl:rounded-3xl 2xl:rounded-4xl md:rounded-xl sm:rounded-lg pb-clock"
       style={{ backgroundImage: `url('/blockclock.jpg')` }}
     >
       <div className="absolute w-full h-full">
