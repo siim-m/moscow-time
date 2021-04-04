@@ -8,9 +8,9 @@ function Digit({ digit }) {
         {!isNaN(parseInt(digit)) && <p className="font-semibold text-gray-200 sm:pb-1 md:pb-2 lg:pb-3" style={{fontSize: "13.5vw", fontFamily: 'Steelfish Rounded Bold' }}>{digit}</p>}
         {isNaN(parseInt(digit)) && digit == "S" && (
           <div className="font-semibold leading-tight text-center text-gray-200" style={{ fontFamily: 'Steelfish Rounded Bold'}}>
-            <p style={{fontSize: "2.75vw"}}>MOSCOW</p>
+            <p style={{fontSize: "2.5vw"}}>MOSCOW</p>
             <hr className="border border-gray-200" />
-            <p style={{fontSize: "2.75vw"}}>TIME</p>
+            <p style={{fontSize: "2.5vw"}}>TIME</p>
           </div>
         )}
       </div>
