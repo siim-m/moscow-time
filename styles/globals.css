@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: "Steelfish Rounded Bold";
+  src: url("../public/steelfish_rounded_bold.woff2") format("woff2"),
+    url("../public/steelfish_rounded_bold.ttf") format("truetype");
+}
+
 html,
 body,
 #__next {

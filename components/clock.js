@@ -5,12 +5,12 @@ function Digit({ digit }) {
       style={{ width: "11.675%" }}
     >
       <div className="absolute flex items-center justify-center w-full h-full text-7xl">
-        {!isNaN(parseInt(digit)) && <p className="md:pb-1 lg:pb-2 text-digit" style={{fontSize: "11vw", transform: `scale(1, 1.4`, fontFamily: 'Inconsolata' }}>{digit}</p>}
+        {!isNaN(parseInt(digit)) && <p className="font-semibold text-gray-200 sm:pb-1 md:pb-2 lg:pb-3" style={{fontSize: "13.5vw", fontFamily: 'Steelfish Rounded Bold' }}>{digit}</p>}
         {isNaN(parseInt(digit)) && digit == "S" && (
-          <div className="font-semibold leading-tight text-center text-digit" style={{ fontFamily: 'Inconsolata'}}>
-            <p style={{fontSize: "2vw"}}>MOSCOW</p>
-            <hr className="border border-digit" />
-            <p style={{fontSize: "2vw"}}>TIME</p>
+          <div className="font-semibold leading-tight text-center text-gray-200" style={{ fontFamily: 'Steelfish Rounded Bold'}}>
+            <p style={{fontSize: "2.75vw"}}>MOSCOW</p>
+            <hr className="border border-gray-200" />
+            <p style={{fontSize: "2.75vw"}}>TIME</p>
           </div>
         )}
       </div>
@@ -27,7 +27,6 @@ function Digits({ digits = ["0", "0", "0", "0", "0", "0", "0"] }) {
         height: "57.5%",
         marginLeft: "7.8%",
         marginTop: "3.2%",
-        // marginRight: "12%",
       }}
     >
       <Digit digit={digits[0]} />
