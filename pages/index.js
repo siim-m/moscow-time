@@ -99,7 +99,7 @@ export default function Home({ initialData }) {
         <meta name="twitter:title" content="Moscow Time" />
         <meta name="twitter:description" content="The best bitcoin meme of 2021" />
         <meta name="description" content="The best bitcoin meme of 2021" />
-        <meta name="twitter:image" content="https://moscowtime.xyz/card.png" />
+        <meta name="twitter:image" content="https://moscowtime.xyz/card.png?1" />
         <title>Moscow Time</title>
       </Head>
       <div className="flex flex-col items-center justify-center h-full">
