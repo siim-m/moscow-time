@@ -4,13 +4,18 @@
  * To change the order of different views, change the order of
  * elements in this array.
  */
-const OPTIONS = ["BTCUSD", "SATUSD", "HEIGHT", "MOSCOWTIME"];
+const OPTIONS = [
+  "MOSCOWTIME",
+  // "BTCUSD",
+  // "SATUSD",
+  // "HEIGHT",
+];
 
 /**
  * To change how often the views change, set CYCLE_INTERVAL to an appropriate
  * value in milliseconds.
  */
-const CYCLE_INTERVAL = 3000;
+const CYCLE_INTERVAL = 10000;
 
 const BTC_USD_HTML = `
   <div>
@@ -43,27 +48,27 @@ function setTopSections(values) {
   }
 }
 
-let activeView;
+let activeView = OPTIONS[0];
 
 // All main logic lives in this function
 function cycleView() {
-  switch (activeView) {
-    case OPTIONS[0]:
-      activeView = OPTIONS[1];
-      break;
-    case OPTIONS[1]:
-      activeView = OPTIONS[2];
-      break;
-    case OPTIONS[2]:
-      activeView = OPTIONS[3];
-      break;
-    case OPTIONS[3]:
-      activeView = OPTIONS[0];
-      break;
-    default:
-      activeView = OPTIONS[0];
-      break;
-  }
+  // switch (activeView) {
+  //   case OPTIONS[0]:
+  //     activeView = OPTIONS[1];
+  //     break;
+  //   case OPTIONS[1]:
+  //     activeView = OPTIONS[2];
+  //     break;
+  //   case OPTIONS[2]:
+  //     activeView = OPTIONS[3];
+  //     break;
+  //   case OPTIONS[3]:
+  //     activeView = OPTIONS[0];
+  //     break;
+  //   default:
+  //     activeView = OPTIONS[0];
+  //     break;
+  // }
 
   switch (activeView) {
     case "BTCUSD":
@@ -211,4 +216,4 @@ function cycleView() {
 
 cycleView();
 
-// setInterval(cycleView, CYCLE_INTERVAL);
+setInterval(cycleView, CYCLE_INTERVAL);

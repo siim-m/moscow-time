@@ -99,8 +99,8 @@ body {
   background-color: #e7e7e7;
   border-radius: 1rem;
   margin-top: 10%;
-  min-height: 2px;
-  height: 0.3vw;
+  min-height: 1px;
+  height: 0.1em;
   margin-bottom: 8%;
   max-width: 85%;
   margin-left: auto;
