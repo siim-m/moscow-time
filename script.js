@@ -15,7 +15,7 @@ const CYCLE_INTERVAL = 3000;
 const BTC_USD_HTML = `
   <div>
     <div id="special-upper">&nbsp;BTC&nbsp;</div>
-    <hr class="special-separator" />
+    <div class="special-separator"></div>
     <div id="special-lower">&nbsp;USD&nbsp;</div>
   </div>
 `;
@@ -23,7 +23,7 @@ const BTC_USD_HTML = `
 const SAT_USD_HTML = `
   <div>
     <div id="special-upper">&nbsp;SATS&nbsp;</div>
-    <hr class="special-separator" />
+    <div class="special-separator"></div>
     <div id="special-lower">&nbsp;USD&nbsp;</div>
   </div>
 `;
@@ -31,7 +31,7 @@ const SAT_USD_HTML = `
 const MOSCOW_TIME_HTML = `
   <div>
     <div id="special-upper-small">&nbsp;MOSCOW&nbsp;</div>
-    <hr class="special-separator" />
+    <div class="special-separator"></div>
     <div id="special-lower-small">&nbsp;TIME&nbsp;</div>
   </div>
 `;
@@ -211,4 +211,4 @@ function cycleView() {
 
 cycleView();
 
-setInterval(cycleView, CYCLE_INTERVAL);
+// setInterval(cycleView, CYCLE_INTERVAL);

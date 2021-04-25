@@ -10,12 +10,13 @@ html {
 }
 
 body {
-  background: #f7f8f3;
+  background: #111117;
   height: 100%;
   margin: 0;
   padding: 0;
   display: flex;
   flex-direction: column;
+  justify-content: center;
 }
 
 #clock-container {
@@ -24,12 +25,13 @@ body {
   width: 100%;
   overflow: hidden;
   background-size: contain;
-  background-image: url("blockclock-mini-blank.png");
+  background-image: url("clock.png");
   border-radius: 0.375rem;
   cursor: default;
   pointer-events: none;
   padding-bottom: 41.49%;
   z-index: -10;
+  margin-top: -10%;
 }
 
 #clock {
@@ -94,10 +96,13 @@ body {
 }
 
 .special-separator {
-  border: 0.03em solid;
   background-color: #e7e7e7;
-  border-radius: 1px;
+  border-radius: 1rem;
   margin-top: 10%;
-  margin-bottom: 7%;
-  max-width: 80%;
+  min-height: 2px;
+  height: 0.3vw;
+  margin-bottom: 8%;
+  max-width: 85%;
+  margin-left: auto;
+  margin-right: auto;
 }
