@@ -1,0 +1,103 @@
+@font-face {
+  font-family: "Steelfish Rounded Bold";
+  src: url("steelfish_rounded_bold.woff2") format("woff2"),
+    url("steelfish_rounded_bold.woff") format("woff"),
+    url("steelfish_rounded_bold.ttf") format("truetype");
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  background: #f7f8f3;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+#clock-container {
+  text-align: center;
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  background-size: contain;
+  background-image: url("blockclock-mini-blank.png");
+  border-radius: 0.375rem;
+  cursor: default;
+  pointer-events: none;
+  padding-bottom: 41.49%;
+  z-index: -10;
+}
+
+#clock {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+}
+
+#digits {
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+  width: 39.75%;
+  height: 22.3%;
+  margin-left: 30.25%;
+  margin-top: 16.3%;
+}
+
+.cell {
+  width: 12%;
+  color: #e7e7e7;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.digit-content {
+  padding-left: 10%;
+  font-size: 7.75vw;
+}
+
+.special-content {
+  font-size: 3.1vw;
+  padding-top: 7.5%;
+}
+
+.special-content,
+.digit-content {
+  font-family: "Steelfish Rounded Bold", monospace;
+  line-height: 0.85;
+}
+
+.top-section {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  font-size: 0.325vw;
+  font-weight: 600;
+  letter-spacing: 0.05vw;
+  min-height: 12%;
+  font-family: monospace;
+}
+
+#special-upper {
+  margin-bottom: 5%;
+}
+
+#special-upper-small {
+  font-size: 1.7vw;
+  margin-top: 15%;
+}
+
+.special-separator {
+  border: 0.03em solid;
+  background-color: #e7e7e7;
+  border-radius: 1px;
+  margin-top: 10%;
+  margin-bottom: 7%;
+  max-width: 80%;
+}
