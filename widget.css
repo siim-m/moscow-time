@@ -12,16 +12,13 @@
   position: relative;
   cursor: default;
   pointer-events: none;
-  /* z-index: 10; */
 }
 
 #clock {
   background-size: contain;
   background-image: url("widget.png");
   position: absolute;
-  /* height: 100%; */
   width: 100%;
-  /* padding-bottom: 33.6%; */
   border-radius: 1.5%/4.5%;
 }
 
