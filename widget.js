@@ -4,31 +4,31 @@ const CLOCK_HTML = `
 <div id="clock">
   <div id="digits">
     <div class="cell">
-      <div id="top-section-0" class="top-section"></div>
+      <div id="blockclock-top-section-0" class="blockclock-top-section"></div>
       <div id="0" class="special-content"></div>
     </div>
     <div class="cell">
-      <div id="top-section-1" class="top-section"></div>
+      <div id="blockclock-top-section-1" class="blockclock-top-section"></div>
       <div id="1" class="digit-content"></div>
     </div>
     <div class="cell">
-      <div id="top-section-2" class="top-section"></div>
+      <div id="blockclock-top-section-2" class="blockclock-top-section"></div>
       <div id="2" class="digit-content"></div>
     </div>
     <div class="cell">
-      <div id="top-section-3" class="top-section"></div>
+      <div id="blockclock-top-section-3" class="blockclock-top-section"></div>
       <div id="3" class="digit-content"></div>
     </div>
     <div class="cell">
-      <div id="top-section-4" class="top-section"></div>
+      <div id="blockclock-top-section-4" class="blockclock-top-section"></div>
       <div id="4" class="digit-content"></div>
     </div>
     <div class="cell">
-      <div id="top-section-5" class="top-section"></div>
+      <div id="blockclock-top-section-5" class="blockclock-top-section"></div>
       <div id="5" class="digit-content"></div>
     </div>
     <div class="cell">
-      <div id="top-section-6" class="top-section"></div>
+      <div id="blockclock-top-section-6" class="blockclock-top-section"></div>
       <div id="6" class="digit-content"></div>
     </div>
   </div>
@@ -77,7 +77,7 @@ let satUsd;
 // Sets the values of the top section of each cell
 function setTopSections(values) {
   for (let i = 0; i < 7; i += 1) {
-    document.getElementById(`top-section-${i}`).innerHTML = values[i] || "";
+    document.getElementById(`blockclock-top-section-${i}`).innerHTML = values[i] || "";
   }
 }
 
@@ -94,7 +94,7 @@ function setDimensions() {
     el.style.fontSize = `${0.49 * clock.clientHeight}px`;
   });
 
-  Array.from(document.getElementsByClassName("top-section")).forEach((el) => {
+  Array.from(document.getElementsByClassName("blockclock-top-section")).forEach((el) => {
     el.style.fontSize = `${0.0225 * clock.clientHeight}px`;
   });
 
