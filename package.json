@@ -1,0 +1,17 @@
+{
+  "name": "moscow-time",
+  "version": "0.1.0",
+  "description": "Moscow Time",
+  "main": "index.js",
+  "repository": "https://github.com/siim-m/moscow-time.git",
+  "author": "Siim",
+  "license": "MIT",
+  "scripts": {
+    "copy": "mkdir -p public && cp *.* ./public/",
+    "minify": "minify index.html > ./public/index.html && minify widget.js > ./public/widget.js && minify widget.css > ./public/widget.css",
+    "build": "yarn copy && yarn minify"
+  },
+  "devDependencies": {
+    "minify": "^7.0.2"
+  }
+}

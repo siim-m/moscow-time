@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <link
+    <!-- <link
       rel="preload"
       href="./steelfish_rounded_bold.woff2"
       as="font"
       type="font/woff2"
       crossorigin
-    />
+    /> -->
     <link rel="stylesheet" href="./style.css" />
     <link rel="icon" href="./bitcoin.svg" />
     <meta name="viewport" content="width=device-width" />
@@ -17,42 +17,18 @@
     <meta name="description" content="The best bitcoin meme of 2021" />
     <meta name="twitter:image" content="https://moscowtime.xyz/card.png" />
     <title>Moscow Time</title>
+    <script src="widget.js"></script>
   </head>
   <body>
-    <div id="clock-container">
-      <div id="clock">
-        <div id="digits">
-          <div class="cell">
-            <div id="top-section-0" class="top-section"></div>
-            <div id="0" class="special-content"></div>
-          </div>
-          <div class="cell">
-            <div id="top-section-1" class="top-section"></div>
-            <div id="1" class="digit-content"></div>
-          </div>
-          <div class="cell">
-            <div id="top-section-2" class="top-section"></div>
-            <div id="2" class="digit-content"></div>
-          </div>
-          <div class="cell">
-            <div id="top-section-3" class="top-section"></div>
-            <div id="3" class="digit-content"></div>
-          </div>
-          <div class="cell">
-            <div id="top-section-4" class="top-section"></div>
-            <div id="4" class="digit-content"></div>
-          </div>
-          <div class="cell">
-            <div id="top-section-5" class="top-section"></div>
-            <div id="5" class="digit-content"></div>
-          </div>
-          <div class="cell">
-            <div id="top-section-6" class="top-section"></div>
-            <div id="6" class="digit-content"></div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <script src="script.js"></script>
+    <div
+      id="blockclock-container"
+      class="moscowtime usdprice blockheight interval-3000"
+      style="
+        width: 80%;
+        max-width: 1200px;
+        margin-left: auto;
+        margin-right: auto;
+      "
+    ></div>
   </body>
 </html>
