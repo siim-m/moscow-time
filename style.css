@@ -25,10 +25,15 @@ main {
   font-weight: 600;
   margin-top: 4rem;
   letter-spacing: -0.25px;
+  color: #f7931b;
 }
 
 a {
   color: #f7931b;
+}
+
+a:hover {
+  color: #db7700;
 }
 
 footer {
