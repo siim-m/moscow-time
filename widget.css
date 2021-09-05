@@ -1,0 +1,11 @@
+footer {
+  text-align: center;
+  font-size: 1rem;
+  font-weight: 500;
+  letter-spacing: -0.5px;
+  margin-bottom: 1rem;
+}
+
+footer a {
+  color: #f7931b;
+}
