@@ -1,5 +1,6 @@
 html {
   height: 100%;
+  color: #374151;
 }
 
 body {
@@ -10,4 +11,17 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center;
+}
+
+#tip {
+  font-family: Inter, Helvetica, sans-serif;
+  text-align: center;
+  font-size: 1.25rem;
+  font-weight: 600;
+  position: sticky;
+  margin-top: 10vh;
+}
+
+a {
+  color: #f7931b;
 }
