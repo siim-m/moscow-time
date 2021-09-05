@@ -23,8 +23,7 @@ main {
   text-align: center;
   font-size: 1.25rem;
   font-weight: 600;
-  margin-top: 1rem;
-  margin-bottom: 0.5rem;
+  margin-top: 4rem;
   letter-spacing: -0.25px;
 }
 
@@ -33,6 +32,7 @@ a {
 }
 
 footer {
+  margin-top: 0.75rem;
   text-align: center;
   font-size: 1rem;
   font-weight: 500;
