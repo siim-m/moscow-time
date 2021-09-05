@@ -203,11 +203,11 @@ function cycleView() {
 async function fetchData() {
   let priceUsdResponse = await (
     await fetch(
-      "https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd"
+      "https://api.coinbase.com/v2/prices/spot?currency=USD"
     )
   ).json();
 
-  priceUsd = priceUsdResponse.bitcoin.usd.toString();
+  priceUsd = parseInt(priceUsdResponse.data.amount).toString();
   satUsd = Math.round((1 / priceUsd) * 100000000).toString();
 
   let blockHeightResponse = await (
