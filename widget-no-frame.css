@@ -16,7 +16,7 @@
 
 #clock {
   background-size: contain;
-  background-image: url("widget.png");
+  background-image: url("blockclock-no-frame.png");
   position: absolute;
   width: 100%;
   border-radius: 1.5%/4.5%;

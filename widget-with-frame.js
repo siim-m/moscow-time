@@ -84,27 +84,27 @@ function setDimensions() {
   const clock = document.getElementById("clock");
   const digits = document.getElementById("digits");
 
-  clockContainer.style.height = `${0.336 * clockContainer.clientWidth}px`;
-  clock.style.height = `${0.336 * clockContainer.clientWidth}px`;
-  digits.style.height = `${0.59 * clock.clientHeight}px`;
+  clockContainer.style.height = `${0.375 * clockContainer.clientWidth}px`;
+  clock.style.height = `${0.375 * clockContainer.clientWidth}px`;
+  digits.style.height = `${0.5075 * clock.clientHeight}px`;
 
   Array.from(document.getElementsByClassName("digit-content")).forEach((el) => {
-    el.style.fontSize = `${0.49 * clock.clientHeight}px`;
+    el.style.fontSize = `${0.425 * clock.clientHeight}px`;
   });
 
   Array.from(document.getElementsByClassName("blockclock-top-section")).forEach((el) => {
-    el.style.fontSize = `${0.0225 * clock.clientHeight}px`;
+    el.style.fontSize = `${0.019 * clock.clientHeight}px`;
   });
 
   Array.from(document.getElementsByClassName("special-content")).forEach(
     (el) => {
-      el.style.fontSize = `${0.1775 * clock.clientHeight}px`;
+      el.style.fontSize = `${0.15 * clock.clientHeight}px`;
     }
   );
 
   Array.from(document.getElementsByClassName("special-upper-small")).forEach(
     (el) => {
-      el.style.fontSize = `${0.1125 * clock.clientHeight}px`;
+      el.style.fontSize = `${0.175 * clock.clientHeight}px`;
     }
   );
 }
@@ -222,7 +222,7 @@ setInterval(fetchData, FETCH_INTERVAL);
 window.onload = () => {
   // Load CSS
   const link = document.createElement("link");
-  link.href = "widget.css";
+  link.href = "widget-with-frame.css";
   link.type = "text/css";
   link.rel = "stylesheet";
   document.getElementsByTagName("head")[0].appendChild(link);
