@@ -1,0 +1,5 @@
+[[headers]]
+  for = "/*"
+    [headers.values]
+    # Required for font hosting
+    Access-Control-Allow-Origin = "*"
