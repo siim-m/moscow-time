@@ -222,7 +222,7 @@ setInterval(fetchData, FETCH_INTERVAL);
 window.onload = () => {
   // Load CSS
   const link = document.createElement("link");
-  link.href = "widget-with-frame.css";
+  link.href = "https://moscowtime.xyz/widget-with-frame.css";
   link.type = "text/css";
   link.rel = "stylesheet";
   document.getElementsByTagName("head")[0].appendChild(link);
