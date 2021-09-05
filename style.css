@@ -13,13 +13,17 @@ body {
   justify-content: center;
 }
 
+main {
+  flex-grow: 1;
+  margin-top: 20vh;
+}
+
 #tip {
   font-family: Inter, Helvetica, sans-serif;
   text-align: center;
   font-size: 1.25rem;
   font-weight: 600;
-  position: sticky;
-  margin-top: 10vh;
+  margin-bottom: 7.5vh;
 }
 
 a {
