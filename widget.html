@@ -44,16 +44,14 @@
             Just before your closing <code>&lt;/head&gt;</code> of your HTML, insert a <code>&lt;script&gt;</code> tag to import the required JavaScript and CSS to run the widget.
             <pre>
 &lt;head&gt;
-  &lt;!-- Insert ONE of the below &lt;script&gt; tags before your closing &gt;/head&lt; tag. --&gt;
+  &lt;!-- Insert ONE of the below &lt;script&gt; tags before your closing &lt;/head&gt; tag. --&gt;
   &lt;script src="https://moscowtime.xyz/widget-with-frame.js"&gt;&lt;/script&gt;
   &lt;script src="https://moscowtime.xyz/widget-no-frame.js"&gt;&lt;/script&gt;
-&lt;/head&gt;
-            </pre>
+&lt;/head&gt;</pre>
           </li>
           <li>
             Add a <code>&lt;div&gt;</code> with an <code>id</code> of <code>blockclock-container</code> anywhere in your document flow where you would like insert the widget.
-
-              Use the appropriate class values to determine which views should be shown and how often they should be cycled. The supported values for different views are:
+            Use the appropriate <code>class</code> values to determine which views should be shown and how often they should be cycled. The supported values for different views are:
               <ul>
                 <li>
                   <code>blockheight</code>
