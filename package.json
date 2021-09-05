@@ -8,7 +8,7 @@
   "license": "MIT",
   "scripts": {
     "copy": "mkdir -p public && cp *.* ./public/",
-    "minify": "minify index.html > ./public/index.html && minify widget.js > ./public/widget.js && minify widget.css > ./public/widget.css",
+    "minify": "minify index.html > ./public/index.html && minify widget-no-frame.js > ./public/widget-no-frame.js && minify widget-no-frame.css > ./public/widget-no-frame.css && minify widget-with-frame.js > ./public/widget-with-frame.js && minify widget-with-frame.css > ./public/widget-with-frame.css",
     "build": "yarn copy && yarn minify"
   },
   "devDependencies": {

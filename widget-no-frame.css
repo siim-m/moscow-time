@@ -1,8 +1,9 @@
 @font-face {
   font-family: "Steelfish Rounded Bold";
-  src: url("steelfish_rounded_bold.woff2") format("woff2"),
-    url("steelfish_rounded_bold.woff") format("woff"),
-    url("steelfish_rounded_bold.ttf") format("truetype");
+  src: url("https://moscowtime.xyz/steelfish_rounded_bold.woff2")
+      format("woff2"),
+    url("https://moscowtime.xyz/steelfish_rounded_bold.woff") format("woff"),
+    url("https://moscowtime.xyz/steelfish_rounded_bold.ttf") format("truetype");
 }
 
 #blockclock-container {
