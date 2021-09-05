@@ -8,10 +8,81 @@
     <meta name="twitter:description" content="The best bitcoin meme of 2021" />
     <meta name="description" content="The best bitcoin meme of 2021" />
     <meta name="twitter:image" content="https://moscowtime.xyz/card.png" />
-    <title>Moscow Time</title>
+    <title>Moscow Time | Widget</title>
+    <link
+      href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/@tailwindcss/typography@0.4.x/dist/typography.min.css"
+    />
+    <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
   </head>
-  <body>
-    <div id="blockclock-container" style="width: 50%"></div>
-    <script src="widget.js"></script>
+  <body style="background-color: #fcfbf7; font-family: Inter;">
+    <main class="mx-auto prose mt-24 mb-24">
+      <h1>BLOCKCLOCK Moscow Time Widget</h1>
+      <p>
+        Celebrate 1952 Moscow Time by adding a BLOCKCLOCK widget to your website.
+        </p>
+        <p>
+        You can choose between two versions of the widget:
+        <ul>
+          <li>
+            Full BLOCKCLOCK including the transparent frame. Suitable for white / light background colors (works well with hex code <code>#FCFBF7</code>).
+            <img src="widget-example-with-frame.png" />
+          </li>
+          <li>
+            BLOCKCLOCK without the transparent frame. Pick this if your background color doesn't blend well with the frame.
+            <img class="rounded-lg" src="widget-example-no-frame.png" />
+          </li>
+        </ul>
+      </p>
+      <h2>Instructions</h2>
+        <ol>
+          <li>
+            Just before your closing <code>&lt;/head&gt;</code> of your HTML, insert a <code>&lt;script&gt;</code> tag to import the required JavaScript and CSS to run the widget.
+            <pre>
+&lt;head&gt;
+  &lt;!-- Insert ONE of the below &lt;script&gt; tags before your closing &gt;/head&lt; tag. --&gt;
+  &lt;script src="https://moscowtime.xyz/widget-with-frame.js"&gt;&lt;/script&gt;
+  &lt;script src="https://moscowtime.xyz/widget-no-frame.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+            </pre>
+          </li>
+          <li>
+            Add a <code>&lt;div&gt;</code> with an <code>id</code> of <code>blockclock-container</code> anywhere in your document flow where you would like insert the widget.
+
+              Use the appropriate class values to determine which views should be shown and how often they should be cycled. The supported values for different views are:
+              <ul>
+                <li>
+                  <code>blockheight</code>
+                </li>
+                <li>
+                  <code>usdprice</code>
+                </li>
+                <li>
+                  <code>satsperdollar</code>
+                </li>
+                <li>
+                  <code>moscowtime</code>
+                </li>
+              </ul>
+              You can specify the cycle interval using <code>interval-n</code>, where <code>n</code> is the number of milliseconds to wait between view changes (defaults to 3000).
+          </li>
+          <li>
+            Control the width of the widget by applying direct styles or targeting it from your exising CSS.
+          </li>
+        </ol>
+        <p>The following example will render a BLOCKCLOCK that cycles between moscowtime, usdprice and blockheight every 3 seconds and will not span wider than 700px.</p>
+        <pre>
+&lt;div
+  id="blockclock-container"
+  class="moscowtime usdprice blockheight interval-3000"
+  style="max-width: 700px"
+&gt;&lt;/div&gt;
+</pre>
+<p>Enjoy keepig an eye on Moscow Time!</p>
+    </main>
   </body>
 </html>
