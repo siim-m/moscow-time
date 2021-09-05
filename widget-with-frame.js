@@ -88,7 +88,7 @@ function setDimensions() {
   clock.style.height = `${0.375 * clockContainer.clientWidth}px`;
   digits.style.height = `${0.5075 * clock.clientHeight}px`;
 
-  Array.from(document.getElementsByClassName("digit-content")).forEach((el) => {
+  Array.from(document.getElementsByClassName("blockclock-digit-content")).forEach((el) => {
     el.style.fontSize = `${0.425 * clock.clientHeight}px`;
   });
 
@@ -96,13 +96,13 @@ function setDimensions() {
     el.style.fontSize = `${0.019 * clock.clientHeight}px`;
   });
 
-  Array.from(document.getElementsByClassName("special-content")).forEach(
+  Array.from(document.getElementsByClassName("blockclock-special-content")).forEach(
     (el) => {
       el.style.fontSize = `${0.15 * clock.clientHeight}px`;
     }
   );
 
-  Array.from(document.getElementsByClassName("special-upper-small")).forEach(
+  Array.from(document.getElementsByClassName("blockclock-special-upper-small")).forEach(
     (el) => {
       el.style.fontSize = `${0.175 * clock.clientHeight}px`;
     }
