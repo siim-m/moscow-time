@@ -61,6 +61,10 @@
   line-height: 0.85;
 }
 
+.special-content {
+  line-height: 0.925;
+}
+
 .blockclock-top-section {
   width: 100%;
   display: flex;

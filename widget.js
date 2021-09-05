@@ -98,7 +98,7 @@ function setDimensions() {
 
   Array.from(document.getElementsByClassName("special-content")).forEach(
     (el) => {
-      el.style.fontSize = `${0.2 * clock.clientHeight}px`;
+      el.style.fontSize = `${0.1775 * clock.clientHeight}px`;
     }
   );
 
