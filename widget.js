@@ -35,33 +35,31 @@ const CLOCK_HTML = `
 </div>
 `;
 
-const OPTIONS = ["HEIGHT", "MOSCOWTIME", "BTCUSD", "SATUSD"];
-
-const FETCH_INTERVAL = 10000;
-
 const BTC_USD_HTML = `
   <div>
-    <div class="special-upper">&nbsp;BTC&nbsp;</div>
+    <div class="special-upper">BTC</div>
     <div class="special-separator"></div>
-    <div class="special-lower">&nbsp;USD&nbsp;</div>
+    <div class="special-lower">USD</div>
   </div>
 `;
 
 const SAT_USD_HTML = `
   <div>
-    <div class="special-upper">&nbsp;SATS&nbsp;</div>
+    <div class="special-upper">SATS</div>
     <div class="special-separator"></div>
-    <div class="special-lower">&nbsp;USD&nbsp;</div>
+    <div class="special-lower">1USD</div>
   </div>
 `;
 
 const MOSCOW_TIME_HTML = `
   <div>
-    <div class="special-upper-small">&nbsp;MOSCOW&nbsp;</div>
+    <div class="special-upper">MSCW</div>
     <div class="special-separator"></div>
-    <div class="special-lower-small">&nbsp;TIME&nbsp;</div>
+    <div class="special-lower">TIME</div>
   </div>
 `;
+
+const FETCH_INTERVAL = 10000;
 
 const VALID_DISPLAY_OPTIONS = ["blockheight", "usdprice", "satsperdollar", "moscowtime"]
 

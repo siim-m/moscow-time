@@ -51,6 +51,8 @@
 .special-content {
   padding-top: 7.5%;
   flex-grow: 1;
+  width: 100%;
+  text-align: center;
 }
 
 .special-content,
@@ -89,4 +91,5 @@
   max-width: 85%;
   margin-left: auto;
   margin-right: auto;
+  width: 100%;
 }
