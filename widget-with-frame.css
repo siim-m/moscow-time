@@ -15,7 +15,7 @@
   pointer-events: none;
 }
 
-#clock {
+#blockclock {
   background-size: contain;
   background-image: url("https://moscowtime.xyz/blockclock-with-frame.png");
   position: absolute;
@@ -23,7 +23,7 @@
   border-radius: 4%/12.5%;
 }
 
-#digits {
+#blockclock-digits {
   display: flex;
   justify-content: space-between;
   align-items: stretch;
@@ -34,7 +34,7 @@
   position: relative;
 }
 
-.cell {
+.blockclock-cell {
   width: 12%;
   color: #e7e7e7;
   display: flex;
@@ -43,26 +43,26 @@
   justify-content: flex-start;
 }
 
-.digit-content {
+.blockclock-digit-content {
   width: 100%;
   padding-left: 10%;
   flex-grow: 1;
 }
 
-.special-content {
+.blockclock-special-content {
   padding-top: 7.5%;
   flex-grow: 1;
   width: 100%;
   text-align: center;
 }
 
-.special-content,
-.digit-content {
+.blockclock-special-content,
+.blockclock-digit-content {
   font-family: "Steelfish Rounded Bold", monospace;
   line-height: 0.85;
 }
 
-.special-content {
+.blockclock-special-content {
   line-height: 0.925;
 }
 
@@ -78,15 +78,15 @@
   font-family: monospace;
 }
 
-.special-upper {
+.blockclock-special-upper {
   margin-bottom: 5%;
 }
 
-.special-upper-small {
+.blockclock-special-upper-small {
   margin-top: 15%;
 }
 
-.special-separator {
+.blockclock-special-separator {
   background-color: #e7e7e7;
   border-radius: 1rem;
   margin-top: 10%;
