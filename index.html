@@ -24,7 +24,7 @@
         <form
           method="POST"
           onsubmit="onBTCPayFormSubmit(event);return false"
-          action="https://btcpay.stackist.io/api/v1/invoices"
+          action="https://tip.moscowtime.xyz/api/v1/invoices"
           class="btcpay-form btcpay-form--inline"
         >
           <input
@@ -67,7 +67,7 @@
         <script>
           if (!window.btcpay) {
             var script = document.createElement("script");
-            script.src = "https://btcpay.stackist.io/modal/btcpay.js";
+            script.src = "https://tip.moscowtime.xyz/modal/btcpay.js";
             document.getElementsByTagName("head")[0].append(script);
           }
           function onBTCPayFormSubmit(event) {
