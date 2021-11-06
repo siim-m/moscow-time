@@ -12,7 +12,6 @@
     <meta name="twitter:image" content="https://moscowtime.xyz/card.png" />
     <title>Moscow Time</title>
     <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
-    <!-- <script src="widget-no-frame.js"></script> -->
     <script src="widget-with-frame.js"></script>
   </head>
   <body>
@@ -28,24 +27,84 @@
         "
       ></div>
       <div id="tip">
-        <p>
-          <a href="/widget.html">JavaScript widget</a> ·
-          <a
-            href="https://coinos.io/moscowtime"
-            target="_blank"
-            rel="noopener noreferrer"
-            >Send me a tip!</a
+        <form
+          method="POST"
+          onsubmit="onBTCPayFormSubmit(event);return false"
+          action="https://btcpay.stackist.io/api/v1/invoices"
+          class="btcpay-form btcpay-form--inline"
+        >
+          <input
+            type="hidden"
+            name="storeId"
+            value="FxsRyKsivNQdxuCxmXLkjNaLTkZdBJhct2f3VzK9CjoH"
+          />
+          <input type="hidden" name="jsonResponse" value="true" />
+          <div class="btcpay-custom-container">
+            <div class="btcpay-custom">
+              <input
+                id="btcpay-input-price"
+                name="price"
+                type="number"
+                min="1"
+                max="1000"
+                step="1"
+                value="5"
+                style="width: 3em"
+                oninput="event.preventDefault();isNaN(event.target.value)? document.querySelector('#btcpay-input-price').value = 5 : event.target.value; if (this.value < 1) {this.value = 1; } else if(this.value > 1000){  this.value = 1000;}"
+              />
+            </div>
+            <select name="currency">
+              <option value="USD" selected>USD</option>
+              <option value="CAD">CAD</option>
+              <option value="AUD">AUD</option>
+              <option value="EUR">EUR</option>
+            </select>
+          </div>
+          <button
+            type="submit"
+            class="submit"
+            name="submit"
+            alt="Send me a tip via Lightning."
           >
-        </p>
+            <span style="color: #fff">Send me a tip</span>
+          </button>
+        </form>
+        <script>
+          if (!window.btcpay) {
+            var script = document.createElement("script");
+            script.src = "https://btcpay.stackist.io/modal/btcpay.js";
+            document.getElementsByTagName("head")[0].append(script);
+          }
+          function onBTCPayFormSubmit(event) {
+            event.preventDefault();
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function () {
+              if (
+                this.readyState == 4 &&
+                this.status == 200 &&
+                this.responseText
+              ) {
+                window.btcpay.showInvoice(
+                  JSON.parse(this.responseText).invoiceId
+                );
+              }
+            };
+            xhttp.open("POST", event.target.getAttribute("action"), true);
+            xhttp.send(new FormData(event.target));
+          }
+        </script>
       </div>
     </main>
     <footer>
-      <p>
-        BLOCKCLOCK is a registered trademark of
-        <a href="https://www.coinkite.com" target="_blank" target="noopener"
-          >Coinkite Inc</a
-        >.
-      </p>
+      <div id="widget-link">
+        <p>
+          Check out our <a href="/widget.html">JavaScript widget</a> ·
+          BLOCKCLOCK is a registered trademark of
+          <a href="https://www.coinkite.com" target="_blank" target="noopener"
+            >Coinkite Inc</a
+          >
+        </p>
+      </div>
     </footer>
   </body>
 </html>
