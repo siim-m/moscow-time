@@ -1,8 +1,12 @@
 module.exports = {
-	content: ['./src/**/*.svelte'],
+	content: ['./src/**/*.svelte', './src/**/*.html'],
 	theme: {
-		extend: {}
+		extend: {
+			colors: {
+				ckwhite: '#fcfbf7',
+			},
+		},
 	},
 	plugins: [],
-	mode: 'jit'
+	mode: 'jit',
 };

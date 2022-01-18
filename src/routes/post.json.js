@@ -6,7 +6,7 @@ export async function get({ params }) {
 		status: 200,
 		body: {
 			message: 'Hello',
-      params,
-		}
+			params,
+		},
 	};
 }

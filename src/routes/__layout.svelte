@@ -8,7 +8,7 @@
 
 <Header />
 
-<main class="bg-blue-400">
+<main>
 	<!--
     <slot /> is where "children" get mounted in the component.
     __layout.svelte is a special filename.
@@ -25,11 +25,11 @@
 	} */
 
 	/* :global() helps get around this - NOT RECOMMENDED */
-	:global(header) {
+	/* :global(header) {
 		background-color: red;
 	}
 
 	footer {
 		background-color: red;
-	}
+	} */
 </style>
