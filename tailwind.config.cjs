@@ -7,6 +7,6 @@ module.exports = {
 			},
 		},
 	},
-	plugins: [],
+	plugins: [require('@tailwindcss/typography')],
 	mode: 'jit',
 };
