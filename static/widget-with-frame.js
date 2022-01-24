@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 const CLOCK_HTML = `
 <div id="blockclock">
@@ -61,7 +61,7 @@ const MOSCOW_TIME_HTML = `
 
 const FETCH_INTERVAL = 10000;
 
-const VALID_DISPLAY_OPTIONS = ["blockheight", "usdprice", "satsperdollar", "moscowtime"]
+const VALID_DISPLAY_OPTIONS = ['blockheight', 'usdprice', 'satsperdollar', 'moscowtime'];
 
 let displayOptions;
 let activeOption;
@@ -74,186 +74,179 @@ let satUsd;
 
 // Sets the values of the top section of each cell
 function setTopSections(values) {
-  for (let i = 0; i < 7; i += 1) {
-    document.getElementById(`blockclock-top-section-${i}`).innerHTML = values[i] || "";
-  }
+	for (let i = 0; i < 7; i += 1) {
+		document.getElementById(`blockclock-top-section-${i}`).innerHTML = values[i] || '';
+	}
 }
 
 function setDimensions() {
-  const clockContainer = document.getElementById("blockclock-container");
-  const clock = document.getElementById("blockclock");
-  const digits = document.getElementById("blockclock-digits");
+	const clockContainer = document.getElementById('blockclock-container');
+	const clock = document.getElementById('blockclock');
+	const digits = document.getElementById('blockclock-digits');
 
-  clockContainer.style.height = `${0.375 * clockContainer.clientWidth}px`;
-  clock.style.height = `${0.375 * clockContainer.clientWidth}px`;
-  digits.style.height = `${0.5075 * clock.clientHeight}px`;
+	clockContainer.style.height = `${0.375 * clockContainer.clientWidth}px`;
+	clock.style.height = `${0.375 * clockContainer.clientWidth}px`;
+	digits.style.height = `${0.5075 * clock.clientHeight}px`;
 
-  Array.from(document.getElementsByClassName("blockclock-digit-content")).forEach((el) => {
-    el.style.fontSize = `${0.425 * clock.clientHeight}px`;
-  });
+	Array.from(document.getElementsByClassName('blockclock-digit-content')).forEach((el) => {
+		el.style.fontSize = `${0.425 * clock.clientHeight}px`;
+	});
 
-  Array.from(document.getElementsByClassName("blockclock-top-section")).forEach((el) => {
-    el.style.fontSize = `${0.019 * clock.clientHeight}px`;
-  });
+	Array.from(document.getElementsByClassName('blockclock-top-section')).forEach((el) => {
+		el.style.fontSize = `${0.019 * clock.clientHeight}px`;
+	});
 
-  Array.from(document.getElementsByClassName("blockclock-special-content")).forEach(
-    (el) => {
-      el.style.fontSize = `${0.15 * clock.clientHeight}px`;
-    }
-  );
+	Array.from(document.getElementsByClassName('blockclock-special-content')).forEach((el) => {
+		el.style.fontSize = `${0.15 * clock.clientHeight}px`;
+	});
 
-  Array.from(document.getElementsByClassName("blockclock-special-upper-small")).forEach(
-    (el) => {
-      el.style.fontSize = `${0.175 * clock.clientHeight}px`;
-    }
-  );
+	Array.from(document.getElementsByClassName('blockclock-special-upper-small')).forEach((el) => {
+		el.style.fontSize = `${0.175 * clock.clientHeight}px`;
+	});
 }
 
 function cycleView() {
-  if (activeOption === undefined || activeOption === displayOptions.length - 1) {
-    activeOption = 0;
-  } else {
-    activeOption += 1;
-  }
+	if (activeOption === undefined || activeOption === displayOptions.length - 1) {
+		activeOption = 0;
+	} else {
+		activeOption += 1;
+	}
 
-  activeView = displayOptions[activeOption];
+	activeView = displayOptions[activeOption];
 
-  switch (activeView) {
-    case "usdprice":
-      setTopSections(["Market price of", "bitcoin"]);
+	switch (activeView) {
+		case 'usdprice':
+			setTopSections(['Market price of', 'bitcoin']);
 
-      document.getElementById("blockclock-cell-0").innerHTML = BTC_USD_HTML;
-      document.getElementById("blockclock-cell-1").innerHTML = "$";
+			document.getElementById('blockclock-cell-0').innerHTML = BTC_USD_HTML;
+			document.getElementById('blockclock-cell-1').innerHTML = '$';
 
-      // Determine which format to use based on number of digits in price.
-      switch (true) {
-        case priceUsd.length > 6:
-          document.getElementById("blockclock-cell-2").innerHTML = `${priceUsd[0]}.`;
-          document.getElementById("blockclock-cell-3").innerHTML = priceUsd[1];
-          document.getElementById("blockclock-cell-4").innerHTML = priceUsd[2];
-          document.getElementById("blockclock-cell-5").innerHTML = priceUsd[3];
-          document.getElementById("blockclock-cell-6").innerHTML = "M";
-          break;
-        case priceUsd.length > 5:
-          document.getElementById("blockclock-cell-2").innerHTML = priceUsd[0];
-          document.getElementById("blockclock-cell-3").innerHTML = priceUsd[1];
-          document.getElementById("blockclock-cell-4").innerHTML = `${priceUsd[2]}.`;
-          document.getElementById("blockclock-cell-5").innerHTML = priceUsd[3];
-          document.getElementById("blockclock-cell-6").innerHTML = "K";
-          break;
-        default:
-          for (let i = 2; i < 7; i += 1) {
-            document.getElementById(`blockclock-cell-${i.toString()}`).innerHTML =
-              priceUsd[priceUsd.length - 7 + i] || "";
-          }
-          break;
-      }
+			// Determine which format to use based on number of digits in price.
+			switch (true) {
+				case priceUsd.length > 6:
+					document.getElementById('blockclock-cell-2').innerHTML = `${priceUsd[0]}.`;
+					document.getElementById('blockclock-cell-3').innerHTML = priceUsd[1];
+					document.getElementById('blockclock-cell-4').innerHTML = priceUsd[2];
+					document.getElementById('blockclock-cell-5').innerHTML = priceUsd[3];
+					document.getElementById('blockclock-cell-6').innerHTML = 'M';
+					break;
+				case priceUsd.length > 5:
+					document.getElementById('blockclock-cell-2').innerHTML = priceUsd[0];
+					document.getElementById('blockclock-cell-3').innerHTML = priceUsd[1];
+					document.getElementById('blockclock-cell-4').innerHTML = `${priceUsd[2]}.`;
+					document.getElementById('blockclock-cell-5').innerHTML = priceUsd[3];
+					document.getElementById('blockclock-cell-6').innerHTML = 'K';
+					break;
+				default:
+					for (let i = 2; i < 7; i += 1) {
+						document.getElementById(`blockclock-cell-${i.toString()}`).innerHTML =
+							priceUsd[priceUsd.length - 7 + i] || '';
+					}
+					break;
+			}
 
-      setDimensions();
+			setDimensions();
 
-      break;
+			break;
 
-    case "satsperdollar":
-      document.getElementById("blockclock-cell-0").innerHTML = SAT_USD_HTML;
+		case 'satsperdollar':
+			document.getElementById('blockclock-cell-0').innerHTML = SAT_USD_HTML;
 
-      setTopSections([]);
+			setTopSections([]);
 
-      // Set the digits.
-      for (let i = 1; i < 7; i += 1) {
-        document.getElementById(`blockclock-cell-${i.toString()}`).innerHTML =
-          satUsd[satUsd.length - 7 + i] || "";
-      }
+			// Set the digits.
+			for (let i = 1; i < 7; i += 1) {
+				document.getElementById(`blockclock-cell-${i.toString()}`).innerHTML =
+					satUsd[satUsd.length - 7 + i] || '';
+			}
 
-      setDimensions();
+			setDimensions();
 
-      break;
+			break;
 
-    case "blockheight":
-      for (let i = 0; i < 7; i += 1) {
-        document.getElementById(`blockclock-cell-${i.toString()}`).innerHTML =
-          blockHeight[blockHeight.length - 7 + i] || "";
-      }
+		case 'blockheight':
+			for (let i = 0; i < 7; i += 1) {
+				document.getElementById(`blockclock-cell-${i.toString()}`).innerHTML =
+					blockHeight[blockHeight.length - 7 + i] || '';
+			}
 
-      setTopSections(["Number of blocks", "in the", "blockchain"]);
-      
-      setDimensions();
-      
-      break;
+			setTopSections(['Number of blocks', 'in the', 'blockchain']);
 
-    case "moscowtime":
-      document.getElementById("blockclock-cell-0").innerHTML = MOSCOW_TIME_HTML;
+			setDimensions();
 
-      setTopSections([]);
+			break;
 
-      // Set the digits.
-      for (let i = 1; i < 7; i += 1) {
-        document.getElementById(`blockclock-cell-${i.toString()}`).innerHTML =
-          satUsd[satUsd.length - 7 + i] || "";
-      }
+		case 'moscowtime':
+			document.getElementById('blockclock-cell-0').innerHTML = MOSCOW_TIME_HTML;
 
-      setDimensions();
+			setTopSections([]);
 
-      break;
+			// Set the digits.
+			for (let i = 1; i < 7; i += 1) {
+				document.getElementById(`blockclock-cell-${i.toString()}`).innerHTML =
+					satUsd[satUsd.length - 7 + i] || '';
+			}
 
-    default:
-      break;
-  }
+			setDimensions();
+
+			break;
+
+		default:
+			break;
+	}
 }
 
 async function fetchData() {
-  let priceUsdResponse = await (
-    await fetch(
-      "https://api.coinbase.com/v2/prices/spot?currency=USD"
-    )
-  ).json();
+	let priceUsdResponse = await (
+		await fetch('https://api.coinbase.com/v2/prices/spot?currency=USD')
+	).json();
 
-  priceUsd = parseInt(priceUsdResponse.data.amount).toString();
-  satUsd = Math.round((1 / priceUsd) * 100000000).toString();
+	priceUsd = parseInt(priceUsdResponse.data.amount).toString();
+	satUsd = Math.round((1 / priceUsd) * 100000000).toString();
 
-  let blockHeightResponse = await (
-    await fetch("https://blockstream.info/api/blocks/tip/height")
-  ).json();
+	let blockHeightResponse = await (
+		await fetch('https://blockstream.info/api/blocks/tip/height')
+	).json();
 
-  blockHeight = blockHeightResponse.toString();
+	blockHeight = blockHeightResponse.toString();
 }
 
 setInterval(fetchData, FETCH_INTERVAL);
 
 window.onload = () => {
-  // Load CSS
-  const link = document.createElement("link");
-  link.href = "https://moscowtime.xyz/widget-with-frame.css";
-  link.type = "text/css";
-  link.rel = "stylesheet";
-  document.getElementsByTagName("head")[0].appendChild(link);
+	// Load CSS
+	const link = document.createElement('link');
+	link.href = 'https://moscowtime.xyz/widget-with-frame.css';
+	link.type = 'text/css';
+	link.rel = 'stylesheet';
+	document.getElementsByTagName('head')[0].appendChild(link);
 
-  const clockContainer = document.getElementById("blockclock-container")
+	const clockContainer = document.getElementById('blockclock-container');
 
-  const displayClasses = Array.from(clockContainer.classList)
+	const displayClasses = Array.from(clockContainer.classList);
 
-  displayOptions = displayClasses.filter((className) => {
-    return VALID_DISPLAY_OPTIONS.includes(className);
-  });
+	displayOptions = displayClasses.filter((className) => {
+		return VALID_DISPLAY_OPTIONS.includes(className);
+	});
 
-  displayClasses.forEach((className) => {
-    if (className.includes("interval-")) {
+	displayClasses.forEach((className) => {
+		if (className.includes('interval-')) {
+			const regexp = /^(interval-)(\d+)$/gi;
+			const matches = [...className.matchAll(regexp)];
+			if (matches.length) {
+				const intervalValue = parseInt(matches[0][2]);
+				if (typeof intervalValue === 'number') cycleInterval = intervalValue;
+			}
+		}
+	});
 
-      const regexp = /^(interval-)(\d+)$/gi
-      const matches = [...className.matchAll(regexp)]
-      if (matches.length) {
-        const intervalValue = parseInt(matches[0][2])
-        if (typeof intervalValue === "number") cycleInterval = intervalValue
-      }
-    }
-  })
+	clockContainer.innerHTML = CLOCK_HTML;
 
-  clockContainer.innerHTML = CLOCK_HTML;
+	setDimensions();
+	window.onresize = setDimensions;
 
-  setDimensions();
-  window.onresize = setDimensions;
-
-  fetchData().then(() => {
-    cycleView();
-    setInterval(cycleView, cycleInterval);
-  });
+	fetchData().then(() => {
+		cycleView();
+		setInterval(cycleView, cycleInterval);
+	});
 };
