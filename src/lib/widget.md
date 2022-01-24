@@ -15,8 +15,8 @@ Add a BLOCKCLOCK widget to your website. You can choose between two versions:
   <head>
     <!-- Insert ONE of the below <script> tags before your closing </head> tag. -->
     <!-- NOTE: BLOCKCLOCK is a registered trademark of Coinkite Inc. -->
-    <script src="https://moscowtime.xyz/widget-with-frame.js"></script>
-    <script src="https://moscowtime.xyz/widget-no-frame.js"></script>
+    <script async defer src="https://moscowtime.xyz/widget-with-frame.js"></script>
+    <script async defer src="https://moscowtime.xyz/widget-no-frame.js"></script>
   </head>
   ```
 
