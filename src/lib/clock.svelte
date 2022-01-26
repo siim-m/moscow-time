@@ -1,3 +1,19 @@
+<script>
+	import { onMount, onDestroy } from 'svelte';
+
+	let clock = {
+		unMount: () => {}, // Temprarily assign an empty function, so Svelte doesn't complain about using it in onDestroy
+	};
+
+	onMount(() => {
+		clock = mountBlockClock();
+	});
+
+	onDestroy(() => {
+		clock.unMount();
+	});
+</script>
+
 <svelte:head>
 	<script async defer src="widget-with-frame.js"></script>
 </svelte:head>

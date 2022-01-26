@@ -7,8 +7,8 @@
 <footer>
 	<div class="prose text-center mx-auto">
 		<p>
-			Check out our <a href="/widget" rel="external">JavaScript widget</a> · BLOCKCLOCK is a
-			registered trademark of
+			Check out our <a href="/widget">JavaScript widget</a> · BLOCKCLOCK is a registered trademark
+			of
 			<a href="https://www.coinkite.com" target="_blank" rel="external noopener">Coinkite Inc</a>
 		</p>
 	</div>
