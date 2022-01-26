@@ -8,7 +8,7 @@
 
 <!-- <Header /> -->
 
-<div class="mx-2 sm:mx-6">
+<div class="mx-2 sm:mx-6 md:mx-10 lg:mx-14">
 	<main>
 		<!--
     <slot /> is where "children" get mounted in the component.
@@ -17,7 +17,7 @@
 		<slot />
 	</main>
 
-	<footer class="pt-20">
+	<footer class="pt-[10vh] pb-2">
 		<div class="prose md:prose-lg lg:prose-xl text-center font-medium mx-auto">
 			<p>
 				Check out our <a class="text-orange-400" href="/widget">JavaScript widget</a> · BLOCKCLOCK

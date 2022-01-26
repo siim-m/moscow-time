@@ -2,6 +2,6 @@
 	import Clock from '$lib/clock.svelte';
 </script>
 
-<div class="pt-32 sm:pt-48 xl:max-w-screen-xl mx-auto">
+<div class="pt-[15vh] sm:max-w-screen-lg mx-auto">
 	<Clock />
 </div>
