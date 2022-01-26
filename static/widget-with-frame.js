@@ -164,7 +164,7 @@ async function fetchData() {
 	};
 }
 
-function initBlockClock() {
+function mountBlockClock() {
 	const FETCH_INTERVAL = 10000;
 	const VALID_DISPLAY_OPTIONS = ['blockheight', 'usdprice', 'satsperdollar', 'moscowtime'];
 
@@ -244,6 +244,9 @@ function initBlockClock() {
 		blockHeight: undefined,
 	};
 
+	let cycleViewInterval;
+	let fetchDataInterval;
+
 	fetchData().then((data) => {
 		displayData.priceUsd = data.priceUsd;
 		displayData.satUsd = data.satUsd;
@@ -255,7 +258,7 @@ function initBlockClock() {
 			displayData,
 		});
 
-		setInterval(() => {
+		cycleViewInterval = setInterval(() => {
 			if (activeOption === undefined || activeOption === displayOptions.length - 1) {
 				activeOption = 0;
 			} else {
@@ -270,11 +273,18 @@ function initBlockClock() {
 		}, cycleInterval);
 	});
 
-	setInterval(() => {
+	fetchDataInterval = setInterval(() => {
 		fetchData().then((data) => {
 			displayData.priceUsd = data.priceUsd;
 			displayData.satUsd = data.satUsd;
 			displayData.blockHeight = data.blockHeight;
 		});
 	}, FETCH_INTERVAL);
+
+	return {
+		unMount: () => {
+			clearInterval(cycleViewInterval);
+			clearInterval(fetchDataInterval);
+		}
+	}
 }
