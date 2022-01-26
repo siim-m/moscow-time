@@ -285,6 +285,6 @@ function mountBlockClock() {
 		unMount: () => {
 			clearInterval(cycleViewInterval);
 			clearInterval(fetchDataInterval);
-		}
-	}
+		},
+	};
 }

@@ -32,19 +32,3 @@
 		</div>
 	</footer>
 </div>
-
-<style>
-	/* Won't work – CSS is scoped in Svelte. */
-	/* header {
-		background-color: red;
-	} */
-
-	/* :global() helps get around this - NOT RECOMMENDED */
-	/* :global(header) {
-		background-color: red;
-	}
-
-	footer {
-		background-color: red;
-	} */
-</style>
