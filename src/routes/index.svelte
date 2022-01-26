@@ -2,14 +2,6 @@
 	import Clock from '$lib/clock.svelte';
 </script>
 
-<Clock />
-
-<footer>
-	<div class="prose text-center mx-auto">
-		<p>
-			Check out our <a href="/widget">JavaScript widget</a> · BLOCKCLOCK is a registered trademark
-			of
-			<a href="https://www.coinkite.com" target="_blank" rel="external noopener">Coinkite Inc</a>
-		</p>
-	</div>
-</footer>
+<div class="pt-32 sm:pt-48 xl:max-w-screen-xl mx-auto">
+	<Clock />
+</div>

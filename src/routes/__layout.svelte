@@ -8,13 +8,30 @@
 
 <!-- <Header /> -->
 
-<main>
-	<!--
+<div class="mx-2 sm:mx-6">
+	<main>
+		<!--
     <slot /> is where "children" get mounted in the component.
     __layout.svelte is a special filename.
   -->
-	<slot />
-</main>
+		<slot />
+	</main>
+
+	<footer class="pt-20">
+		<div class="prose md:prose-lg lg:prose-xl text-center font-medium mx-auto">
+			<p>
+				Check out our <a class="text-orange-400" href="/widget">JavaScript widget</a> · BLOCKCLOCK
+				is a registered trademark of
+				<a
+					class="text-orange-400"
+					href="https://www.coinkite.com"
+					target="_blank"
+					rel="external noopener">Coinkite Inc</a
+				>
+			</p>
+		</div>
+	</footer>
+</div>
 
 <style>
 	/* Won't work – CSS is scoped in Svelte. */
