@@ -11,7 +11,7 @@ async function getScreenshot({ view }) {
 		height: 1080,
 	});
 
-	await page.goto(`http://localhost:3000/view/${view}`);
+	await page.goto(`https://moscowtime.xyz/view/${view}`);
 	await page.waitForNetworkIdle();
 
 	const screenshot = await page.screenshot({
