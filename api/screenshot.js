@@ -18,6 +18,7 @@ async function getScreenshot({ view }) {
 	});
 
 	await page.goto(`https://moscowtime.xyz/view/${view}`);
+	await page.waitForSelector('#blockclock');
 	await page.waitForNetworkIdle();
 
 	const screenshot = await page.screenshot({
@@ -36,7 +37,7 @@ export default async function handler(request, response) {
 	const screenshot = await getScreenshot({ view });
 
 	response.setHeader('Content-Disposition', `inline; filename="${view}-${Date.now()}.png"`);
-  response.setHeader('Content-Type', 'image/png');
+	response.setHeader('Content-Type', 'image/png');
 
 	response.status(200).send(screenshot);
 }
