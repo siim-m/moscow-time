@@ -3,7 +3,7 @@ import chrome from 'chrome-aws-lambda';
 
 async function getScreenshot({ view }) {
 	// open the browser and prepare a page
-	console.debug('NODE_ENV', process.env.NODE_ENV);
+	console.log('NODE_ENV', process.env.NODE_ENV);
 	const browser = await puppeteer.launch(
 		process.env.NODE_ENV === 'production'
 			? {
