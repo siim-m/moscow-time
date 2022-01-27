@@ -12,10 +12,12 @@
 	onDestroy(() => {
 		clock.unMount();
 	});
+
+	export let className;
 </script>
 
 <svelte:head>
-	<script async defer src="widget-v2.js"></script>
+	<script async defer src="/widget-v2.js"></script>
 </svelte:head>
 
-<div id="blockclock-container" class="moscowtime usdprice blockheight interval-3000" />
+<div id="blockclock-container" class={className} />
