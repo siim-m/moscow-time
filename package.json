@@ -27,7 +27,6 @@
 	"type": "module",
 	"dependencies": {
 		"chrome-aws-lambda": "^10.1.0",
-		"puppeteer": "^13.1.2",
 		"puppeteer-core": "^13.1.2"
 	}
 }

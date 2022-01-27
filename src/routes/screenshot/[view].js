@@ -1,17 +1,13 @@
-import puppeteer from 'puppeteer';
-import puppeteerCore from 'puppeteer-core';
-import chrome from 'chrome-aws-lambda';
+import chromium from 'chrome-aws-lambda';
 
 async function getScreenshot({ view }) {
-	const isProd = process.env.NODE_ENV === 'production';
-
-	const browser = isProd
-		? await puppeteerCore.launch({
-				args: chrome.args,
-				executablePath: await chrome.executablePath,
-				headless: chrome.headless,
-		  })
-		: await puppeteer.launch();
+	const browser = await chromium.puppeteer.launch({
+		args: chromium.args,
+		defaultViewport: chromium.defaultViewport,
+		executablePath: await chromium.executablePath,
+		headless: true,
+		ignoreHTTPSErrors: true,
+	});
 
 	const page = await browser.newPage();
 
