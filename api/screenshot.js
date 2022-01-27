@@ -35,5 +35,8 @@ export default async function handler(request, response) {
 
 	const screenshot = await getScreenshot({ view });
 
+	response.setHeader('Content-Disposition', `inline; filename="${view}-${Date.now()}.png"`);
+  response.setHeader('Content-Type', 'image/png');
+
 	response.status(200).send(screenshot);
 }
