@@ -285,6 +285,7 @@ function mountBlockClock() {
 		unMount: () => {
 			clearInterval(cycleViewInterval);
 			clearInterval(fetchDataInterval);
+			window.onresize = null;
 		},
 	};
 }
