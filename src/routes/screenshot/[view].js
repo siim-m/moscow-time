@@ -1,18 +1,18 @@
 import puppeteer from 'puppeteer';
+import puppeteerCore from 'puppeteer-core';
 import chrome from 'chrome-aws-lambda';
 
 async function getScreenshot({ view }) {
-	// open the browser and prepare a page
-	console.log('NODE_ENV', process.env.NODE_ENV);
-	const browser = await puppeteer.launch(
-		process.env.NODE_ENV === 'production'
-			? {
-					args: chrome.args,
-					executablePath: await chrome.executablePath,
-					headless: chrome.headless,
-			  }
-			: {}
-	);
+	const isProd = process.env.NODE_ENV === 'production';
+
+	const browser = isProd
+		? await puppeteerCore.launch({
+				args: chrome.args,
+				executablePath: await chrome.executablePath,
+				headless: chrome.headless,
+		  })
+		: await puppeteer.launch();
+
 	const page = await browser.newPage();
 
 	// set the size of the viewport, so our screenshot will have the desired size
