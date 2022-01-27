@@ -20,8 +20,10 @@
 	<footer class="pt-[10vh] pb-2">
 		<div class="prose md:prose-lg lg:prose-xl text-center font-medium mx-auto">
 			<p>
-				Check out our <a class="text-orange-400" href="/widget-instructions">JavaScript widget</a> · BLOCKCLOCK
-				is a registered trademark of
+				Check out our <a sveltekit:prefetch class="text-orange-400" href="/widget-instructions"
+					>JavaScript widget</a
+				>
+				· BLOCKCLOCK is a registered trademark of
 				<a
 					class="text-orange-400"
 					href="https://www.coinkite.com"

@@ -236,7 +236,12 @@ function mountBlockClock() {
 	clockContainer.innerHTML = CLOCK_HTML;
 
 	setDimensions();
-	window.onresize = setDimensions;
+
+	const clockObserver = new ResizeObserver(() => {
+		setDimensions();
+	});
+
+	clockObserver.observe(clockContainer);
 
 	let displayData = {
 		priceUsd: undefined,
@@ -285,7 +290,7 @@ function mountBlockClock() {
 		unMount: () => {
 			clearInterval(cycleViewInterval);
 			clearInterval(fetchDataInterval);
-			window.onresize = null;
+			clockObserver.disconnect();
 		},
 	};
 }
