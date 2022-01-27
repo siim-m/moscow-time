@@ -3,7 +3,7 @@
 </script>
 
 <svelte:head>
-	<!-- <link href="https://raw.githubusercontent.com/PrismJS/prism-themes/master/themes/prism-shades-of-purple.css" rel="stylesheet" /> -->
+  <title>Moscow Time | Widget Instructions</title>
 </svelte:head>
 
 <div class="prose mx-auto mt-16">
