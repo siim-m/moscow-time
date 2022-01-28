@@ -18,5 +18,7 @@
 
 <div class="px-6 pt-[189px]">
 	<Clock className={`${view} interval-60000`} />
-	<p class="text-center pt-16 text-neutral-600 font-mono text-4xl">{timestamp}</p>
+	<p class="text-center pt-16 text-neutral-600 font-mono text-3xl">
+		{timestamp} | BLOCKCLOCK is a registered trademark of Coinkite Inc.
+	</p>
 </div>

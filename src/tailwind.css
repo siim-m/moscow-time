@@ -1,3 +1,24 @@
+@font-face {
+	font-family: 'Steelfish Rounded Bold';
+	src: url('/steelfish_rounded_bold.woff2') format('woff2'),
+		url('/steelfish_rounded_bold.woff') format('woff'),
+		url('/steelfish_rounded_bold.ttf') format('truetype');
+}
+
+@font-face {
+	font-family: 'Courier Prime Regular';
+	src: url('/courier_prime_regular.woff2') format('woff2'),
+		url('/courier_prime_regular.woff') format('woff'),
+		url('/courier_prime_regular.ttf') format('truetype');
+}
+
+@font-face {
+	font-family: 'Courier Prime Bold';
+	src: url('/courier_prime_bold.woff2') format('woff2'),
+		url('/courier_prime_bold.woff') format('woff'),
+		url('/courier_prime_bold.ttf') format('truetype');
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
