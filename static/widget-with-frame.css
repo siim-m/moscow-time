@@ -6,6 +6,14 @@
     url("https://moscowtime.xyz/steelfish_rounded_bold.ttf") format("truetype");
 }
 
+@font-face {
+  font-family: "Courier Prime Bold";
+  src: url("https://moscowtime.xyz/courier_prime_bold.woff2")
+      format("woff2"),
+    url("https://moscowtime.xyz/courier_prime_bold.woff") format("woff"),
+    url("https://moscowtime.xyz/courier_prime_bold.ttf") format("truetype");
+}
+
 #blockclock-container {
   display: flex;
   margin: 0;
@@ -75,7 +83,7 @@
   letter-spacing: 0.15em;
   min-height: 12%;
   height: 12%;
-  font-family: monospace;
+  font-family: 'Courier Prime Bold', monospace;
 }
 
 .blockclock-special-upper {
