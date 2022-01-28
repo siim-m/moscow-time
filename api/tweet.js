@@ -59,7 +59,7 @@ export default async function handler(request, response) {
 		return;
 	}
 
-	if (request.headers['x-api-key'] !== process.env.API_KEY) {
+	if (request.headers['x-api-key'] !== process.env.API_KEY || !process.env.API_KEY) {
 		response.status(401).send('Unauthorized');
 		return;
 	}
