@@ -55,6 +55,14 @@ async function getScreenshot({ view }) {
 }
 
 export default async function handler(request, response) {
+	if (request.method !== 'POST') {
+		response.status(400).send('Bad request');
+	}
+
+	if (request.headers['x-api-key'] !== process.env.API_KEY) {
+		response.status(401).send('Unauthorized');
+	}
+
 	const { view } = request.query;
 
 	const screenshot = await getScreenshot({ view });
@@ -62,21 +70,13 @@ export default async function handler(request, response) {
 	const client = new TwitterApi({
 		appKey: process.env.TWITTER_API_KEY,
 		appSecret: process.env.TWITTER_API_KEY_SECRET,
-		// Following access tokens are not required if you are
-		// at part 1 of user-auth process (ask for a request token)
-		// or if you want a app-only client (see below)
 		accessToken: process.env.TWITTER_OAUTH_TOKEN,
 		accessSecret: process.env.TWITTER_OAUTH_TOKEN_SECRET,
 	});
 
-	// response.setHeader('Content-Disposition', `inline; filename="${view}-${Date.now()}.png"`);
-	// response.setHeader('Content-Type', 'image/png');
-
 	const mediaId = await client.v1.uploadMedia(Buffer.from(screenshot), { type: 'png' });
 
 	const tweet = await client.v1.tweet('Moscow time', { media_ids: [mediaId] });
-
-	console.log('tweet', tweet);
 
 	response.status(200).json(tweet);
 }
