@@ -21,16 +21,17 @@ async function getScreenshot({ view }) {
 
 	let waitForFunction;
 
-	try {
-		waitForFunction = await page.waitForFunction(
-			'document.getElementById("blockclock-container").clientHeight > 0',
-			{
-				timeout: 2500,
-				polling: 100,
-			}
-		);
-	} catch (err) {
-		console.log({ err });
+	while (!waitForFunction) {
+		try {
+			waitForFunction = await page.waitForFunction(
+				'document.getElementById("blockclock-container").clientHeight > 0',
+				{
+					timeout: 3200,
+				}
+			);
+		} catch (err) {
+			console.log({ err });
+		}
 	}
 
 	console.log({ waitForFunction });
