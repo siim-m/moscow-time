@@ -17,6 +17,13 @@ async function getScreenshot({ view }) {
 		height: 1080,
 	});
 
+	page
+		.on('console', (message) => console.log('puppeteer', message))
+		.on('pageerror', ({ message }) => console.log('puppeteer', message))
+		.on('requestfailed', (request) =>
+			console.log('puppeteer', `${request.failure().errorText} ${request.url()}`)
+		);
+
 	await page.goto(`https://moscowtime.xyz/view/${view}`);
 
 	let waitForFunction;
