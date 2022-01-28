@@ -7,12 +7,11 @@ async function getScreenshot({ view }) {
 		defaultViewport: chromium.defaultViewport,
 		executablePath: await chromium.executablePath,
 		headless: true,
-		ignoreHTTPSErrors: true,
+		ignoreHTTPSErrors: false,
 	});
 
 	const page = await browser.newPage();
 
-	// set the size of the viewport, so our screenshot will have the desired size
 	await page.setViewport({
 		width: 1920,
 		height: 1080,
@@ -65,7 +64,7 @@ export default async function handler(request, response) {
 		return;
 	}
 
-	const { view } = request.query;
+	const { view, text } = request.body;
 
 	const screenshot = await getScreenshot({ view });
 
@@ -76,9 +75,18 @@ export default async function handler(request, response) {
 		accessSecret: process.env.TWITTER_OAUTH_TOKEN_SECRET,
 	});
 
-	const mediaId = await client.v1.uploadMedia(Buffer.from(screenshot), { type: 'png' });
+	let params = {};
 
-	const tweet = await client.v1.tweet('Moscow time', { media_ids: [mediaId] });
+	if (view) {
+		params.media_ids = [await client.v1.uploadMedia(Buffer.from(screenshot), { type: 'png' })];
+	}
+
+	if (view === 'moscowtime') {
+		params.lat = 55.751244;
+		params.lon = 37.618423;
+	}
+
+	const tweet = await client.v1.tweet(text, params);
 
 	response.status(200).json(tweet);
 }
