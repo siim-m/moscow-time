@@ -18,8 +18,18 @@ async function getScreenshot({ view }) {
 	});
 
 	await page.goto(`https://moscowtime.xyz/view/${view}`);
-	await page.waitForFunction('document.getElementById("blockclock-container").clientHeight > 0');
-  await page.waitForInflightRequests();
+
+	const waitForFunction = await page.waitForFunction(
+		'document.getElementById("blockclock-container").clientHeight > 0',
+		{
+			timeout: 2500,
+			polling: 100,
+		}
+	);
+
+	console.log({ waitForFunction });
+
+	await page.waitForInflightRequests();
 
 	const screenshot = await page.screenshot({
 		fullPage: false,
