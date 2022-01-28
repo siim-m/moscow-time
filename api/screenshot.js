@@ -19,13 +19,19 @@ async function getScreenshot({ view }) {
 
 	await page.goto(`https://moscowtime.xyz/view/${view}`);
 
-	const waitForFunction = await page.waitForFunction(
-		'document.getElementById("blockclock-container").clientHeight > 0',
-		{
-			timeout: 2500,
-			polling: 100,
-		}
-	);
+	let waitForFunction;
+
+	try {
+		waitForFunction = await page.waitForFunction(
+			'document.getElementById("blockclock-container").clientHeight > 0',
+			{
+				timeout: 2500,
+				polling: 100,
+			}
+		);
+	} catch (err) {
+		console.log({ err });
+	}
 
 	console.log({ waitForFunction });
 
