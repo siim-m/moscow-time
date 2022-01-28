@@ -57,10 +57,12 @@ async function getScreenshot({ view }) {
 export default async function handler(request, response) {
 	if (request.method !== 'POST') {
 		response.status(400).send('Bad request');
+		return;
 	}
 
 	if (request.headers['x-api-key'] !== process.env.API_KEY) {
 		response.status(401).send('Unauthorized');
+		return;
 	}
 
 	const { view } = request.query;
