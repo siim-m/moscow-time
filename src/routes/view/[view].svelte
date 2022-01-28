@@ -10,5 +10,5 @@
 </svelte:head>
 
 <div class="px-6 pt-[189px]">
-	<Clock className={view} />
+	<Clock className={`${view} interval-60000`} />
 </div>
