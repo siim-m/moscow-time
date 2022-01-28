@@ -18,7 +18,7 @@ async function getScreenshot({ view }) {
 	});
 
 	await page.goto(`https://moscowtime.xyz/view/${view}`);
-	await page.waitForSelector('#blockclock-container');
+	await page.waitForFunction('document.getElementById("blockclock-container").clientHeight > 0');
 	await page.waitForNetworkIdle();
 
 	const screenshot = await page.screenshot({
