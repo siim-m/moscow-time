@@ -72,7 +72,7 @@ export default async function handler(request, response) {
 	// response.setHeader('Content-Disposition', `inline; filename="${view}-${Date.now()}.png"`);
 	// response.setHeader('Content-Type', 'image/png');
 
-	const mediaId = client.v1.uploadMedia(Buffer.from(screenshot), { type: 'png' });
+	const mediaId = await client.v1.uploadMedia(Buffer.from(screenshot), { type: 'png' });
 
 	const tweet = await client.v1.tweet('Moscow time', { media_ids: [mediaId] });
 
