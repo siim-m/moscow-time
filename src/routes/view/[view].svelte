@@ -10,8 +10,6 @@
 	const utcDate = addMilliseconds(new Date(offsetMinutes * 1000 * 60), localDate.getTime());
 
 	export const timestamp = `${format(utcDate, 'MMMM do, y @ HH:mm')} UTC`;
-
-	console.log({ localDate, offsetMinutes, utcDate });
 </script>
 
 <svelte:head>
