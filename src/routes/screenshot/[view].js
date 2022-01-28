@@ -1,8 +1,14 @@
-import puppeteer from 'puppeteer';
+import chromium from 'chrome-aws-lambda';
 
 async function getScreenshot({ view }) {
-	// open the browser and prepare a page
-	const browser = await puppeteer.launch();
+	const browser = await chromium.puppeteer.launch({
+		args: chromium.args,
+		defaultViewport: chromium.defaultViewport,
+		executablePath: await chromium.executablePath,
+		headless: true,
+		ignoreHTTPSErrors: true,
+	});
+
 	const page = await browser.newPage();
 
 	// set the size of the viewport, so our screenshot will have the desired size

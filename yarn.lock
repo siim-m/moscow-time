@@ -404,6 +404,13 @@ chownr@^1.1.1:
   resolved "https://registry.yarnpkg.com/chownr/-/chownr-1.1.4.tgz#6fc9d7b42d32a583596337666e7d08084da2cc6b"
   integrity sha512-jJ0bqzaylmJtVnNgzTeSOs8DPavpbYgEr/b0YL8/2GO3xJEhInFmhKMUnEJQjZumK7KXGFhUy89PrsJWlakBVg==
 
+chrome-aws-lambda@^10.1.0:
+  version "10.1.0"
+  resolved "https://registry.yarnpkg.com/chrome-aws-lambda/-/chrome-aws-lambda-10.1.0.tgz#ac43b4cdfc1fbb2275c62effada560858099501e"
+  integrity sha512-NZQVf+J4kqG4sVhRm3WNmOfzY0OtTSm+S8rg77pwePa9RCYHzhnzRs8YvNI6L9tALIW6RpmefWiPURt3vURXcw==
+  dependencies:
+    lambdafs "^2.0.3"
+
 color-convert@^1.9.0:
   version "1.9.3"
   resolved "https://registry.yarnpkg.com/color-convert/-/color-convert-1.9.3.tgz#bb71850690e1f136567de629d2d5471deda4c1e8"
@@ -1107,6 +1114,13 @@ kleur@^4.1.4:
   resolved "https://registry.yarnpkg.com/kleur/-/kleur-4.1.4.tgz#8c202987d7e577766d039a8cd461934c01cda04d"
   integrity sha512-8QADVssbrFjivHWQU7KkMgptGTl6WAcSdlbBPY4uNF+mWr6DGcKrvY2w4FQJoXch7+fKMjj0dRrL75vk3k23OA==
 
+lambdafs@^2.0.3:
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/lambdafs/-/lambdafs-2.1.1.tgz#4bf8d3037b6c61bbb4a22ab05c73ee47964c25ed"
+  integrity sha512-x5k8JcoJWkWLvCVBzrl4pzvkEHSgSBqFjg3Dpsc4AcTMq7oUMym4cL/gRTZ6VM4mUMY+M0dIbQ+V1c1tsqqanQ==
+  dependencies:
+    tar-fs "^2.1.1"
+
 levn@^0.4.1:
   version "0.4.1"
   resolved "https://registry.yarnpkg.com/levn/-/levn-0.4.1.tgz#ae4562c007473b932a6200d403268dd2fffc6ade"
@@ -1452,10 +1466,10 @@ punycode@^2.1.0:
   resolved "https://registry.yarnpkg.com/punycode/-/punycode-2.1.1.tgz#b58b010ac40c22c5657616c8d2c2c02c7bf479ec"
   integrity sha512-XRsRjdf+j5ml+y/6GKHPZbrF/8p2Yga0JPtdqTIY2Xe5ohJPD9saDJJLPvp9+NSBprVvevdXZybnj2cv8OEd0A==
 
-puppeteer@^13.1.2:
+puppeteer-core@^13.1.2:
   version "13.1.2"
-  resolved "https://registry.yarnpkg.com/puppeteer/-/puppeteer-13.1.2.tgz#d6ef3295d7551200b7e52076a3cc1b731eff4294"
-  integrity sha512-ozVM8Tdg0patMtm/xAr3Uh7rQ28vBpbTHLP+ECmoAxG/s4PKrVLN764H/poLux7Ln77jHThOd8OBJj5mTuA6Iw==
+  resolved "https://registry.yarnpkg.com/puppeteer-core/-/puppeteer-core-13.1.2.tgz#ff4b8f4aacc167b428e3c8df38d23b2121995a04"
+  integrity sha512-A60/BJkYKpvoWPN0sq0WbOUYey6Wqpn1vlWCt8Ov7PxGIjyuGX2Wb39LObGjOxh4UN+YxCVE+oYQlkIFSmHJtg==
   dependencies:
     debug "4.3.2"
     devtools-protocol "0.0.948846"
@@ -1704,7 +1718,7 @@ tailwindcss@^3.0.15:
     quick-lru "^5.1.1"
     resolve "^1.21.0"
 
-tar-fs@2.1.1:
+tar-fs@2.1.1, tar-fs@^2.1.1:
   version "2.1.1"
   resolved "https://registry.yarnpkg.com/tar-fs/-/tar-fs-2.1.1.tgz#489a15ab85f1f0befabb370b7de4f9eb5cbe8784"
   integrity sha512-V0r2Y9scmbDRLCNex/+hYzvp/zyYjvFbHPNgVTKfQvVrb6guiE/fxP+XblDNR011utopbkex2nM4dHNV6GDsng==

@@ -17,7 +17,7 @@
 </script>
 
 <svelte:head>
-	<script async defer src="/widget-v2.js"></script>
+	<script src="/widget-v2.js"></script>
 </svelte:head>
 
 <div id="blockclock-container" class={className} />
