@@ -1,4 +1,8 @@
 <script>
+	export let views;
+	export let interval;
+	export let value;
+
 	import { onMount, onDestroy } from 'svelte';
 
 	let clock = {
@@ -6,14 +10,16 @@
 	};
 
 	onMount(() => {
-		clock = mountBlockClock();
+		clock = mountBlockClock({ value });
 	});
 
 	onDestroy(() => {
 		clock.unMount();
 	});
 
-	export let className;
+	export const className = `${views
+		.reverse()
+		.reduce((cur, prev) => `${prev} ${cur}`, '')}interval-${interval}`;
 </script>
 
 <svelte:head>

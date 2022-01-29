@@ -1,5 +1,8 @@
 <script>
 	import Clock from '$lib/clock.svelte';
+
+	export const views = ['moscowtime', 'usdprice', 'blockheight'];
+	export const interval = '3000';
 </script>
 
 <svelte:head>
@@ -12,5 +15,5 @@
 </svelte:head>
 
 <div class="pt-[15vh] sm:max-w-screen-lg mx-auto">
-	<Clock className="moscowtime usdprice blockheight interval-3000" />
+	<Clock {views} {interval} />
 </div>
