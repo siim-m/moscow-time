@@ -262,8 +262,6 @@ function mountBlockClock({ value } = {}) {
 		blockHeight: value && displayOptions[0] === 'blockheight' ? value : undefined,
 	};
 
-	console.log({ value, displayData });
-
 	let cycleViewInterval;
 	let fetchDataInterval;
 
