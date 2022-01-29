@@ -3,9 +3,9 @@
 Add a BLOCKCLOCK widget to your website. You can choose between two versions:
 
 - Full BLOCKCLOCK including the transparent frame. Suitable for white / light background colors (works well with hex code `#FCFBF7`).
-![Full BLOCKCLOCK with frame widget example](widget-example-with-frame.png)
+![Full BLOCKCLOCK with frame widget example](widget-example-with-frame.webp)
 - BLOCKCLOCK without the transparent frame. Pick this if your background color doesn't blend well with the frame.
-![BLOCKCLOCK with no frame widget example](widget-example-no-frame.png)
+![BLOCKCLOCK with no frame widget example](widget-example-no-frame.webp)
 
 ## Instructions
 
