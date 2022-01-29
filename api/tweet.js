@@ -1,7 +1,7 @@
 import chromium from 'chrome-aws-lambda';
 import { TwitterApi } from 'twitter-api-v2';
 
-async function getScreenshot({ view }) {
+async function getScreenshot({ view, value, timestamp }) {
 	const browser = await chromium.puppeteer.launch({
 		args: chromium.args,
 		defaultViewport: chromium.defaultViewport,
@@ -24,7 +24,15 @@ async function getScreenshot({ view }) {
 			console.log('puppeteer', `${request.failure().errorText} ${request.url()}`)
 		);
 
-	await page.goto(`https://moscowtime.xyz/view/${view}`);
+	if (!value && !timestamp) {
+		await page.goto(`https://moscowtime.xyz/view/${view}`);
+	} else if (!value) {
+		await page.goto(`https://moscowtime.xyz/view/${view}?timestamp=${timestamp}`);
+	} else if (!timestamp) {
+		await page.goto(`https://moscowtime.xyz/view/${view}?value=${value}`);
+	} else {
+		await page.goto(`https://moscowtime.xyz/view/${view}?value=${value}&timestamp=${timestamp}`);
+	}
 
 	let waitForFunction;
 
@@ -64,9 +72,9 @@ export default async function handler(request, response) {
 		return;
 	}
 
-	const { view, text } = request.body;
+	const { view, value, timestamp, text } = request.body;
 
-	const screenshot = await getScreenshot({ view });
+	const screenshot = await getScreenshot({ view, value, timestamp });
 
 	const client = new TwitterApi({
 		appKey: process.env.TWITTER_API_KEY,

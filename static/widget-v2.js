@@ -164,7 +164,7 @@ async function fetchData() {
 	};
 }
 
-function mountBlockClock() {
+function mountBlockClock({ value } = {}) {
 	const FETCH_INTERVAL = 10000;
 	const VALID_DISPLAY_OPTIONS = ['blockheight', 'usdprice', 'satsperdollar', 'moscowtime'];
 
@@ -220,6 +220,26 @@ function mountBlockClock() {
 		return VALID_DISPLAY_OPTIONS.includes(className);
 	});
 
+	clockContainer.innerHTML = CLOCK_HTML;
+
+	setDimensions();
+
+	const clockObserver = new ResizeObserver(() => {
+		setDimensions();
+	});
+
+	clockObserver.observe(clockContainer);
+
+	if (value && displayOptions.length > 1) {
+		console.error(
+			'Incorrect widget configuration. You can only specify one display option if value is specified'
+		);
+		alert(
+			'Incorrect widget configuration. You can only specify one display option if value is specified'
+		);
+		return;
+	}
+
 	let activeOption = 0;
 
 	displayClasses.forEach((className) => {
@@ -233,58 +253,61 @@ function mountBlockClock() {
 		}
 	});
 
-	clockContainer.innerHTML = CLOCK_HTML;
-
-	setDimensions();
-
-	const clockObserver = new ResizeObserver(() => {
-		setDimensions();
-	});
-
-	clockObserver.observe(clockContainer);
-
 	let displayData = {
-		priceUsd: undefined,
-		satUsd: undefined,
-		blockHeight: undefined,
+		priceUsd: value && displayOptions[0] === 'usdprice' ? value : undefined,
+		satUsd:
+			value && (displayOptions[0] === 'satsperdollar' || displayOptions[0] === 'moscowtime')
+				? value
+				: undefined,
+		blockHeight: value && displayOptions[0] === 'blockheight' ? value : undefined,
 	};
+
+	console.log({ value, displayData });
 
 	let cycleViewInterval;
 	let fetchDataInterval;
 
-	fetchData().then((data) => {
-		displayData.priceUsd = data.priceUsd;
-		displayData.satUsd = data.satUsd;
-		displayData.blockHeight = data.blockHeight;
-
-		cycleView({
-			displayOptions,
-			activeOption,
-			displayData,
-		});
-
-		cycleViewInterval = setInterval(() => {
-			if (activeOption === undefined || activeOption === displayOptions.length - 1) {
-				activeOption = 0;
-			} else {
-				activeOption += 1;
-			}
+	if (!value) {
+		fetchData().then((data) => {
+			displayData.priceUsd = data.priceUsd;
+			displayData.satUsd = data.satUsd;
+			displayData.blockHeight = data.blockHeight;
 
 			cycleView({
 				displayOptions,
 				activeOption,
 				displayData,
 			});
-		}, cycleInterval);
-	});
 
-	fetchDataInterval = setInterval(() => {
-		fetchData().then((data) => {
-			displayData.priceUsd = data.priceUsd;
-			displayData.satUsd = data.satUsd;
-			displayData.blockHeight = data.blockHeight;
+			cycleViewInterval = setInterval(() => {
+				if (activeOption === undefined || activeOption === displayOptions.length - 1) {
+					activeOption = 0;
+				} else {
+					activeOption += 1;
+				}
+
+				cycleView({
+					displayOptions,
+					activeOption,
+					displayData,
+				});
+			}, cycleInterval);
 		});
-	}, FETCH_INTERVAL);
+
+		fetchDataInterval = setInterval(() => {
+			fetchData().then((data) => {
+				displayData.priceUsd = data.priceUsd;
+				displayData.satUsd = data.satUsd;
+				displayData.blockHeight = data.blockHeight;
+			});
+		}, FETCH_INTERVAL);
+	} else {
+		cycleView({
+			displayOptions,
+			activeOption,
+			displayData,
+		});
+	}
 
 	return {
 		unMount: () => {
