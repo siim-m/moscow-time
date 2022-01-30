@@ -1,7 +1,7 @@
 name: scheduled-tweets
 on:
-  schedule:
-    - cron: '58 * * * *'
+  # schedule:
+  #   - cron: '58 * * * *'
   workflow_dispatch:
 
 jobs:
