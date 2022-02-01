@@ -1,3 +1,5 @@
+const defaultTheme = require('tailwindcss/defaultTheme');
+
 module.exports = {
 	content: ['./src/**/*.svelte', './src/**/*.html'],
 	theme: {
@@ -6,17 +8,8 @@ module.exports = {
 				ckwhite: '#fcfbf7',
 			},
 			fontFamily: {
-				mono: [
-					'"Courier Prime Regular"',
-					'ui-monospace',
-					'SFMono-Regular',
-					'Menlo',
-					'Monaco',
-					'Consolas',
-					'Liberation Mono',
-					'Courier New',
-					'monospace',
-				],
+				mono: ['"Courier Prime Regular"', ...defaultTheme.fontFamily.mono],
+				sans: ['Inter var', ...defaultTheme.fontFamily.sans],
 			},
 		},
 	},
