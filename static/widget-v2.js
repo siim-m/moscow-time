@@ -231,12 +231,10 @@ function mountBlockClock({ value } = {}) {
 	const clockClassObserver = new MutationObserver((mutations) => {
 		mutations.forEach((mutation) => {
 			if (mutation.attributeName === 'class') {
-				console.log('1', displayOptions);
 				displayClasses = Array.from(clockContainer.classList);
 				displayOptions = displayClasses.filter((className) => {
 					return VALID_DISPLAY_OPTIONS.includes(className);
 				});
-				console.log('2', displayOptions);
 			}
 		});
 	});
