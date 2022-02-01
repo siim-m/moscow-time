@@ -214,7 +214,7 @@ function mountBlockClock({ value } = {}) {
 
 	const clockContainer = document.getElementById('blockclock-container');
 
-	const displayClasses = Array.from(clockContainer.classList);
+	let displayClasses = Array.from(clockContainer.classList);
 
 	let displayOptions = displayClasses.filter((className) => {
 		return VALID_DISPLAY_OPTIONS.includes(className);
@@ -224,11 +224,25 @@ function mountBlockClock({ value } = {}) {
 
 	setDimensions();
 
-	const clockObserver = new ResizeObserver(() => {
+	const clockSizeObserver = new ResizeObserver(() => {
 		setDimensions();
 	});
 
-	clockObserver.observe(clockContainer);
+	const clockClassObserver = new MutationObserver((mutations) => {
+		mutations.forEach((mutation) => {
+			if (mutation.attributeName === 'class') {
+				console.log('1', displayOptions);
+				displayClasses = Array.from(clockContainer.classList);
+				displayOptions = displayClasses.filter((className) => {
+					return VALID_DISPLAY_OPTIONS.includes(className);
+				});
+				console.log('2', displayOptions);
+			}
+		});
+	});
+
+	clockSizeObserver.observe(clockContainer);
+	clockClassObserver.observe(clockContainer, { attributes: true });
 
 	if (value && displayOptions.length > 1) {
 		console.error(
@@ -278,7 +292,7 @@ function mountBlockClock({ value } = {}) {
 			});
 
 			cycleViewInterval = setInterval(() => {
-				if (activeOption === undefined || activeOption === displayOptions.length - 1) {
+				if (activeOption === undefined || activeOption >= displayOptions.length - 1) {
 					activeOption = 0;
 				} else {
 					activeOption += 1;
@@ -311,7 +325,8 @@ function mountBlockClock({ value } = {}) {
 		unMount: () => {
 			clearInterval(cycleViewInterval);
 			clearInterval(fetchDataInterval);
-			clockObserver.disconnect();
+			clockSizeObserver.disconnect();
+			clockClassObserver.disconnect();
 		},
 	};
 }
