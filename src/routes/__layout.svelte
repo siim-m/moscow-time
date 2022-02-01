@@ -9,8 +9,8 @@
 
 <!-- <Header /> -->
 
-<div class="mx-2 sm:mx-6 md:mx-10 lg:mx-14">
-	<main>
+<div class="mx-2 sm:mx-6 md:mx-10 lg:mx-14 flex flex-col h-full">
+	<main class="flex-grow">
 		<!--
     <slot /> is where "children" get mounted in the component.
     __layout.svelte is a special filename.

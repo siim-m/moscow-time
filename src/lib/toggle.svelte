@@ -9,7 +9,7 @@
 	}
 </script>
 
-<div class="flex items-center">
+<div class="flex flex-col items-center">
 	<!-- Enabled: "bg-indigo-600", Not Enabled: "bg-gray-200" -->
 	<button
 		on:click={handleClick}
@@ -29,7 +29,7 @@
 				: 'translate-x-0'} pointer-events-none inline-block h-5 w-5 rounded-full bg-white shadow transform ring-0 transition ease-in-out duration-200"
 		/>
 	</button>
-	<span class="ml-3">
-		<span class="text-sm font-medium text-gray-900">{label}</span>
+	<span class="mt-1">
+		<span class="text-sm font-medium text-gray-700">{label}</span>
 	</span>
 </div>

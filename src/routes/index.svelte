@@ -3,8 +3,6 @@
 	import Clock from '$lib/clock.svelte';
 	import Toggle from '$lib/toggle.svelte';
 
-	let availableViews = $clockViews.filter((view) => view.enabled).map((view) => view.name);
-	let activeViews = $clockViews.map((view) => view.name);
 	const interval = '3000';
 </script>
 
@@ -17,20 +15,22 @@
 	<meta name="twitter:image" content="https://moscowtime.xyz/card.png" />
 </svelte:head>
 
-<div class="pt-[15vh] sm:max-w-screen-lg mx-auto">
+<div class="pt-[10vh] sm:max-w-screen-lg mx-auto">
 	<Clock {interval} />
-	{#each availableViews as availableView}
-		<Toggle
-			label={availableView}
-			enabled={!!activeViews.find((v) => v === availableView)}
-			handleStore={() => {
-				$clockViews = $clockViews.map((v) => {
-					if (v.name === availableView) {
-						v.enabled = !v.enabled;
-					}
-					return v;
-				});
-			}}
-		/>
-	{/each}
+	<div class="grid grid-cols-3 w-4/5 sm:w-3/4 md:w-2/3 lg:w-1/2 mx-auto pt-8">
+		{#each $clockViews as clockView}
+			<Toggle
+				label={clockView.label}
+				enabled={clockView.enabled}
+				handleStore={() => {
+					$clockViews = $clockViews.map((v) => {
+						if (v.name === clockView.name) {
+							v.enabled = !v.enabled;
+						}
+						return v;
+					});
+				}}
+			/>
+		{/each}
+	</div>
 </div>
