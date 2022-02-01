@@ -1,8 +1,9 @@
 <script>
+	import { clockViews } from '../stores';
 	import Clock from '$lib/clock.svelte';
+	import Toggle from '$lib/toggle.svelte';
 
-	export const views = ['moscowtime', 'usdprice', 'blockheight'];
-	export const interval = '3000';
+	const interval = '3000';
 </script>
 
 <svelte:head>
@@ -14,6 +15,22 @@
 	<meta name="twitter:image" content="https://moscowtime.xyz/card.png" />
 </svelte:head>
 
-<div class="pt-[15vh] sm:max-w-screen-lg mx-auto">
-	<Clock {views} {interval} />
+<div class="pt-[10vh] sm:max-w-screen-lg mx-auto">
+	<Clock {interval} />
+	<div class="grid grid-cols-3 w-4/5 sm:w-3/4 md:w-2/3 lg:w-1/2 mx-auto pt-8">
+		{#each $clockViews as clockView}
+			<Toggle
+				label={clockView.label}
+				enabled={clockView.enabled}
+				handleStore={() => {
+					$clockViews = $clockViews.map((v) => {
+						if (v.name === clockView.name) {
+							v.enabled = !v.enabled;
+						}
+						return v;
+					});
+				}}
+			/>
+		{/each}
+	</div>
 </div>

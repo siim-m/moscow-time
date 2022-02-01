@@ -1,5 +1,5 @@
 <script>
-	export let views;
+	import { clockViews } from '../stores';
 	export let interval;
 	export let value;
 
@@ -17,9 +17,16 @@
 		clock.unMount();
 	});
 
-	export const className = `${views
-		.reverse()
-		.reduce((cur, prev) => `${prev} ${cur}`, '')}interval-${interval}`;
+	let className;
+
+	clockViews.subscribe((value) => {
+		className = `${value
+			.slice()
+			.reverse()
+			.filter((v) => v.enabled)
+			.map((v) => v.name)
+			.reduce((cur, prev) => `${prev} ${cur}`, '')}interval-${interval}`;
+	});
 </script>
 
 <svelte:head>
