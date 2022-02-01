@@ -10,9 +10,9 @@
 				{#if $page.url.pathname !== link.path}
 					<div class="px-5 py-2">
 						<a
-							sveltekit:prefetch={!link.external}
-							target={link.external ? '_blank' : ''}
-							rel={link.external ? 'external noopener' : ''}
+							sveltekit:prefetch={link.external ? undefined : ''}
+							target={link.external ? '_blank' : undefined}
+							rel={link.external ? 'external noopener' : undefined}
 							href={link.path}
 							class="underline text-xs sm:text-base text-gray-600 hover:text-orange-500"
 						>
@@ -23,7 +23,7 @@
 			{/each}
 		</nav>
 
-		<p class="mt-8 text-center text-xs sm:text-xs sm:text-base text-gray-500">
+		<p class="mt-8 text-center text-xs sm:text-base text-gray-500">
 			BLOCKCLOCK is a registered trademark of <a
 				class="text-gray-700 hover:text-orange-500 underline"
 				href="https://www.coinkite.com"
