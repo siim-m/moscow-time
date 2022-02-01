@@ -19,12 +19,14 @@
 
 	let className;
 
-	className = `${$clockViews
-		.slice()
-		.reverse()
-		.filter((v) => v.enabled)
-		.map((v) => v.name)
-		.reduce((cur, prev) => `${prev} ${cur}`, '')}interval-${interval}`;
+	clockViews.subscribe((value) => {
+		className = `${value
+			.slice()
+			.reverse()
+			.filter((v) => v.enabled)
+			.map((v) => v.name)
+			.reduce((cur, prev) => `${prev} ${cur}`, '')}interval-${interval}`;
+	});
 </script>
 
 <svelte:head>
