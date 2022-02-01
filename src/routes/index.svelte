@@ -1,8 +1,11 @@
 <script>
+	import { clockViews } from '../stores';
 	import Clock from '$lib/clock.svelte';
+	import Toggle from '$lib/toggle.svelte';
 
-	export const views = ['moscowtime', 'usdprice', 'blockheight'];
-	export const interval = '3000';
+	let availableViews = $clockViews.filter((view) => view.enabled).map((view) => view.name);
+	let activeViews = $clockViews.map((view) => view.name);
+	const interval = '3000';
 </script>
 
 <svelte:head>
@@ -15,5 +18,19 @@
 </svelte:head>
 
 <div class="pt-[15vh] sm:max-w-screen-lg mx-auto">
-	<Clock {views} {interval} />
+	<Clock {interval} />
+	{#each availableViews as availableView}
+		<Toggle
+			label={availableView}
+			enabled={!!activeViews.find((v) => v === availableView)}
+			handleStore={() => {
+				$clockViews = $clockViews.map((v) => {
+					if (v.name === availableView) {
+						v.enabled = !v.enabled;
+					}
+					return v;
+				});
+			}}
+		/>
+	{/each}
 </div>
