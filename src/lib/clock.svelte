@@ -2,6 +2,7 @@
 	import { clockViews } from '../stores';
 	export let interval;
 	export let value;
+	export let noFrame = false;
 
 	import { onMount, onDestroy } from 'svelte';
 
@@ -25,7 +26,9 @@
 			.reverse()
 			.filter((v) => v.enabled)
 			.map((v) => v.name)
-			.reduce((cur, prev) => `${prev} ${cur}`, '')}interval-${interval}`;
+			.reduce((cur, prev) => `${prev} ${cur}`, '')}interval-${interval}${
+			noFrame ? ' noframe' : ''
+		}`;
 	});
 </script>
 
