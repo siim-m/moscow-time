@@ -32,8 +32,4 @@
 	});
 </script>
 
-<svelte:head>
-	<script src="/widget-v2.js"></script>
-</svelte:head>
-
 <div id="blockclock-container" class={className} />
