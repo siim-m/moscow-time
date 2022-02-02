@@ -10,6 +10,6 @@
 	/>
 </svelte:head>
 
-<div class="prose mx-auto mt-16">
+<div class="prose prose-lg prose-img:rounded-xl mx-auto mt-16">
 	<Widget />
 </div>
