@@ -50,6 +50,19 @@ function setDimensions({ noFrame = false } = {}) {
 }
 
 function cycleView({ displayOptions, activeOption, displayData }) {
+	if (!displayOptions.length) {
+		document.querySelectorAll('.blockclock-top-section').forEach((cell) => {
+			cell.innerHTML = '';
+		});
+		document.querySelectorAll('.blockclock-digit-content').forEach((cell) => {
+			cell.innerHTML = '';
+		});
+		document.querySelectorAll('.blockclock-special-content').forEach((cell) => {
+			cell.innerHTML = '';
+		});
+		return;
+	}
+
 	const BTC_USD_HTML = `
     <div>
       <div class="blockclock-special-upper">BTC</div>
@@ -250,6 +263,7 @@ function mountBlockClock({ value } = {}) {
 					? 'https://moscowtime.xyz/widget-no-frame.css'
 					: 'https://moscowtime.xyz/widget-with-frame.css';
 				setDimensions({ noFrame });
+				cycleView({ displayOptions, activeOption, displayData });
 			}
 		});
 	});
