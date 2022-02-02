@@ -17,7 +17,7 @@
 
 <div class="pt-[10vh] sm:max-w-screen-lg mx-auto">
 	<Clock {interval} />
-	<div class="grid grid-cols-3 w-4/5 sm:w-3/4 md:w-2/3 lg:w-1/2 mx-auto pt-8">
+	<div class="grid grid-cols-3 w-4/5 sm:w-3/4 md:w-2/3 lg:w-1/2 mx-auto pt-[3vh] lg:pt-12">
 		{#each $clockViews as clockView}
 			<Toggle
 				label={clockView.label}
