@@ -1,20 +1,20 @@
-# BLOCKCLOCK Moscow Time Widget
+# BLOCKCLOCK™ Moscow Time Widget
 
-Add a BLOCKCLOCK widget to your website. You can choose between two style options:
+Add a BLOCKCLOCK™ widget to your website. You can choose between two style options:
 
-Full BLOCKCLOCK including the transparent frame. Suitable for white / light background colors (works well with hex code `#FCFBF7`).
-![Full BLOCKCLOCK with frame widget example](widget-example-with-frame.webp)
+Full BLOCKCLOCK™ including the transparent frame. Suitable for white / light background colors (works well with hex code `#FCFBF7`).
+![BLOCKCLOCK™ with frame widget example](widget-example-with-frame.webp)
 
-BLOCKCLOCK without the transparent frame. Pick this if your background color doesn't blend well with the frame.
-![BLOCKCLOCK with no frame widget example](widget-example-no-frame.webp)
+BLOCKCLOCK™ without the transparent frame. Pick this if your background color doesn't blend well with the frame.
+![BLOCKCLOCK™ with no frame widget example](widget-example-no-frame.webp)
 
 ## Quick Start
 
 This should get you up and running quickly with most HTML sites that are server-rendered and don't have very complex JavaScript. If this doesn't work or you want to understand a bit more, see the **Advanced Use** section below.
 
-1. Add an empty `<div>` with `id="blockclock-container"` anywhere in your document flow where you would like to insert the widget.
+1. Add an empty `<div>` tag with `id="blockclock-container"` anywhere in your document flow where you would like to insert the widget.
 
-1. Add appropriate `class` values to determine which views should be shown. The supported values are: `blockheight`, `usdprice`, `satsperdollar`, `moscowtime`
+1. Add appropriate `class` values to determine which views should be shown. The supported values are: `blockheight`, `usdprice`, `satsperdollar`, `moscowtime`.
 
 1. For the no frame style add a `noframe` class.
 
@@ -35,7 +35,7 @@ This should get you up and running quickly with most HTML sites that are server-
   ```html
   <head>
     <!-- Import the required widget code and styles. -->
-    <script src="https://moscowtime.xyz/widget-v2.js"></script>
+    <script src="https://moscowtime.xyz/widget.js"></script>
     <!-- When the window has finished loading, mount the widget in its appropriate place. -->
     <script>
       const blockClock;
@@ -51,11 +51,17 @@ This should get you up and running quickly with most HTML sites that are server-
 
 ### Setting the display cycle interval
 
-By default, the widget switches display modes every 3 seconds. You can customize it by adding a class value of `interval-<milliseconds>` on the container div, e.g. `<div id="blockclock-container" class="usdprice blockheight interval-2000"></div>` will alternate between USD price and block height every 2 seconds.
+By default, the widget switches display modes every 3 seconds. You can customize it by adding a class value of `interval-<milliseconds>` on the container div.
+
+The following will alternate between USD price and block height every 2 seconds.
+
+```html
+<div id="blockclock-container" class="usdprice blockheight interval-2000"></div>
+```
 
 ### Dynamic Modes
 
-The widget uses the **MutationObserver** JavaScript API that allows you to dynamically change the class values of the container and will react to changes without having to reload the page.
+The widget uses the [MutationObserver](https://developer.mozilla.org/en-US/docs/Web/API/MutationObserver) JavaScript API that allows you to dynamically change the class values of the container and will react to changes without having to reload the page.
 
 You can find an example of this on the [moscowtime.xyz](/) home page where the mode toggles add or remove classes from the container.
 
