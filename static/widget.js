@@ -7,33 +7,62 @@ function setTopSections(values) {
 	}
 }
 
-function setDimensions() {
+function setDimensions({ noFrame = false } = {}) {
 	const clockContainer = document.getElementById('blockclock-container');
 	const clock = document.getElementById('blockclock');
 	const digits = document.getElementById('blockclock-digits');
 
-	clockContainer.style.height = `${0.375 * clockContainer.clientWidth}px`;
-	clock.style.height = `${0.375 * clockContainer.clientWidth}px`;
-	digits.style.height = `${0.5075 * clock.clientHeight}px`;
+	clockContainer.style.height = noFrame
+		? `${0.336 * clockContainer.clientWidth}px`
+		: `${0.375 * clockContainer.clientWidth}px`;
+
+	clock.style.height = noFrame
+		? `${0.336 * clockContainer.clientWidth}px`
+		: `${0.375 * clockContainer.clientWidth}px`;
+
+	digits.style.height = noFrame
+		? `${0.59 * clock.clientHeight}px`
+		: `${0.5075 * clock.clientHeight}px`;
 
 	Array.from(document.getElementsByClassName('blockclock-digit-content')).forEach((el) => {
-		el.style.fontSize = `${0.425 * clock.clientHeight}px`;
+		el.style.fontSize = noFrame
+			? `${0.49 * clock.clientHeight}px`
+			: `${0.425 * clock.clientHeight}px`;
 	});
 
 	Array.from(document.getElementsByClassName('blockclock-top-section')).forEach((el) => {
-		el.style.fontSize = `${0.019 * clock.clientHeight}px`;
+		el.style.fontSize = noFrame
+			? `${0.0225 * clock.clientHeight}px`
+			: `${0.019 * clock.clientHeight}px`;
 	});
 
 	Array.from(document.getElementsByClassName('blockclock-special-content')).forEach((el) => {
-		el.style.fontSize = `${0.15 * clock.clientHeight}px`;
+		el.style.fontSize = noFrame
+			? `${0.1775 * clock.clientHeight}px`
+			: `${0.15 * clock.clientHeight}px`;
 	});
 
 	Array.from(document.getElementsByClassName('blockclock-special-upper-small')).forEach((el) => {
-		el.style.fontSize = `${0.175 * clock.clientHeight}px`;
+		el.style.fontSize = noFrame
+			? `${0.1125 * clock.clientHeight}px`
+			: `${0.175 * clock.clientHeight}px`;
 	});
 }
 
 function cycleView({ displayOptions, activeOption, displayData }) {
+	if (!displayOptions.length) {
+		document.querySelectorAll('.blockclock-top-section').forEach((cell) => {
+			cell.innerHTML = '';
+		});
+		document.querySelectorAll('.blockclock-digit-content').forEach((cell) => {
+			cell.innerHTML = '';
+		});
+		document.querySelectorAll('.blockclock-special-content').forEach((cell) => {
+			cell.innerHTML = '';
+		});
+		return;
+	}
+
 	const BTC_USD_HTML = `
     <div>
       <div class="blockclock-special-upper">BTC</div>
@@ -93,8 +122,6 @@ function cycleView({ displayOptions, activeOption, displayData }) {
 					break;
 			}
 
-			setDimensions();
-
 			break;
 
 		case 'satsperdollar':
@@ -108,8 +135,6 @@ function cycleView({ displayOptions, activeOption, displayData }) {
 					satUsd[satUsd.length - 7 + i] || '';
 			}
 
-			setDimensions();
-
 			break;
 
 		case 'blockheight':
@@ -119,8 +144,6 @@ function cycleView({ displayOptions, activeOption, displayData }) {
 			}
 
 			setTopSections(['Number of blocks', 'in the', 'blockchain']);
-
-			setDimensions();
 
 			break;
 
@@ -134,8 +157,6 @@ function cycleView({ displayOptions, activeOption, displayData }) {
 				document.getElementById(`blockclock-cell-${i.toString()}`).innerHTML =
 					satUsd[satUsd.length - 7 + i] || '';
 			}
-
-			setDimensions();
 
 			break;
 
@@ -205,41 +226,47 @@ function mountBlockClock({ value } = {}) {
 
 	let cycleInterval = 3000;
 
+	const clockContainer = document.getElementById('blockclock-container');
+
+	let noFrame = Array.from(clockContainer.classList).includes('noframe');
+
 	// Load CSS
 	const link = document.createElement('link');
-	link.href = 'https://moscowtime.xyz/widget-with-frame.css';
+	link.href = noFrame
+		? 'https://moscowtime.xyz/widget-no-frame.css'
+		: 'https://moscowtime.xyz/widget-with-frame.css';
 	link.type = 'text/css';
 	link.rel = 'stylesheet';
 	document.getElementsByTagName('head')[0].appendChild(link);
 
-	const clockContainer = document.getElementById('blockclock-container');
-
-	let displayClasses = Array.from(clockContainer.classList);
-
-	let displayOptions = displayClasses.filter((className) => {
+	let displayOptions = Array.from(clockContainer.classList).filter((className) => {
 		return VALID_DISPLAY_OPTIONS.includes(className);
 	});
 
 	clockContainer.innerHTML = CLOCK_HTML;
 
-	setDimensions();
+	setDimensions({ noFrame });
 
 	const clockSizeObserver = new ResizeObserver(() => {
-		setDimensions();
+		setDimensions({ noFrame });
 	});
+	clockSizeObserver.observe(clockContainer);
 
 	const clockClassObserver = new MutationObserver((mutations) => {
 		mutations.forEach((mutation) => {
 			if (mutation.attributeName === 'class') {
-				displayClasses = Array.from(clockContainer.classList);
-				displayOptions = displayClasses.filter((className) => {
+				displayOptions = Array.from(clockContainer.classList).filter((className) => {
 					return VALID_DISPLAY_OPTIONS.includes(className);
 				});
+				noFrame = Array.from(clockContainer.classList).includes('noframe');
+				link.href = noFrame
+					? 'https://moscowtime.xyz/widget-no-frame.css'
+					: 'https://moscowtime.xyz/widget-with-frame.css';
+				setDimensions({ noFrame });
+				cycleView({ displayOptions, activeOption, displayData });
 			}
 		});
 	});
-
-	clockSizeObserver.observe(clockContainer);
 	clockClassObserver.observe(clockContainer, { attributes: true });
 
 	if (value && displayOptions.length > 1) {
@@ -254,7 +281,7 @@ function mountBlockClock({ value } = {}) {
 
 	let activeOption = 0;
 
-	displayClasses.forEach((className) => {
+	Array.from(clockContainer.classList).forEach((className) => {
 		if (className.includes('interval-')) {
 			const regexp = /^(interval-)(\d+)$/gi;
 			const matches = [...className.matchAll(regexp)];
@@ -325,6 +352,7 @@ function mountBlockClock({ value } = {}) {
 			clearInterval(fetchDataInterval);
 			clockSizeObserver.disconnect();
 			clockClassObserver.disconnect();
+			clockContainer.innerHTML = '';
 		},
 	};
 }
