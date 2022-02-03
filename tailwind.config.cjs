@@ -11,6 +11,25 @@ module.exports = {
 				mono: ['"Courier Prime Regular"', ...defaultTheme.fontFamily.mono],
 				sans: ['Inter var', ...defaultTheme.fontFamily.sans],
 			},
+			typography: {
+				DEFAULT: {
+					css: {
+						code: {
+							backgroundColor: 'var(--tw-prose-pre-bg)',
+							color: 'var(--tw-prose-pre-code)',
+							borderRadius: '0.25rem',
+							paddingLeft: '0.3rem',
+							paddingRight: '0.3rem',
+						},
+						'code::before': {
+							content: '',
+						},
+						'code::after': {
+							content: '',
+						},
+					},
+				},
+			},
 		},
 	},
 	plugins: [require('@tailwindcss/typography')],
