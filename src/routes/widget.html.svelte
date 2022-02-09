@@ -1,8 +1,8 @@
 <script context="module">
-  export async function load() {
-      return {
-          status: 301,
-          redirect: "/widget-instructions"
-      };
-  }
+	export async function load() {
+		return {
+			status: 301,
+			redirect: '/widget-instructions',
+		};
+	}
 </script>

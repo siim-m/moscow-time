@@ -10,6 +10,6 @@
 	/>
 </svelte:head>
 
-<div class="prose prose-lg hover:prose-a:text-orange-500 prose-img:rounded-xl mx-auto mt-16">
+<div class="prose prose-lg mx-auto mt-16 hover:prose-a:text-orange-500 prose-img:rounded-xl">
 	<Widget />
 </div>
