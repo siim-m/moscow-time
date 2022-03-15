@@ -85,7 +85,7 @@ export async function getScreenshot({ view, value, timestamp }) {
 	});
 
 	page
-		.on('console', (message) => console.log('puppeteer', message))
+		// .on('console', (message) => console.log('puppeteer', message))
 		.on('pageerror', ({ message }) => console.log('puppeteer', message))
 		.on('requestfailed', (request) =>
 			console.log('puppeteer', `${request.failure().errorText} ${request.url()}`)
