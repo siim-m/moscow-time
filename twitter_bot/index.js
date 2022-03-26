@@ -94,43 +94,43 @@ client.v1
 					`https://twitter.com/${eventData.user.screen_name}/status/${eventData.id_str}`
 				);
 
-				const price = await getPrice();
+				try {
+					const price = await getPrice();
 
-				const screenshot = await getScreenshot({
-					view: 'usdprice',
-					value: price,
-					timestamp: Date.now() / 1000,
-				});
+					const screenshot = await getScreenshot({
+						view: 'usdprice',
+						value: price,
+						timestamp: Date.now() / 1000,
+					});
 
-				const text = `🚨 @${
-					eventData.user.screen_name
-				} just tweeted about #bitcoin. The current price is $${price.toLocaleString()}.\n\nIf the past is any indicator of the future, it might be a good time to buy.`;
+					const text = `🚨 @${
+						eventData.user.screen_name
+					} just tweeted about #bitcoin. The current price is $${price.toLocaleString()}.\n\nIf the past is any indicator of the future, it might be a good time to buy.`;
 
-				const quoteTweet = await client.v1.tweet(text, {
-					media_ids: [await client.v1.uploadMedia(Buffer.from(screenshot), { type: 'png' })],
+					const quoteTweet = await client.v1.tweet(text, {
+						media_ids: [await client.v1.uploadMedia(Buffer.from(screenshot), { type: 'png' })],
 
-					// Attach the original tweet as a quote without showing the URL in the text
-					attachment_url: `https://twitter.com/${eventData.user.screen_name}/status/${eventData.id_str}`,
-				});
+						// Attach the original tweet as a quote without showing the URL in the text
+						attachment_url: `https://twitter.com/${eventData.user.screen_name}/status/${eventData.id_str}`,
+					});
 
-				console.log(
-					'Tweeted quote tweet:',
-					`https://twitter.com/moscowtime_xyz/status/${quoteTweet.id_str}`
-				);
+					console.log(
+						'Tweeted quote tweet:',
+						`https://twitter.com/moscowtime_xyz/status/${quoteTweet.id_str}`
+					);
 
-				const reply = await client.v1.reply(
-					`Let's see how well this ages...`,
-					eventData.id_str,
-					{
+					const reply = await client.v1.reply(`Let's see how well this ages...`, eventData.id_str, {
 						// Attach the quote tweet as a reply to the original without showing the URL in the text.
 						attachment_url: `https://twitter.com/${quoteTweet.user.screen_name}/status/${quoteTweet.id_str}`,
-					}
-				);
+					});
 
-				console.log(
-					'Replied to quoted tweet:',
-					`https://twitter.com/moscowtime_xyz/status/${reply.id_str}`
-				);
+					console.log(
+						'Replied to quoted tweet:',
+						`https://twitter.com/moscowtime_xyz/status/${reply.id_str}`
+					);
+				} catch (err) {
+					console.log('Caught error:', err);
+				}
 			}
 		});
 
