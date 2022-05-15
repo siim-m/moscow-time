@@ -12,10 +12,10 @@
 		"start-twitter-bot": "node ./twitter_bot/index.js"
 	},
 	"devDependencies": {
-		"@sveltejs/adapter-auto": "^1.0.0-next.14",
-		"@sveltejs/kit": "^1.0.0-next.239",
-		"@tailwindcss/typography": "^0.5.0",
-		"autoprefixer": "^10.4.2",
+		"@sveltejs/adapter-auto": "^1.0.0-next.42",
+		"@sveltejs/kit": "^1.0.0-next.330",
+		"@tailwindcss/typography": "^0.5.2",
+		"autoprefixer": "^10.4.7",
 		"eslint": "^7.32.0",
 		"eslint-config-prettier": "^8.3.0",
 		"eslint-plugin-svelte3": "^3.2.1",
@@ -24,16 +24,15 @@
 		"prettier-plugin-svelte": "^2.4.0",
 		"prettier-plugin-tailwindcss": "^0.1.7",
 		"svelte": "^3.48.0",
-		"tailwindcss": "^3.0.18"
+		"tailwindcss": "^3.0.24"
 	},
 	"type": "module",
 	"dependencies": {
 		"@mempool/mempool.js": "^2.3.0",
-		"chrome-aws-lambda": "^10.1.0",
 		"date-fns": "^2.28.0",
 		"prismjs": "^1.28.0",
 		"puppeteer": "^13.4.0",
 		"rehype-urls": "^1.1.1",
-		"twitter-api-v2": "^1.10.0"
+		"twitter-api-v2": "^1.12.0"
 	}
 }
