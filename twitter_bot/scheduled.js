@@ -1,4 +1,4 @@
-import { client, getBlocks, getPrice, getScreenshot, getBlockIssuance } from './helpers';
+import { client, getBlocks, getPrice, getScreenshot, getBlockIssuance } from './lib/helpers.js';
 import { EUploadMimeType } from 'twitter-api-v2';
 
 async function sendScheduledTweet() {
