@@ -57,5 +57,3 @@ COPY twitter_bot ./twitter_bot
 
 # Run as non-privileged
 USER node
-
-CMD [ "yarn", "start-twitter-bot" ]
