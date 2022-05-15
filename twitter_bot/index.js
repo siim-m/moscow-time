@@ -1,4 +1,4 @@
-import { ETwitterStreamEvent, TwitterApi } from 'twitter-api-v2';
+import { ETwitterStreamEvent, EUploadMimeType, TwitterApi } from 'twitter-api-v2';
 
 import { getBlocks, getBlockIssuance, getPrice, getScreenshot } from './lib/helpers.js';
 
@@ -53,7 +53,7 @@ async function sendScheduledTweet() {
 	});
 
 	const params = {
-		media_ids: [await client.v1.uploadMedia(Buffer.from(screenshot), { type: 'png' })],
+		media_ids: [await client.v1.uploadMedia(Buffer.from(screenshot), { mimeType: EUploadMimeType.Png })],
 	};
 
 	const tweet = await client.v1.tweet(text, params);
@@ -108,7 +108,7 @@ client.v1
 					} just tweeted about #bitcoin. The current price is $${price.toLocaleString()}.\n\nIf the past is any indicator of the future, it might be a good time to buy.`;
 
 					const quoteTweet = await client.v1.tweet(text, {
-						media_ids: [await client.v1.uploadMedia(Buffer.from(screenshot), { type: 'png' })],
+						media_ids: [await client.v1.uploadMedia(Buffer.from(screenshot), { mimeType: EUploadMimeType.Png })],
 
 						// Attach the original tweet as a quote without showing the URL in the text
 						attachment_url: `https://twitter.com/${eventData.user.screen_name}/status/${eventData.id_str}`,
