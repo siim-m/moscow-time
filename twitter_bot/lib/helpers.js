@@ -1,7 +1,14 @@
+import { TwitterApi } from 'twitter-api-v2';
 import mempoolJS from '@mempool/mempool.js';
 import puppeteer from 'puppeteer';
 import fetch from 'node-fetch';
 
+export const client = new TwitterApi({
+	appKey: process.env.TWITTER_API_KEY,
+	appSecret: process.env.TWITTER_API_KEY_SECRET,
+	accessToken: process.env.TWITTER_OAUTH_TOKEN,
+	accessSecret: process.env.TWITTER_OAUTH_TOKEN_SECRET,
+});
 
 export function getBlockIssuance({ height }) {
 	if (height < 840000) {
