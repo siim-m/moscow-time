@@ -6,8 +6,6 @@ ENV NODE_ENV=production
 
 WORKDIR /app
 
-COPY . .
-
 RUN apt update
 RUN apt install -y \
   chromium \
@@ -48,7 +46,16 @@ RUN apt install -y \
   lsb-release \
   wget \
   xdg-utils
+RUN apt upgrade -y
+
+COPY package.json ./
+COPY yarn.lock ./
 
 RUN yarn install
+
+COPY twitter_bot ./twitter_bot
+
+# Run as non-privileged
+USER node
 
 CMD [ "yarn", "start-twitter-bot" ]
