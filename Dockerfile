@@ -1,14 +1,13 @@
 # syntax=docker/dockerfile:1
 
 FROM node:lts
+LABEL org.opencontainers.image.description Moscow Time Twitter Bot
 
 ENV NODE_ENV=production
 
 WORKDIR /app
 
-RUN apt update
-RUN apt install -y \
-  chromium \
+RUN apt-get update && apt-get install -y \
   ca-certificates \
   fonts-liberation \
   libappindicator3-1 \
@@ -46,13 +45,9 @@ RUN apt install -y \
   lsb-release \
   wget \
   xdg-utils
-RUN apt upgrade -y
 
-COPY package.json ./
-COPY yarn.lock ./
-
+COPY ["package.json", "yarn.lock", "./"]
 RUN yarn install
-
 COPY twitter_bot ./twitter_bot
 
 # Run as non-privileged
