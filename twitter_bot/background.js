@@ -34,7 +34,7 @@ async function main() {
   stream.on(
     // Emitted when a Twitter sent a signal to maintain connection active
     ETwitterStreamEvent.DataKeepAlive,
-    () => console.log(new Date(), 'Twitter has a keep-alive packet.')
+    () => console.log(new Date(), 'Twitter sent a keep-alive packet.')
   );
 
   stream.on(ETwitterStreamEvent.Data, async (eventData) => {
