@@ -1,0 +1,20 @@
+{
+  "name": "moscow-time-twitter-bot",
+  "version": "1.0.0",
+  "license": "MIT",
+  "scripts": {
+    "twitter-bot-background": "node background.js",
+    "twitter-bot-scheduled": "node scheduled.js"
+  },
+  "devDependencies": {
+    "eslint": "^7.32.0",
+    "eslint-config-prettier": "^8.3.0",
+    "prettier": "^2.5.1"
+  },
+  "type": "module",
+  "dependencies": {
+    "@mempool/mempool.js": "^2.3.0",
+    "puppeteer": "^14.1.1",
+    "twitter-api-v2": "^1.12.1"
+  }
+}
