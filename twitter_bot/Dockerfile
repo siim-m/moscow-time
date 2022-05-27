@@ -8,7 +8,7 @@ ENV NODE_ENV=production
 WORKDIR /app
 
 # Dependencies for puppeteer to work successfully
-RUN apt-get update && apt-get install -y \
+RUN apt-get -qq update && apt-get -qq install -y \
   ca-certificates \
   fonts-liberation \
   libappindicator3-1 \
