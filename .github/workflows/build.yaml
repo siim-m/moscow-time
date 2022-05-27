@@ -1,4 +1,4 @@
-name: build
+name: twitter-bot-cicd
 
 on:
   push:
@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  docker:
+  build-container:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
