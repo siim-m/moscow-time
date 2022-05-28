@@ -1,6 +1,8 @@
 import { client, getBlocks, getPrice, getScreenshot, getBlockIssuance } from './lib/helpers.js';
 import { EUploadMimeType } from 'twitter-api-v2';
 
+const log_level = process.env.LOG_LEVEL ? process.env.LOG_LEVEL.toLowerCase() : undefined;
+
 async function sendScheduledTweet() {
   const now = Date.now();
   const hourAgo = now - 1000 * 60 * 60;
@@ -51,4 +53,23 @@ async function sendScheduledTweet() {
   console.log('Tweeted:', `https://twitter.com/moscowtime_xyz/status/${tweet.id_str}`);
 }
 
-sendScheduledTweet();
+// Calculates the number of milliseconds to the next full hour for scheduling
+function getMillisecondsToNextRun() {
+  const now = new Date();
+  const hour = 60 * 60 * 1000; // 1 hour in milliseconds
+  return hour - (now.getMinutes() * 60 + now.getSeconds()) * 1000 + now.getMilliseconds();
+}
+
+const first = getMillisecondsToNextRun();
+if (log_level === 'verbose') {
+  console.log('Scheduling first tweet in', first / (1000 * 60), 'minutes');
+}
+
+setTimeout(function schedule() {
+  sendScheduledTweet();
+  const next = getMillisecondsToNextRun();
+  if (log_level === 'verbose') {
+    console.log('Scheduling next tweet in', next / (1000 * 60), 'minutes');
+  }
+  setTimeout(schedule, next);
+}, first);
