@@ -6,3 +6,6 @@ website/package
 .env
 .env.*
 !.env.example
+
+.terraform
+*.tfstate*
