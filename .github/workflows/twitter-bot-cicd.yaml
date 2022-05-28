@@ -6,9 +6,15 @@ on:
       - v*.*.*
     branches:
       - main
+    paths:
+      - twitter_bot/**
+      - .github/workflows/twitter-bot-cicd.yaml
   pull_request:
     branches:
       - main
+    paths:
+      - twitter_bot/**
+      - .github/workflows/twitter-bot-cicd.yaml
   workflow_dispatch:
 
 jobs:
@@ -65,16 +71,18 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - name: Get the container image version tag
-        id: get_version
-        run: echo ::set-output name=version::${GITHUB_REF/refs\/tags\/v/}
+      # Get the latest semver tag (either from this push or earlier)
+      - name: Get the latest semver tag
+        uses: actions-ecosystem/action-get-latest-tag@v1
+        id: get_latest_tag
+        with:
+          semver_only: true
 
-      - name: Check if tag matches semver
-        id: check_tag_format
+      - name: Get the container image tag (without preceding 'v')
+        id: get_container_tag
         run: |
-          if [[ ${{ steps.get_version.outputs.version }} =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
-              echo ::set-output name=match::true
-          fi
+          GIT_TAG=${{ steps.get_latest_tag.outputs.tag }}
+          echo ::set-output name=tag::${GIT_TAG/v/}
 
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v2
@@ -99,12 +107,12 @@ jobs:
         if: github.event_name == 'pull_request'
         working-directory: twitter_bot/terraform
         env:
-          TF_VAR_container_image_tag: ${{ steps.get_version.outputs.version }}
+          TF_VAR_container_image_tag: ${{ steps.get_container_tag.outputs.tag }}
         run: terraform plan -no-color -input=false
 
       - name: Terraform Apply
-        if: github.event_name == 'push' && steps.check_tag_format.outputs.match == 'true'
+        if: github.event_name == 'push'
         working-directory: twitter_bot/terraform
         env:
-          TF_VAR_container_image_tag: ${{ steps.get_version.outputs.version }}
+          TF_VAR_container_image_tag: ${{ steps.get_container_tag.outputs.tag }}
         run: terraform apply -auto-approve -input=false
