@@ -7,6 +7,7 @@ const USERS_TO_FOLLOW = [
 ];
 
 async function main() {
+  const log_level = process.env.LOG_LEVEL ? process.env.LOG_LEVEL.toLowerCase() : undefined;
   console.log('Starting interactive Moscow Time Twitter Bot...');
 
   const stream = await client.v1.filterStream({
@@ -40,7 +41,7 @@ async function main() {
     // Emitted when a Twitter sent a signal to maintain connection active
     ETwitterStreamEvent.DataKeepAlive,
     () => {
-      if (process.env.TWITTER_BOT_LOG_LEVEL.toLowerCase() === 'verbose') {
+      if (log_level === 'verbose') {
         console.log(new Date(), 'Twitter sent a keep-alive packet.');
       }
     }
