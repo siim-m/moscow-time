@@ -3,13 +3,18 @@ import { client, getPrice, getScreenshot } from './lib/helpers.js';
 
 const USERS_TO_FOLLOW = [
   '56562803', // @PeterSchiff
+  '863527548', // @steve_hanke
 ];
 
 async function main() {
+  console.log('Starting interactive Moscow Time Twitter Bot...');
+
   const stream = await client.v1.filterStream({
     follow: USERS_TO_FOLLOW,
     tweet_mode: 'extended',
   });
+
+  console.log('Connected to Twitter streaming API. Waiting for tweets from:', USERS_TO_FOLLOW);
 
   stream.autoReconnect = true;
 
@@ -34,7 +39,11 @@ async function main() {
   stream.on(
     // Emitted when a Twitter sent a signal to maintain connection active
     ETwitterStreamEvent.DataKeepAlive,
-    () => console.log(new Date(), 'Twitter sent a keep-alive packet.')
+    () => {
+      if (process.env.TWITTER_BOT_LOG_LEVEL.toLowerCase() === 'verbose') {
+        console.log(new Date(), 'Twitter sent a keep-alive packet.');
+      }
+    }
   );
 
   stream.on(ETwitterStreamEvent.Data, async (eventData) => {
