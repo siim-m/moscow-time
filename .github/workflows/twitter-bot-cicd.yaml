@@ -4,6 +4,8 @@ on:
   push:
     tags:
       - v*.*.*
+    branches:
+      - main
   workflow_dispatch:
 
 jobs:
@@ -49,3 +51,50 @@ jobs:
           push: ${{ github.event_name != 'pull_request' && github.event_name != 'workflow_dispatch' }}
           tags: ${{ steps.metadata.outputs.tags }}
           labels: ${{ steps.metadata.outputs.labels }}
+
+  deploy-azure-infra:
+    runs-on: ubuntu-latest
+    env:
+      TF_IN_AUTOMATION: true
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Get the container image version tag
+        id: get_version
+        run: echo ::set-output name=VERSION::${GITHUB_REF/refs\/tags\//}
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v1
+        with:
+          cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
+
+      - name: Terraform Format
+        id: fmt
+        working-directory: twitter_bot/terraform
+        run: terraform fmt -check
+
+      - name: Terraform Init
+        id: init
+        working-directory: twitter_bot/terraform
+        run: terraform init
+
+      - name: Terraform Validate
+        id: validate
+        working-directory: twitter_bot/terraform
+        run: terraform validate -no-color
+
+      - name: Terraform Plan
+        id: plan
+        if: github.event_name == 'pull_request'
+        working-directory: twitter_bot/terraform
+        env:
+          TF_VAR_container_image_tag: ${{ steps.get_version.outputs.VERSION }}
+        run: terraform plan -no-color -input=false
+
+      - name: Terraform Apply
+        if: github.event_name == 'push' && github.event.ref_type == 'tag'
+        working-directory: twitter_bot/terraform
+        env:
+          TF_VAR_container_image_tag: ${{ steps.get_version.outputs.VERSION }}
+        run: terraform apply -auto-approve -input=false
