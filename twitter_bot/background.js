@@ -3,6 +3,7 @@ import { client, getPrice, getScreenshot } from './lib/helpers.js';
 
 const USERS_TO_FOLLOW = [
   '56562803', // @PeterSchiff
+  '863527548', // @steve_hanke
 ];
 
 async function main() {
