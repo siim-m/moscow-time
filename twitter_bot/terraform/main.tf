@@ -75,10 +75,12 @@ resource "azapi_resource" "container_app" {
 
       template = {
         containers = [
+          for container_exec_file in ["interactive.js", "scheduled.js"] :
+
           {
             image   = "ghcr.io/siim-m/moscow-time-twitter-bot:${var.container_image_tag}"
-            name    = "moscow-time-twitter-bot-background"
-            command = ["node", "background.js"]
+            name    = "moscow-time-twitter-bot-interactive"
+            command = ["node", container_exec_file]
 
             env = [
               {
