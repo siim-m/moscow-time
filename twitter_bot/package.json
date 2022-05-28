@@ -2,10 +2,7 @@
   "name": "moscow-time-twitter-bot",
   "version": "1.0.0",
   "license": "MIT",
-  "scripts": {
-    "twitter-bot-background": "node background.js",
-    "twitter-bot-scheduled": "node scheduled.js"
-  },
+  "scripts": {},
   "devDependencies": {
     "eslint": "^7.32.0",
     "eslint-config-prettier": "^8.3.0",
