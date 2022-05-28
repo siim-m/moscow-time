@@ -6,9 +6,19 @@ on:
       - v*.*.*
     branches:
       - main
+    paths:
+      - twitter_bot/**
+      - .github/workflows/twitter-bot-cicd.yaml
+    paths-ignore:
+      - "**.md"
   pull_request:
     branches:
       - main
+    paths:
+      - twitter_bot/**
+      - .github/workflows/twitter-bot-cicd.yaml
+    paths-ignore:
+      - "**.md"
   workflow_dispatch:
 
 jobs:
