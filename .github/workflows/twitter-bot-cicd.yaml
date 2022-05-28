@@ -104,7 +104,7 @@ jobs:
 
       - name: Terraform Plan
         id: plan
-        if: github.event_name == 'pull_request'
+        if: github.event_name == 'pull_request' || github.event_name == 'workflow_dispatch'
         working-directory: twitter_bot/terraform
         env:
           TF_VAR_container_image_tag: ${{ steps.get_container_tag.outputs.tag }}
