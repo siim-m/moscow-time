@@ -2,10 +2,10 @@
 
 A simple Twitter bot written in Node.js:
 
-- `scheduled.js` runs at the top of every hour and tweets some bitcoin stats.
-- `background.js` uses a Twitter filter stream to react to tweets from other accounts. It's currently quote tweeting [@PeterSchiff](https://twitter.com/PeterSchiff) whenever he mentions bitcoin.
+- `scheduled.js` tweets some bitcoin stats at the top of every hour.
+- `interactive.js` uses a Twitter filter stream to react to tweets from other accounts.
 
-The [live version](https://twitter.com/moscowtime_xyz) is running on containers in a Kubernetes cluster.
+The [live version](https://twitter.com/moscowtime_xyz) is hosted on [Azure Container Apps](https://azure.microsoft.com/en-us/services/container-apps/).
 
 ## Local Development
 
