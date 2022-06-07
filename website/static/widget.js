@@ -359,11 +359,11 @@ function mountBlockClock({ value, baseUrl = 'https://moscowtime.xyz' } = {}) {
   }
 
   // Load CSS
-  const link = document.createElement('link');
-  link.href = cssFilePath;
-  link.type = 'text/css';
-  link.rel = 'stylesheet';
-  document.getElementsByTagName('head')[0].appendChild(link);
+  const stylesheetLinkElement = document.createElement('link');
+  stylesheetLinkElement.href = cssFilePath;
+  stylesheetLinkElement.type = 'text/css';
+  stylesheetLinkElement.rel = 'stylesheet';
+  document.getElementsByTagName('head')[0].appendChild(stylesheetLinkElement);
 
   let displayOptions = Array.from(clockContainer.classList).filter((className) => {
     return VALID_DISPLAY_OPTIONS.includes(className);
@@ -383,7 +383,7 @@ function mountBlockClock({ value, baseUrl = 'https://moscowtime.xyz' } = {}) {
           return VALID_DISPLAY_OPTIONS.includes(className);
         });
         noFrame = Array.from(clockContainer.classList).includes('noframe');
-        link.href = cssFilePath;
+        stylesheetLinkElement.href = cssFilePath;
         setDimensions({ noFrame, clockModel });
         cycleView({ displayOptions, activeOption, displayData, clockModel });
       }
@@ -478,6 +478,7 @@ function mountBlockClock({ value, baseUrl = 'https://moscowtime.xyz' } = {}) {
       clockSizeObserver.disconnect();
       clockClassObserver.disconnect();
       clockContainer.innerHTML = '';
+      stylesheetLinkElement.remove();
     },
   };
 }
