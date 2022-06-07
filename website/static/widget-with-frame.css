@@ -51,27 +51,17 @@
   justify-content: flex-start;
 }
 
-.blockclock-digit-content {
-  width: 100%;
-  padding-left: 10%;
-  flex-grow: 1;
-}
-
-.blockclock-special-content {
-  padding-top: 7.5%;
+.blockclock-special {
+  padding-top: 0.2em;
   flex-grow: 1;
   width: 100%;
   text-align: center;
+  line-height: 0.925;
 }
 
-.blockclock-special-content,
-.blockclock-digit-content {
+.blockclock-content {
   font-family: "Steelfish Rounded Bold", monospace;
   line-height: 0.85;
-}
-
-.blockclock-special-content {
-  line-height: 0.925;
 }
 
 .blockclock-top-section {

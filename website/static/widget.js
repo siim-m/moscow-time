@@ -42,7 +42,6 @@ function setDimensions({ noFrame = false, clockModel = 'mini' } = {}) {
   // MICRO ONLY
   const clockDisplayMainSection = document.getElementById('blockclock-display-main-section');
   const clockDisplayBottomSection = document.getElementById('blockclock-display-bottom-section');
-  const clockCell0 = document.getElementById('blockclock-cell-0');
 
   clockContainer.style.height = `${aspectRatio * clockContainer.clientWidth}px`;
 
@@ -53,7 +52,7 @@ function setDimensions({ noFrame = false, clockModel = 'mini' } = {}) {
       ? `${0.59 * clock.clientHeight}px`
       : `${0.5075 * clock.clientHeight}px`;
 
-    Array.from(document.getElementsByClassName('blockclock-digit-content')).forEach((el) => {
+    Array.from(document.getElementsByClassName('blockclock-content')).forEach((el) => {
       el.style.fontSize = noFrame
         ? `${0.49 * clock.clientHeight}px`
         : `${0.425 * clock.clientHeight}px`;
@@ -65,16 +64,10 @@ function setDimensions({ noFrame = false, clockModel = 'mini' } = {}) {
         : `${0.019 * clock.clientHeight}px`;
     });
 
-    Array.from(document.getElementsByClassName('blockclock-special-content')).forEach((el) => {
+    Array.from(document.getElementsByClassName('blockclock-special')).forEach((el) => {
       el.style.fontSize = noFrame
         ? `${0.1775 * clock.clientHeight}px`
         : `${0.15 * clock.clientHeight}px`;
-    });
-
-    Array.from(document.getElementsByClassName('blockclock-special-upper-small')).forEach((el) => {
-      el.style.fontSize = noFrame
-        ? `${0.1125 * clock.clientHeight}px`
-        : `${0.175 * clock.clientHeight}px`;
     });
   }
 
@@ -87,7 +80,9 @@ function setDimensions({ noFrame = false, clockModel = 'mini' } = {}) {
       BOTTOM_FONT_SIZE_TO_HEIGHT_RATIO * clock.clientHeight
     }px`;
 
-    clockCell0.style.fontSize = `${SPECIAL_FONT_SIZE_TO_HEIGHT_RATIO * clock.clientHeight}px`;
+    Array.from(document.getElementsByClassName('blockclock-special')).forEach((el) => {
+      el.style.fontSize = `${SPECIAL_FONT_SIZE_TO_HEIGHT_RATIO * clock.clientHeight}px`;
+    });
   }
 }
 
@@ -100,7 +95,7 @@ function cycleView({ displayOptions, activeOption, displayData, clockModel }) {
   }
 
   const MINI_USDPRICE_HTML = `
-    <div>
+    <div class="blockclock-special">
       <div class="blockclock-special-upper">BTC</div>
       <div class="blockclock-special-separator"></div>
       <div class="blockclock-special-lower">USD</div>
@@ -116,7 +111,7 @@ function cycleView({ displayOptions, activeOption, displayData, clockModel }) {
 	`;
 
   const MINI_SATSPERDOLLAR_HTML = `
-    <div>
+    <div class="blockclock-special">
       <div class="blockclock-special-upper">SATS</div>
       <div class="blockclock-special-separator"></div>
       <div class="blockclock-special-lower">1USD</div>
@@ -132,7 +127,7 @@ function cycleView({ displayOptions, activeOption, displayData, clockModel }) {
 `;
 
   const MINI_MOSCOWTIME_HTML = `
-    <div>
+    <div class="blockclock-special">
       <div class="blockclock-special-upper">MSCW</div>
       <div class="blockclock-special-separator"></div>
       <div class="blockclock-special-lower">TIME</div>
@@ -279,31 +274,31 @@ function mountBlockClock({ value, baseUrl = 'https://moscowtime.xyz' } = {}) {
     <div id="blockclock-digits">
       <div class="blockclock-cell">
         <div id="blockclock-top-section-0" class="blockclock-top-section blockclock-content"></div>
-        <div id="blockclock-cell-0" class="blockclock-special-content blockclock-content"></div>
+        <div id="blockclock-cell-0" class="blockclock-content"></div>
       </div>
       <div class="blockclock-cell">
         <div id="blockclock-top-section-1" class="blockclock-top-section blockclock-content"></div>
-        <div id="blockclock-cell-1" class="blockclock-digit-content blockclock-content"></div>
+        <div id="blockclock-cell-1" class="blockclock-content"></div>
       </div>
       <div class="blockclock-cell">
         <div id="blockclock-top-section-2" class="blockclock-top-section blockclock-content"></div>
-        <div id="blockclock-cell-2" class="blockclock-digit-content blockclock-content"></div>
+        <div id="blockclock-cell-2" class="blockclock-content"></div>
       </div>
       <div class="blockclock-cell">
         <div id="blockclock-top-section-3" class="blockclock-top-section blockclock-content"></div>
-        <div id="blockclock-cell-3" class="blockclock-digit-content blockclock-content"></div>
+        <div id="blockclock-cell-3" class="blockclock-content"></div>
       </div>
       <div class="blockclock-cell">
         <div id="blockclock-top-section-4" class="blockclock-top-section blockclock-content"></div>
-        <div id="blockclock-cell-4" class="blockclock-digit-content blockclock-content"></div>
+        <div id="blockclock-cell-4" class="blockclock-content"></div>
       </div>
       <div class="blockclock-cell">
         <div id="blockclock-top-section-5" class="blockclock-top-section blockclock-content"></div>
-        <div id="blockclock-cell-5" class="blockclock-digit-content blockclock-content"></div>
+        <div id="blockclock-cell-5" class="blockclock-content"></div>
       </div>
       <div class="blockclock-cell">
         <div id="blockclock-top-section-6" class="blockclock-top-section blockclock-content"></div>
-        <div id="blockclock-cell-6" class="blockclock-digit-content blockclock-content"></div>
+        <div id="blockclock-cell-6" class="blockclock-content"></div>
       </div>
     </div>
   </div>
