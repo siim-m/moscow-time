@@ -1,0 +1,81 @@
+:root {
+  --clock-display-background-color: #100f14;
+  --clock-display-text-color: #b0b0b0;
+}
+
+#blockclock-container {
+  display: flex;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  position: relative;
+  cursor: default;
+  pointer-events: none;
+}
+
+#blockclock {
+  background-size: contain;
+  background-image: url('bcmm-face-1280.png');
+  position: absolute;
+  width: 100%;
+  border-radius: 4.95%/9%;
+}
+
+#blockclock-display {
+  background-size: cover;
+  width: 59%;
+  height: 50.25%;
+  margin-top: 9.55%;
+  margin-left: 20.65%;
+  border-radius: 2%/3.5%;
+  background-color: var(--clock-display-background-color);
+  color: var(--clock-display-text-color);
+}
+
+#blockclock-display-main-section {
+  display: flex;
+  justify-content: center;
+  letter-spacing: 0.02em;
+  height: 85%;
+  padding-top: 10.8%;
+  font-family: 'Steelfish Rounded Bold';
+}
+
+#blockclock-display-bottom-section {
+  letter-spacing: 0.035rem;
+  text-align: center;
+  font-family: monospace;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+#blockclock-cell-0 {
+  padding-top: 2.25%;
+}
+
+.blockclock-cell {
+  text-align: center;
+  line-height: 0.85;
+}
+
+.blockclock-special {
+  letter-spacing: 0.02ch;
+}
+
+#blockclock-cell-0-special-upper-small {
+  line-height: 0.9;
+  margin-bottom: 26%;
+}
+
+#blockclock-cell-0-special-separator {
+  background-color: var(--clock-display-text-color);
+  border-radius: 1rem;
+  margin-top: 0.75ch;
+  min-height: 1px;
+  height: 0.1em;
+  margin-bottom: 0.7ch;
+  max-width: 85%;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+}

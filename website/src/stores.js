@@ -16,6 +16,11 @@ export const clockViews = writable([
     label: 'Block Height',
     enabled: true,
   },
+  // {
+  //   name: 'satsperdollar',
+  //   label: 'Sats per Dollar',
+  //   enabled: true,
+  // },
 ]);
 
 export const navLinks = readable([
