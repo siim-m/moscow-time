@@ -270,7 +270,7 @@ async function fetchData() {
   };
 }
 
-function mountBlockClock({ value } = {}) {
+function mountBlockClock({ value, baseUrl = 'https://moscowtime.xyz' } = {}) {
   const FETCH_INTERVAL = 10000;
   const VALID_DISPLAY_OPTIONS = ['blockheight', 'usdprice', 'satsperdollar', 'moscowtime'];
 
@@ -348,13 +348,11 @@ function mountBlockClock({ value } = {}) {
   switch (clockModel) {
     case 'mini':
       clockContainer.innerHTML = MINI_HTML;
-      cssFilePath = noFrame
-        ? 'http://localhost:3000/widget-no-frame.css'
-        : 'http://localhost:3000/widget-with-frame.css';
+      cssFilePath = noFrame ? `${baseUrl}/widget-no-frame.css` : `${baseUrl}/widget-with-frame.css`;
       break;
     case 'micro':
       clockContainer.innerHTML = MICRO_HTML;
-      cssFilePath = 'http://localhost:3000/widget-micro.css';
+      cssFilePath = `${baseUrl}/widget-micro.css`;
       break;
     default:
       break;
