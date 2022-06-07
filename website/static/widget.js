@@ -379,8 +379,8 @@ function mountBlockClock({ value, baseUrl = 'https://moscowtime.xyz' } = {}) {
         });
         noFrame = Array.from(clockContainer.classList).includes('noframe');
         stylesheetLinkElement.href = cssFilePath;
-        setDimensions({ noFrame, clockModel });
         cycleView({ displayOptions, activeOption, displayData, clockModel });
+        setDimensions({ noFrame, clockModel });
       }
     });
   });
@@ -433,6 +433,7 @@ function mountBlockClock({ value, baseUrl = 'https://moscowtime.xyz' } = {}) {
         displayData,
         clockModel,
       });
+      setDimensions({ noFrame, clockModel });
 
       cycleViewInterval = setInterval(() => {
         if (activeOption === undefined || activeOption >= displayOptions.length - 1) {
@@ -447,6 +448,7 @@ function mountBlockClock({ value, baseUrl = 'https://moscowtime.xyz' } = {}) {
           displayData,
           clockModel,
         });
+        setDimensions({ noFrame, clockModel });
       }, cycleInterval);
     });
 
@@ -464,6 +466,7 @@ function mountBlockClock({ value, baseUrl = 'https://moscowtime.xyz' } = {}) {
       displayData,
       clockModel,
     });
+    setDimensions({ noFrame, clockModel });
   }
 
   return {
