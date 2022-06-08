@@ -3,13 +3,12 @@
   margin: 0;
   text-align: center;
   position: relative;
-  cursor: default;
-  pointer-events: none;
+  user-select: none;
 }
 
 #blockclock {
   background-size: contain;
-  background-image: url("https://moscowtime.xyz/blockclock-no-frame.webp");
+  background-image: url('https://moscowtime.xyz/blockclock-no-frame.webp');
   position: absolute;
   width: 100%;
   border-radius: 1.5%/4.5%;
@@ -44,7 +43,7 @@
 }
 
 .blockclock-content {
-  font-family: "Steelfish Rounded Bold", monospace;
+  font-family: 'Steelfish Rounded Bold', monospace;
   line-height: 0.85;
 }
 

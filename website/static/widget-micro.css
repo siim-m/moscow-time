@@ -9,8 +9,7 @@
   margin-right: auto;
   text-align: center;
   position: relative;
-  cursor: default;
-  pointer-events: none;
+  user-select: none;
 }
 
 #blockclock {
