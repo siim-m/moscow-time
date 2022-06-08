@@ -1,6 +1,7 @@
 :root {
   --clock-display-background-color: #2d2d2d;
-  --clock-display-text-color: #b0b0b0;
+  --clock-display-text-color: rgba(254, 183, 50, 0.515);
+  /* --clock-display-text-color: #b0b0b0; */
 }
 
 #blockclock-container {

@@ -258,8 +258,8 @@ function cycleView({ displayOptions, activeOption, displayData, clockModel }) {
             break;
         }
       } else if (clockModel === 'micro') {
-        // document.getElementById('blockclock-display').style.backgroundImage =
-        //   "url('/z_usdprice.jpg')";
+        document.getElementById('blockclock-display').style.backgroundImage =
+          "url('/z_usdprice.jpg')";
         setBottomSection('Market price of Bitcoin');
         document.getElementById('blockclock-display-main-section-0').innerHTML =
           MICRO_USDPRICE_HTML;
@@ -279,8 +279,8 @@ function cycleView({ displayOptions, activeOption, displayData, clockModel }) {
             satUsd[satUsd.length - 7 + i] || '';
         }
       } else if (clockModel === 'micro') {
-        // document.getElementById('blockclock-display').style.backgroundImage =
-        //   "url('/z_satsperdollar.jpg')";
+        document.getElementById('blockclock-display').style.backgroundImage =
+          "url('/z_satsperdollar.jpg')";
         setBottomSection('Value of one US Dollar, expressed in Satoshis');
         document.getElementById('blockclock-display-main-section-0').innerHTML =
           MICRO_SATSPERDOLLAR_HTML;
@@ -297,8 +297,8 @@ function cycleView({ displayOptions, activeOption, displayData, clockModel }) {
             blockHeight[blockHeight.length - 7 + i] || '';
         }
       } else if (clockModel === 'micro') {
-        // document.getElementById('blockclock-display').style.backgroundImage =
-        //   "url('/z_blockheight.jpg')";
+        document.getElementById('blockclock-display').style.backgroundImage =
+          "url('/z_blockheight.jpg')";
         setBottomSection('Number of blocks in the blockchain');
         document.getElementById('blockclock-display-main-section-0').innerHTML = '';
         document.getElementById('blockclock-display-main-section-1').innerHTML = `${blockHeight}`;
@@ -317,8 +317,8 @@ function cycleView({ displayOptions, activeOption, displayData, clockModel }) {
             satUsd[satUsd.length - 7 + i] || '';
         }
       } else if (clockModel === 'micro') {
-        // document.getElementById('blockclock-display').style.backgroundImage =
-        //   "url('/z_moscowtime.jpg')";
+        document.getElementById('blockclock-display').style.backgroundImage =
+          "url('/z_moscowtime.jpg')";
         setBottomSection('');
         document.getElementById('blockclock-display-main-section-0').innerHTML =
           MICRO_MOSCOWTIME_HTML;
