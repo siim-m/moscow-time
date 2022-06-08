@@ -37,6 +37,7 @@
   height: 85%;
   padding-top: 10.8%;
   font-family: 'Steelfish Rounded Bold';
+  line-height: 0.85;
 }
 
 #blockclock-display-bottom-section {
@@ -64,7 +65,7 @@
   padding-right: 0.3em;
 }
 
-#blockclock-cell-0-special-separator {
+.blockclock-special-separator {
   background-color: var(--clock-display-text-color);
   border-radius: 1rem;
   margin-top: 0.75ch;
@@ -75,8 +76,4 @@
   margin-left: auto;
   margin-right: auto;
   width: 100%;
-}
-
-.blockclock-cell {
-  line-height: 0.85;
 }
