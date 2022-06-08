@@ -52,10 +52,12 @@
   justify-content: space-around;
   align-items: center;
   font-weight: 600;
-  letter-spacing: 0.15em;
+  letter-spacing: 0.125em;
   min-height: 12%;
   height: 12%;
   font-family: 'Courier Prime Bold', monospace;
+  overflow: hidden;
+  white-space: nowrap;
 }
 
 .blockclock-special-upper {
