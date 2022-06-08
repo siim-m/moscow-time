@@ -31,6 +31,7 @@
 }
 
 #blockclock-display-main-section {
+  box-sizing: border-box;
   display: flex;
   justify-content: center;
   letter-spacing: 0.015em;
