@@ -2,13 +2,18 @@
 
 // #region Static Numbers
 
-// MINI
+const DEFAULT_DISPLAY_UPDATE_INTERVAL_MS = 3000;
+const FETCH_INTERVAL = 10000;
+const VALID_DISPLAY_OPTIONS = ['blockheight', 'usdprice', 'satsperdollar', 'moscowtime'];
+
+// MINI NO FRAME
 const MINI_NOFRAME_ASPECT_RATIO = 320 / 954;
 const MINI_NOFRAME_DIGITS_HEIGHT_RATIO = 0.59;
 const MINI_NOFRAME_MAIN_FONT_HEIGHT_RATIO = 0.49;
 const MINI_NOFRAME_TOP_SECTION_FONT_HEIGHT_RATIO = 0.0225;
 const MINI_NOFRAME_SPECIAL_FONT_HEIGHT_RATIO = 0.1775;
 
+// MINI WITH FRAME
 const MINI_WITHFRAME_ASPECT_RATIO = 376 / 1010;
 const MINI_WITHFRAME_DIGITS_HEIGHT_RATIO = 0.5075;
 const MINI_WITHFRAME_MAIN_FONT_HEIGHT_RATIO = 0.425;
@@ -32,31 +37,31 @@ const MINI_HTML = `
     <div id="blockclock-digits">
       <div class="blockclock-cell">
         <div id="blockclock-top-section-0" class="blockclock-top-section blockclock-content"></div>
-        <div id="blockclock-cell-0" class="blockclock-content"></div>
+        <div id="blockclock-display-main-section-0" class="blockclock-content"></div>
       </div>
       <div class="blockclock-cell">
         <div id="blockclock-top-section-1" class="blockclock-top-section blockclock-content"></div>
-        <div id="blockclock-cell-1" class="blockclock-content"></div>
+        <div id="blockclock-display-main-section-1" class="blockclock-content"></div>
       </div>
       <div class="blockclock-cell">
         <div id="blockclock-top-section-2" class="blockclock-top-section blockclock-content"></div>
-        <div id="blockclock-cell-2" class="blockclock-content"></div>
+        <div id="blockclock-display-main-section-2" class="blockclock-content"></div>
       </div>
       <div class="blockclock-cell">
         <div id="blockclock-top-section-3" class="blockclock-top-section blockclock-content"></div>
-        <div id="blockclock-cell-3" class="blockclock-content"></div>
+        <div id="blockclock-display-main-section-3" class="blockclock-content"></div>
       </div>
       <div class="blockclock-cell">
         <div id="blockclock-top-section-4" class="blockclock-top-section blockclock-content"></div>
-        <div id="blockclock-cell-4" class="blockclock-content"></div>
+        <div id="blockclock-display-main-section-4" class="blockclock-content"></div>
       </div>
       <div class="blockclock-cell">
         <div id="blockclock-top-section-5" class="blockclock-top-section blockclock-content"></div>
-        <div id="blockclock-cell-5" class="blockclock-content"></div>
+        <div id="blockclock-display-main-section-5" class="blockclock-content"></div>
       </div>
       <div class="blockclock-cell">
         <div id="blockclock-top-section-6" class="blockclock-top-section blockclock-content"></div>
-        <div id="blockclock-cell-6" class="blockclock-content"></div>
+        <div id="blockclock-display-main-section-6" class="blockclock-content"></div>
       </div>
     </div>
   </div>
@@ -66,13 +71,13 @@ const MICRO_HTML = `
   <div id="blockclock">
     <div id="blockclock-display">
       <div id="blockclock-display-main-section">
-        <div id="blockclock-cell-0" class="blockclock-cell blockclock-content"></div>
-        <div id="blockclock-cell-1" class="blockclock-cell blockclock-content"></div>
-        <div id="blockclock-cell-2" class="blockclock-cell blockclock-content"></div>
-        <div id="blockclock-cell-3" class="blockclock-cell blockclock-content"></div>
-        <div id="blockclock-cell-4" class="blockclock-cell blockclock-content"></div>
-        <div id="blockclock-cell-5" class="blockclock-cell blockclock-content"></div>
-        <div id="blockclock-cell-6" class="blockclock-cell blockclock-content"></div>
+        <div id="blockclock-display-main-section-0" class="blockclock-content"></div>
+        <div id="blockclock-display-main-section-1" class="blockclock-content"></div>
+        <div id="blockclock-display-main-section-2" class="blockclock-content"></div>
+        <div id="blockclock-display-main-section-3" class="blockclock-content"></div>
+        <div id="blockclock-display-main-section-4" class="blockclock-content"></div>
+        <div id="blockclock-display-main-section-5" class="blockclock-content"></div>
+        <div id="blockclock-display-main-section-6" class="blockclock-content"></div>
       </div>
       <div id="blockclock-display-bottom-section" class="blockclock-content"></div>
     </div>
@@ -89,9 +94,9 @@ const MINI_USDPRICE_HTML = `
 
 const MICRO_USDPRICE_HTML = `
   <div class="blockclock-special blockclock-special-usdprice">
-    <div id="blockclock-cell-0-special-upper">BTC</div>
-    <div id="blockclock-cell-0-special-separator"></div>
-    <div id="blockclock-cell-0-special-lower">USD</div>
+    <div>BTC</div>
+    <div class="blockclock-special-separator"></div>
+    <div>USD</div>
   </div>
 `;
 
@@ -105,9 +110,9 @@ const MINI_SATSPERDOLLAR_HTML = `
 
 const MICRO_SATSPERDOLLAR_HTML = `
   <div class="blockclock-special blockclock-special-satsperdollar">
-    <div id="blockclock-cell-0-special-upper">SATS</div>
-    <div id="blockclock-cell-0-special-separator"></div>
-    <div id="blockclock-cell-0-special-lower">1USD</div>
+    <div>SATS</div>
+    <div class="blockclock-special-separator"></div>
+    <div>1USD</div>
   </div>
 `;
 
@@ -121,9 +126,9 @@ const MINI_MOSCOWTIME_HTML = `
 
 const MICRO_MOSCOWTIME_HTML = `
   <div class="blockclock-special blockclock-special-moscowtime">
-    <div id="blockclock-cell-0-special-upper">MSCW</div>
-    <div id="blockclock-cell-0-special-separator"></div>
-    <div id="blockclock-cell-0-special-lower">TIME</div>
+    <div>MSCW</div>
+    <div class="blockclock-special-separator"></div>
+    <div>TIME</div>
   </div>
 `;
 //#endregion
@@ -140,6 +145,7 @@ function setBottomSection(value) {
   document.getElementById('blockclock-display-bottom-section').innerHTML = value;
 }
 
+// Sets the dimensions of various elements on the widget depending on the size of the container.
 function setDimensions({ noFrame = false, clockModel = 'mini' } = {}) {
   let aspectRatio;
 
@@ -162,7 +168,7 @@ function setDimensions({ noFrame = false, clockModel = 'mini' } = {}) {
   const clock = document.getElementById('blockclock');
   const digits = document.getElementById('blockclock-digits');
 
-  // MICRO ONLY
+  // USED FOR MICRO ONLY
   const clockDisplayMainSection = document.getElementById('blockclock-display-main-section');
   const clockDisplayBottomSection = document.getElementById('blockclock-display-bottom-section');
 
@@ -208,6 +214,7 @@ function setDimensions({ noFrame = false, clockModel = 'mini' } = {}) {
   }
 }
 
+// Handles the changing of different views of the widget.
 function cycleView({ displayOptions, activeOption, displayData, clockModel }) {
   // Clear all content if no display options are selected
   if (!displayOptions.length) {
@@ -225,35 +232,38 @@ function cycleView({ displayOptions, activeOption, displayData, clockModel }) {
     case 'usdprice':
       if (clockModel === 'mini') {
         setTopSections(['Market price of', 'bitcoin']);
-        document.getElementById('blockclock-cell-0').innerHTML = MINI_USDPRICE_HTML;
+        document.getElementById('blockclock-display-main-section-0').innerHTML = MINI_USDPRICE_HTML;
       } else if (clockModel === 'micro') {
         setBottomSection('Market price of Bitcoin');
-        // document.getElementById('blockclock-display').style.backgroundImage =
-        //   "url('/z_usdprice.jpg')";
-        document.getElementById('blockclock-cell-0').innerHTML = MICRO_USDPRICE_HTML;
+        document.getElementById('blockclock-display-main-section-0').innerHTML =
+          MICRO_USDPRICE_HTML;
       }
 
-      document.getElementById('blockclock-cell-1').innerHTML = '$';
+      document.getElementById('blockclock-display-main-section-1').innerHTML = '$';
 
       // Determine which format to use based on number of digits in price.
       switch (true) {
         case priceUsd.length > 6:
-          document.getElementById('blockclock-cell-2').innerHTML = `${priceUsd[0]}.`;
-          document.getElementById('blockclock-cell-3').innerHTML = priceUsd[1];
-          document.getElementById('blockclock-cell-4').innerHTML = priceUsd[2];
-          document.getElementById('blockclock-cell-5').innerHTML = priceUsd[3];
-          document.getElementById('blockclock-cell-6').innerHTML = 'M';
+          document.getElementById(
+            'blockclock-display-main-section-2'
+          ).innerHTML = `${priceUsd[0]}.`;
+          document.getElementById('blockclock-display-main-section-3').innerHTML = priceUsd[1];
+          document.getElementById('blockclock-display-main-section-4').innerHTML = priceUsd[2];
+          document.getElementById('blockclock-display-main-section-5').innerHTML = priceUsd[3];
+          document.getElementById('blockclock-display-main-section-6').innerHTML = 'M';
           break;
         case priceUsd.length > 5:
-          document.getElementById('blockclock-cell-2').innerHTML = priceUsd[0];
-          document.getElementById('blockclock-cell-3').innerHTML = priceUsd[1];
-          document.getElementById('blockclock-cell-4').innerHTML = `${priceUsd[2]}.`;
-          document.getElementById('blockclock-cell-5').innerHTML = priceUsd[3];
-          document.getElementById('blockclock-cell-6').innerHTML = 'K';
+          document.getElementById('blockclock-display-main-section-2').innerHTML = priceUsd[0];
+          document.getElementById('blockclock-display-main-section-3').innerHTML = priceUsd[1];
+          document.getElementById(
+            'blockclock-display-main-section-4'
+          ).innerHTML = `${priceUsd[2]}.`;
+          document.getElementById('blockclock-display-main-section-5').innerHTML = priceUsd[3];
+          document.getElementById('blockclock-display-main-section-6').innerHTML = 'K';
           break;
         default:
           for (let i = 2; i < 7; i += 1) {
-            document.getElementById(`blockclock-cell-${i.toString()}`).innerHTML =
+            document.getElementById(`blockclock-display-main-section-${i.toString()}`).innerHTML =
               priceUsd[priceUsd.length - 7 + i] || '';
           }
           break;
@@ -264,17 +274,17 @@ function cycleView({ displayOptions, activeOption, displayData, clockModel }) {
     case 'satsperdollar':
       if (clockModel === 'mini') {
         setTopSections(['Value of one US', 'Dollar,', 'expressed in', 'Satoshis']);
-        document.getElementById('blockclock-cell-0').innerHTML = MINI_SATSPERDOLLAR_HTML;
+        document.getElementById('blockclock-display-main-section-0').innerHTML =
+          MINI_SATSPERDOLLAR_HTML;
       } else if (clockModel === 'micro') {
-        // document.getElementById('blockclock-display').style.backgroundImage =
-        //   "url('/z_satsperdollar.jpg')";
-        document.getElementById('blockclock-cell-0').innerHTML = MICRO_SATSPERDOLLAR_HTML;
+        document.getElementById('blockclock-display-main-section-0').innerHTML =
+          MICRO_SATSPERDOLLAR_HTML;
         setBottomSection('Value of one US Dollar, expressed in Satoshis');
       }
 
       // Set the digits.
       for (let i = 1; i < 7; i += 1) {
-        document.getElementById(`blockclock-cell-${i.toString()}`).innerHTML =
+        document.getElementById(`blockclock-display-main-section-${i.toString()}`).innerHTML =
           satUsd[satUsd.length - 7 + i] || '';
       }
 
@@ -282,7 +292,7 @@ function cycleView({ displayOptions, activeOption, displayData, clockModel }) {
 
     case 'blockheight':
       for (let i = 0; i < 7; i += 1) {
-        document.getElementById(`blockclock-cell-${i.toString()}`).innerHTML =
+        document.getElementById(`blockclock-display-main-section-${i.toString()}`).innerHTML =
           blockHeight[blockHeight.length - 7 + i] || '';
       }
 
@@ -290,8 +300,6 @@ function cycleView({ displayOptions, activeOption, displayData, clockModel }) {
         setTopSections(['Number of blocks', 'in the', 'blockchain']);
       } else if (clockModel === 'micro') {
         setBottomSection('Number of blocks in the blockchain');
-        // document.getElementById('blockclock-display').style.backgroundImage =
-        //   "url('/z_blockheight.jpg')";
       }
 
       break;
@@ -299,17 +307,17 @@ function cycleView({ displayOptions, activeOption, displayData, clockModel }) {
     case 'moscowtime':
       if (clockModel === 'mini') {
         setTopSections([]);
-        document.getElementById('blockclock-cell-0').innerHTML = MINI_MOSCOWTIME_HTML;
+        document.getElementById('blockclock-display-main-section-0').innerHTML =
+          MINI_MOSCOWTIME_HTML;
       } else if (clockModel === 'micro') {
-        // document.getElementById('blockclock-display').style.backgroundImage =
-        //   "url('/z_moscowtime.jpg')";
-        document.getElementById('blockclock-cell-0').innerHTML = MICRO_MOSCOWTIME_HTML;
+        document.getElementById('blockclock-display-main-section-0').innerHTML =
+          MICRO_MOSCOWTIME_HTML;
         setBottomSection('');
       }
 
       // Set the digits.
       for (let i = 1; i < 7; i += 1) {
-        document.getElementById(`blockclock-cell-${i.toString()}`).innerHTML =
+        document.getElementById(`blockclock-display-main-section-${i.toString()}`).innerHTML =
           satUsd[satUsd.length - 7 + i] || '';
       }
 
@@ -320,6 +328,41 @@ function cycleView({ displayOptions, activeOption, displayData, clockModel }) {
   }
 }
 
+// Parses the HTML classes on the container and returns the array of all valid display options.
+function getDisplayOptions(clockContainer) {
+  return Array.from(clockContainer.classList).filter((className) => {
+    return VALID_DISPLAY_OPTIONS.includes(className);
+  });
+}
+
+// Parses the HTML classes on the container and returns the requested BLOCKCLOCK model. Defaults to mini.
+function getClockModel(clockContainer) {
+  if (clockContainer.classList.contains('model-mini')) {
+    return 'mini';
+  } else if (clockContainer.classList.contains('model-micro')) {
+    return 'micro';
+  } else {
+    return 'mini';
+  }
+}
+
+// Parses the HTML classes on the container and returns the milliseconds from 'interval-n' class. Defaults to 3000.
+function getDisplayUpdateIntervalMs(clockContainer) {
+  let interval;
+  Array.from(clockContainer.classList).forEach((className) => {
+    if (className.includes('interval-')) {
+      const regexp = /^(interval-)(\d+)$/gi;
+      const matches = [...className.matchAll(regexp)];
+      if (matches.length) {
+        const intervalValue = parseInt(matches[0][2]);
+        if (typeof intervalValue === 'number') interval = intervalValue;
+      }
+    }
+  });
+  return interval || DEFAULT_DISPLAY_UPDATE_INTERVAL_MS;
+}
+
+// Fetches price and block data from external APIs.
 async function fetchData() {
   const priceUsdResponse = await (
     await fetch('https://api.coinbase.com/v2/prices/spot?currency=USD')
@@ -340,30 +383,31 @@ async function fetchData() {
   };
 }
 
+//
 function mountBlockClock({ value, baseUrl = 'https://moscowtime.xyz' } = {}) {
-  const FETCH_INTERVAL = 10000;
-  const VALID_DISPLAY_OPTIONS = ['blockheight', 'usdprice', 'satsperdollar', 'moscowtime'];
-
-  let cycleInterval = 3000;
-
-  const clockContainer = document.getElementById('blockclock-container');
-
-  let clockModel;
-  let clockSizeObserver;
-  let clockClassObserver;
-  let cssFilePath;
-  let backgroundImage;
-
-  if (clockContainer.classList.contains('model-mini')) {
-    clockModel = 'mini';
-  } else if (clockContainer.classList.contains('model-micro')) {
-    clockModel = 'micro';
-  } else {
-    clockModel = 'mini';
+  // If a desired value was passed in, ensure that only a single display option is set.
+  if (value && displayOptions.length > 1) {
+    console.error(
+      'Incorrect widget configuration. You can only specify one display option if value is specified'
+    );
+    alert(
+      'Incorrect widget configuration. You can only specify one display option if value is specified'
+    );
+    return;
   }
 
-  let noFrame = Array.from(clockContainer.classList).includes('noframe');
+  const clockContainer = document.getElementById('blockclock-container'); // grab the container element
+  const clockModel = getClockModel(clockContainer); // mini or micro
+  let displayUpdateIntervalMs = getDisplayUpdateIntervalMs(clockContainer); // display update interval in milliseconds
+  let cssFilePath; // path to CSS file
+  let backgroundImage; // background image of the widget
+  let noFrame = Array.from(clockContainer.classList).includes('noframe'); // if true, use the no frame version
+  let displayOptions = getDisplayOptions(clockContainer); // array of selected display options
+  let activeOption = 0; // index of active display option
+  let displayUpdateInterval; // JS interval for periodically cycling through display options (configured further down)
+  let dataFetchInterval; // JS interval for periodically fetching data from external APIs (configured further down)
 
+  // Create the appropriate HTML and pull in the right CSS file based on model and frame/noframe.
   switch (clockModel) {
     case 'mini':
       clockContainer.innerHTML = MINI_HTML;
@@ -408,9 +452,9 @@ function mountBlockClock({ value, baseUrl = 'https://moscowtime.xyz' } = {}) {
   `;
 
   // Create a <style> tag with dynamic css.
-  const dynamicCssStyleTag = document.createElement('style');
-  dynamicCssStyleTag.appendChild(document.createTextNode(dynamicCss));
-  document.head.appendChild(dynamicCssStyleTag);
+  const dynamicCssStyleElement = document.createElement('style');
+  dynamicCssStyleElement.appendChild(document.createTextNode(dynamicCss));
+  document.head.appendChild(dynamicCssStyleElement);
 
   // Create a <link> tag to apply styles from CSS file.
   const externalStylesheetLinkElement = document.createElement('link');
@@ -419,21 +463,17 @@ function mountBlockClock({ value, baseUrl = 'https://moscowtime.xyz' } = {}) {
   externalStylesheetLinkElement.rel = 'stylesheet';
   document.head.appendChild(externalStylesheetLinkElement);
 
-  let displayOptions = Array.from(clockContainer.classList).filter((className) => {
-    return VALID_DISPLAY_OPTIONS.includes(className);
-  });
-
-  clockSizeObserver = new ResizeObserver(() => {
+  // Observe and react to changes of the container dimensions.
+  const clockSizeObserver = new ResizeObserver(() => {
     setDimensions({ noFrame, clockModel });
   });
   clockSizeObserver.observe(clockContainer);
 
-  clockClassObserver = new MutationObserver((mutations) => {
+  // Observe and react to changes of the container classes.
+  const clockClassObserver = new MutationObserver((mutations) => {
     mutations.forEach((mutation) => {
       if (mutation.attributeName === 'class') {
-        displayOptions = Array.from(clockContainer.classList).filter((className) => {
-          return VALID_DISPLAY_OPTIONS.includes(className);
-        });
+        displayOptions = getDisplayOptions(clockContainer);
         noFrame = Array.from(clockContainer.classList).includes('noframe');
         externalStylesheetLinkElement.href = cssFilePath;
         cycleView({ displayOptions, activeOption, displayData, clockModel });
@@ -443,30 +483,9 @@ function mountBlockClock({ value, baseUrl = 'https://moscowtime.xyz' } = {}) {
   });
   clockClassObserver.observe(clockContainer, { attributes: true });
 
-  if (value && displayOptions.length > 1) {
-    console.error(
-      'Incorrect widget configuration. You can only specify one display option if value is specified'
-    );
-    alert(
-      'Incorrect widget configuration. You can only specify one display option if value is specified'
-    );
-    return;
-  }
-
-  let activeOption = 0;
-
-  Array.from(clockContainer.classList).forEach((className) => {
-    if (className.includes('interval-')) {
-      const regexp = /^(interval-)(\d+)$/gi;
-      const matches = [...className.matchAll(regexp)];
-      if (matches.length) {
-        const intervalValue = parseInt(matches[0][2]);
-        if (typeof intervalValue === 'number') cycleInterval = intervalValue;
-      }
-    }
-  });
-
-  let displayData = {
+  // Object for tracking the data that is displayed.
+  // If a value was passed in use that. Otherwise, initialise to 'undefined' and set later from API.
+  const displayData = {
     priceUsd: value && displayOptions[0] === 'usdprice' ? value : undefined,
     satUsd:
       value && (displayOptions[0] === 'satsperdollar' || displayOptions[0] === 'moscowtime')
@@ -475,10 +494,8 @@ function mountBlockClock({ value, baseUrl = 'https://moscowtime.xyz' } = {}) {
     blockHeight: value && displayOptions[0] === 'blockheight' ? value : undefined,
   };
 
-  let cycleViewInterval;
-  let fetchDataInterval;
-
   if (!value) {
+    // If value was not passed in, fetch data from external APIs, update the display and configure JS intervals.
     fetchData().then((data) => {
       displayData.priceUsd = data.priceUsd;
       displayData.satUsd = data.satUsd;
@@ -492,7 +509,7 @@ function mountBlockClock({ value, baseUrl = 'https://moscowtime.xyz' } = {}) {
       });
       setDimensions({ noFrame, clockModel });
 
-      cycleViewInterval = setInterval(() => {
+      displayUpdateInterval = setInterval(() => {
         if (activeOption === undefined || activeOption >= displayOptions.length - 1) {
           activeOption = 0;
         } else {
@@ -506,10 +523,10 @@ function mountBlockClock({ value, baseUrl = 'https://moscowtime.xyz' } = {}) {
           clockModel,
         });
         setDimensions({ noFrame, clockModel });
-      }, cycleInterval);
+      }, displayUpdateIntervalMs);
     });
 
-    fetchDataInterval = setInterval(() => {
+    dataFetchInterval = setInterval(() => {
       fetchData().then((data) => {
         displayData.priceUsd = data.priceUsd;
         displayData.satUsd = data.satUsd;
@@ -517,6 +534,7 @@ function mountBlockClock({ value, baseUrl = 'https://moscowtime.xyz' } = {}) {
       });
     }, FETCH_INTERVAL);
   } else {
+    // If value was passed in, update the display and finish.
     cycleView({
       displayOptions,
       activeOption,
@@ -526,15 +544,16 @@ function mountBlockClock({ value, baseUrl = 'https://moscowtime.xyz' } = {}) {
     setDimensions({ noFrame, clockModel });
   }
 
+  // Return an object with an unMount function that cleans up everything.
   return {
     unMount: () => {
-      clearInterval(cycleViewInterval);
-      clearInterval(fetchDataInterval);
+      clearInterval(displayUpdateInterval);
+      clearInterval(dataFetchInterval);
       clockSizeObserver.disconnect();
       clockClassObserver.disconnect();
       clockContainer.innerHTML = '';
       externalStylesheetLinkElement.remove();
-      dynamicCssStyleTag.remove();
+      dynamicCssStyleElement.remove();
     },
   };
 }
