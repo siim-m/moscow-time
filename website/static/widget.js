@@ -1,5 +1,110 @@
 'use strict';
 
+// #region Static HTML
+/*
+  Static HTML strings used for various parts of the widget
+*/
+const MINI_HTML = `
+  <div id="blockclock">
+    <div id="blockclock-digits">
+      <div class="blockclock-cell">
+        <div id="blockclock-top-section-0" class="blockclock-top-section blockclock-content"></div>
+        <div id="blockclock-cell-0" class="blockclock-content"></div>
+      </div>
+      <div class="blockclock-cell">
+        <div id="blockclock-top-section-1" class="blockclock-top-section blockclock-content"></div>
+        <div id="blockclock-cell-1" class="blockclock-content"></div>
+      </div>
+      <div class="blockclock-cell">
+        <div id="blockclock-top-section-2" class="blockclock-top-section blockclock-content"></div>
+        <div id="blockclock-cell-2" class="blockclock-content"></div>
+      </div>
+      <div class="blockclock-cell">
+        <div id="blockclock-top-section-3" class="blockclock-top-section blockclock-content"></div>
+        <div id="blockclock-cell-3" class="blockclock-content"></div>
+      </div>
+      <div class="blockclock-cell">
+        <div id="blockclock-top-section-4" class="blockclock-top-section blockclock-content"></div>
+        <div id="blockclock-cell-4" class="blockclock-content"></div>
+      </div>
+      <div class="blockclock-cell">
+        <div id="blockclock-top-section-5" class="blockclock-top-section blockclock-content"></div>
+        <div id="blockclock-cell-5" class="blockclock-content"></div>
+      </div>
+      <div class="blockclock-cell">
+        <div id="blockclock-top-section-6" class="blockclock-top-section blockclock-content"></div>
+        <div id="blockclock-cell-6" class="blockclock-content"></div>
+      </div>
+    </div>
+  </div>
+`;
+
+const MICRO_HTML = `
+  <div id="blockclock">
+    <div id="blockclock-display">
+      <div id="blockclock-display-main-section">
+        <div id="blockclock-cell-0" class="blockclock-cell blockclock-content"></div>
+        <div id="blockclock-cell-1" class="blockclock-cell blockclock-content"></div>
+        <div id="blockclock-cell-2" class="blockclock-cell blockclock-content"></div>
+        <div id="blockclock-cell-3" class="blockclock-cell blockclock-content"></div>
+        <div id="blockclock-cell-4" class="blockclock-cell blockclock-content"></div>
+        <div id="blockclock-cell-5" class="blockclock-cell blockclock-content"></div>
+        <div id="blockclock-cell-6" class="blockclock-cell blockclock-content"></div>
+      </div>
+      <div id="blockclock-display-bottom-section" class="blockclock-content"></div>
+    </div>
+  </div>
+`;
+
+const MINI_USDPRICE_HTML = `
+  <div class="blockclock-special">
+    <div class="blockclock-special-upper">BTC</div>
+    <div class="blockclock-special-separator"></div>
+    <div class="blockclock-special-lower">USD</div>
+  </div>
+`;
+
+const MICRO_USDPRICE_HTML = `
+  <div class="blockclock-special blockclock-special-usdprice">
+    <div id="blockclock-cell-0-special-upper">BTC</div>
+    <div id="blockclock-cell-0-special-separator"></div>
+    <div id="blockclock-cell-0-special-lower">USD</div>
+  </div>
+`;
+
+const MINI_SATSPERDOLLAR_HTML = `
+  <div class="blockclock-special">
+    <div class="blockclock-special-upper">SATS</div>
+    <div class="blockclock-special-separator"></div>
+    <div class="blockclock-special-lower">1USD</div>
+  </div>
+`;
+
+const MICRO_SATSPERDOLLAR_HTML = `
+  <div class="blockclock-special blockclock-special-satsperdollar">
+    <div id="blockclock-cell-0-special-upper">SATS</div>
+    <div id="blockclock-cell-0-special-separator"></div>
+    <div id="blockclock-cell-0-special-lower">1USD</div>
+  </div>
+`;
+
+const MINI_MOSCOWTIME_HTML = `
+  <div class="blockclock-special">
+    <div class="blockclock-special-upper">MSCW</div>
+    <div class="blockclock-special-separator"></div>
+    <div class="blockclock-special-lower">TIME</div>
+  </div>
+`;
+
+const MICRO_MOSCOWTIME_HTML = `
+  <div class="blockclock-special blockclock-special-moscowtime">
+    <div id="blockclock-cell-0-special-upper">MSCW</div>
+    <div id="blockclock-cell-0-special-separator"></div>
+    <div id="blockclock-cell-0-special-lower">TIME</div>
+  </div>
+`;
+//#endregion
+
 // Sets the values of the top section of each cell
 function setTopSections(values) {
   for (let i = 0; i < 7; i += 1) {
@@ -93,54 +198,6 @@ function cycleView({ displayOptions, activeOption, displayData, clockModel }) {
     });
     return;
   }
-
-  const MINI_USDPRICE_HTML = `
-    <div class="blockclock-special">
-      <div class="blockclock-special-upper">BTC</div>
-      <div class="blockclock-special-separator"></div>
-      <div class="blockclock-special-lower">USD</div>
-    </div>
-  `;
-
-  const MICRO_USDPRICE_HTML = `
-  <div class="blockclock-special blockclock-special-usdprice">
-    <div id="blockclock-cell-0-special-upper">BTC</div>
-    <div id="blockclock-cell-0-special-separator"></div>
-    <div id="blockclock-cell-0-special-lower">USD</div>
-  </div>
-	`;
-
-  const MINI_SATSPERDOLLAR_HTML = `
-    <div class="blockclock-special">
-      <div class="blockclock-special-upper">SATS</div>
-      <div class="blockclock-special-separator"></div>
-      <div class="blockclock-special-lower">1USD</div>
-    </div>
-  `;
-
-  const MICRO_SATSPERDOLLAR_HTML = `
-  <div class="blockclock-special blockclock-special-satsperdollar">
-    <div id="blockclock-cell-0-special-upper">SATS</div>
-    <div id="blockclock-cell-0-special-separator"></div>
-    <div id="blockclock-cell-0-special-lower">1USD</div>
-  </div>
-`;
-
-  const MINI_MOSCOWTIME_HTML = `
-    <div class="blockclock-special">
-      <div class="blockclock-special-upper">MSCW</div>
-      <div class="blockclock-special-separator"></div>
-      <div class="blockclock-special-lower">TIME</div>
-    </div>
-  `;
-
-  const MICRO_MOSCOWTIME_HTML = `
-  <div class="blockclock-special blockclock-special-moscowtime">
-    <div id="blockclock-cell-0-special-upper">MSCW</div>
-    <div id="blockclock-cell-0-special-separator"></div>
-    <div id="blockclock-cell-0-special-lower">TIME</div>
-  </div>
-	`;
 
   let activeView = displayOptions[activeOption];
 
@@ -269,58 +326,6 @@ function mountBlockClock({ value, baseUrl = 'https://moscowtime.xyz' } = {}) {
   const FETCH_INTERVAL = 10000;
   const VALID_DISPLAY_OPTIONS = ['blockheight', 'usdprice', 'satsperdollar', 'moscowtime'];
 
-  const MINI_HTML = `
-  <div id="blockclock">
-    <div id="blockclock-digits">
-      <div class="blockclock-cell">
-        <div id="blockclock-top-section-0" class="blockclock-top-section blockclock-content"></div>
-        <div id="blockclock-cell-0" class="blockclock-content"></div>
-      </div>
-      <div class="blockclock-cell">
-        <div id="blockclock-top-section-1" class="blockclock-top-section blockclock-content"></div>
-        <div id="blockclock-cell-1" class="blockclock-content"></div>
-      </div>
-      <div class="blockclock-cell">
-        <div id="blockclock-top-section-2" class="blockclock-top-section blockclock-content"></div>
-        <div id="blockclock-cell-2" class="blockclock-content"></div>
-      </div>
-      <div class="blockclock-cell">
-        <div id="blockclock-top-section-3" class="blockclock-top-section blockclock-content"></div>
-        <div id="blockclock-cell-3" class="blockclock-content"></div>
-      </div>
-      <div class="blockclock-cell">
-        <div id="blockclock-top-section-4" class="blockclock-top-section blockclock-content"></div>
-        <div id="blockclock-cell-4" class="blockclock-content"></div>
-      </div>
-      <div class="blockclock-cell">
-        <div id="blockclock-top-section-5" class="blockclock-top-section blockclock-content"></div>
-        <div id="blockclock-cell-5" class="blockclock-content"></div>
-      </div>
-      <div class="blockclock-cell">
-        <div id="blockclock-top-section-6" class="blockclock-top-section blockclock-content"></div>
-        <div id="blockclock-cell-6" class="blockclock-content"></div>
-      </div>
-    </div>
-  </div>
-  `;
-
-  const MICRO_HTML = `
-	<div id="blockclock">
-		<div id="blockclock-display">
-			<div id="blockclock-display-main-section">
-				<div id="blockclock-cell-0" class="blockclock-cell blockclock-content"></div>
-				<div id="blockclock-cell-1" class="blockclock-cell blockclock-content"></div>
-				<div id="blockclock-cell-2" class="blockclock-cell blockclock-content"></div>
-				<div id="blockclock-cell-3" class="blockclock-cell blockclock-content"></div>
-				<div id="blockclock-cell-4" class="blockclock-cell blockclock-content"></div>
-				<div id="blockclock-cell-5" class="blockclock-cell blockclock-content"></div>
-				<div id="blockclock-cell-6" class="blockclock-cell blockclock-content"></div>
-			</div>
-			<div id="blockclock-display-bottom-section" class="blockclock-content"></div>
-		</div>
-	</div>
-	`;
-
   let cycleInterval = 3000;
 
   const clockContainer = document.getElementById('blockclock-container');
@@ -356,8 +361,8 @@ function mountBlockClock({ value, baseUrl = 'https://moscowtime.xyz' } = {}) {
       break;
   }
 
-  // Load CSS
-  const fontFaceCss = `
+  // Create parts of CSS that have dynamic values.
+  const dynamicCss = `
     @font-face {
       font-family: 'Steelfish Rounded Bold';
       src: url('${baseUrl}/steelfish_rounded_bold.woff2') format('woff2'),
@@ -384,21 +389,21 @@ function mountBlockClock({ value, baseUrl = 'https://moscowtime.xyz' } = {}) {
     }
   `;
 
-  const fontFaceStyleTag = document.createElement('style');
-  fontFaceStyleTag.appendChild(document.createTextNode(fontFaceCss));
-  document.head.appendChild(fontFaceStyleTag);
+  // Create a <style> tag with dynamic css.
+  const dynamicCssStyleTag = document.createElement('style');
+  dynamicCssStyleTag.appendChild(document.createTextNode(dynamicCss));
+  document.head.appendChild(dynamicCssStyleTag);
 
-  const stylesheetLinkElement = document.createElement('link');
-  stylesheetLinkElement.href = cssFilePath;
-  stylesheetLinkElement.type = 'text/css';
-  stylesheetLinkElement.rel = 'stylesheet';
-  document.head.appendChild(stylesheetLinkElement);
+  // Create a <link> tag to apply styles from CSS file.
+  const externalStylesheetLinkElement = document.createElement('link');
+  externalStylesheetLinkElement.href = cssFilePath;
+  externalStylesheetLinkElement.type = 'text/css';
+  externalStylesheetLinkElement.rel = 'stylesheet';
+  document.head.appendChild(externalStylesheetLinkElement);
 
   let displayOptions = Array.from(clockContainer.classList).filter((className) => {
     return VALID_DISPLAY_OPTIONS.includes(className);
   });
-
-  setDimensions({ noFrame, clockModel });
 
   clockSizeObserver = new ResizeObserver(() => {
     setDimensions({ noFrame, clockModel });
@@ -412,7 +417,7 @@ function mountBlockClock({ value, baseUrl = 'https://moscowtime.xyz' } = {}) {
           return VALID_DISPLAY_OPTIONS.includes(className);
         });
         noFrame = Array.from(clockContainer.classList).includes('noframe');
-        stylesheetLinkElement.href = cssFilePath;
+        externalStylesheetLinkElement.href = cssFilePath;
         cycleView({ displayOptions, activeOption, displayData, clockModel });
         setDimensions({ noFrame, clockModel });
       }
@@ -510,8 +515,8 @@ function mountBlockClock({ value, baseUrl = 'https://moscowtime.xyz' } = {}) {
       clockSizeObserver.disconnect();
       clockClassObserver.disconnect();
       clockContainer.innerHTML = '';
-      stylesheetLinkElement.remove();
-      fontFaceStyleTag.remove();
+      externalStylesheetLinkElement.remove();
+      dynamicCssStyleTag.remove();
     },
   };
 }
