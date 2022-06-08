@@ -1,5 +1,28 @@
 'use strict';
 
+// #region Static Numbers
+
+// MINI
+const MINI_NOFRAME_ASPECT_RATIO = 320 / 954;
+const MINI_NOFRAME_DIGITS_HEIGHT_RATIO = 0.59;
+const MINI_NOFRAME_MAIN_FONT_HEIGHT_RATIO = 0.49;
+const MINI_NOFRAME_TOP_SECTION_FONT_HEIGHT_RATIO = 0.0225;
+const MINI_NOFRAME_SPECIAL_FONT_HEIGHT_RATIO = 0.1775;
+
+const MINI_WITHFRAME_ASPECT_RATIO = 376 / 1010;
+const MINI_WITHFRAME_DIGITS_HEIGHT_RATIO = 0.5075;
+const MINI_WITHFRAME_MAIN_FONT_HEIGHT_RATIO = 0.425;
+const MINI_WITHFRAME_TOP_SECTION_FONT_HEIGHT_RATIO = 0.019;
+const MINI_WITHFRAME_SPECIAL_FONT_HEIGHT_RATIO = 0.15;
+
+// MICRO
+const MICRO_ASPECT_RATIO = 750 / 1280;
+const MICRO_MAIN_FONT_SIZE_TO_HEIGHT_RATIO = 0.3125;
+const MICRO_BOTTOM_FONT_SIZE_TO_HEIGHT_RATIO = 0.04975;
+const MICRO_SPECIAL_FONT_SIZE_TO_HEIGHT_RATIO = 0.11;
+
+// #endregion
+
 // #region Static HTML
 /*
   Static HTML strings used for various parts of the widget
@@ -105,14 +128,14 @@ const MICRO_MOSCOWTIME_HTML = `
 `;
 //#endregion
 
-// Sets the values of the top section of each cell
+// MINI - sets the values of the top section of each cell
 function setTopSections(values) {
   for (let i = 0; i < 7; i += 1) {
     document.getElementById(`blockclock-top-section-${i}`).innerHTML = values[i] || '';
   }
 }
 
-// MICRO Sets the text in the small bottom section.
+// MICRO - sets the text in the small bottom section.
 function setBottomSection(value) {
   document.getElementById('blockclock-display-bottom-section').innerHTML = value;
 }
@@ -120,21 +143,16 @@ function setBottomSection(value) {
 function setDimensions({ noFrame = false, clockModel = 'mini' } = {}) {
   let aspectRatio;
 
-  // MICRO ONLY - For calculating various font sizes based on clock height.
-  const MAIN_FONT_SIZE_TO_HEIGHT_RATIO = 0.3125;
-  const BOTTOM_FONT_SIZE_TO_HEIGHT_RATIO = 0.04975;
-  const SPECIAL_FONT_SIZE_TO_HEIGHT_RATIO = 0.11;
-
   switch (clockModel) {
     case 'mini':
       if (noFrame) {
-        aspectRatio = 0.336;
+        aspectRatio = MINI_NOFRAME_ASPECT_RATIO;
       } else {
-        aspectRatio = 0.375;
+        aspectRatio = MINI_WITHFRAME_ASPECT_RATIO;
       }
       break;
     case 'micro':
-      aspectRatio = 750 / 1280;
+      aspectRatio = MICRO_ASPECT_RATIO;
       break;
     default:
       break;
@@ -149,49 +167,49 @@ function setDimensions({ noFrame = false, clockModel = 'mini' } = {}) {
   const clockDisplayBottomSection = document.getElementById('blockclock-display-bottom-section');
 
   clockContainer.style.height = `${aspectRatio * clockContainer.clientWidth}px`;
-
   clock.style.height = `${aspectRatio * clockContainer.clientWidth}px`;
 
   if (clockModel === 'mini') {
     digits.style.height = noFrame
-      ? `${0.59 * clock.clientHeight}px`
-      : `${0.5075 * clock.clientHeight}px`;
+      ? `${MINI_NOFRAME_DIGITS_HEIGHT_RATIO * clock.clientHeight}px`
+      : `${MINI_WITHFRAME_DIGITS_HEIGHT_RATIO * clock.clientHeight}px`;
 
     Array.from(document.getElementsByClassName('blockclock-content')).forEach((el) => {
       el.style.fontSize = noFrame
-        ? `${0.49 * clock.clientHeight}px`
-        : `${0.425 * clock.clientHeight}px`;
+        ? `${MINI_NOFRAME_MAIN_FONT_HEIGHT_RATIO * clock.clientHeight}px`
+        : `${MINI_WITHFRAME_MAIN_FONT_HEIGHT_RATIO * clock.clientHeight}px`;
     });
 
     Array.from(document.getElementsByClassName('blockclock-top-section')).forEach((el) => {
       el.style.fontSize = noFrame
-        ? `${0.0225 * clock.clientHeight}px`
-        : `${0.019 * clock.clientHeight}px`;
+        ? `${MINI_NOFRAME_TOP_SECTION_FONT_HEIGHT_RATIO * clock.clientHeight}px`
+        : `${MINI_WITHFRAME_TOP_SECTION_FONT_HEIGHT_RATIO * clock.clientHeight}px`;
     });
 
     Array.from(document.getElementsByClassName('blockclock-special')).forEach((el) => {
       el.style.fontSize = noFrame
-        ? `${0.1775 * clock.clientHeight}px`
-        : `${0.15 * clock.clientHeight}px`;
+        ? `${MINI_NOFRAME_SPECIAL_FONT_HEIGHT_RATIO * clock.clientHeight}px`
+        : `${MINI_WITHFRAME_SPECIAL_FONT_HEIGHT_RATIO * clock.clientHeight}px`;
     });
   }
 
   if (clockModel === 'micro') {
     clockDisplayMainSection.style.fontSize = `${
-      MAIN_FONT_SIZE_TO_HEIGHT_RATIO * clock.clientHeight
+      MICRO_MAIN_FONT_SIZE_TO_HEIGHT_RATIO * clock.clientHeight
     }px`;
 
     clockDisplayBottomSection.style.fontSize = `${
-      BOTTOM_FONT_SIZE_TO_HEIGHT_RATIO * clock.clientHeight
+      MICRO_BOTTOM_FONT_SIZE_TO_HEIGHT_RATIO * clock.clientHeight
     }px`;
 
     Array.from(document.getElementsByClassName('blockclock-special')).forEach((el) => {
-      el.style.fontSize = `${SPECIAL_FONT_SIZE_TO_HEIGHT_RATIO * clock.clientHeight}px`;
+      el.style.fontSize = `${MICRO_SPECIAL_FONT_SIZE_TO_HEIGHT_RATIO * clock.clientHeight}px`;
     });
   }
 }
 
 function cycleView({ displayOptions, activeOption, displayData, clockModel }) {
+  // Clear all content if no display options are selected
   if (!displayOptions.length) {
     document.querySelectorAll('.blockclock-content').forEach((cell) => {
       cell.innerHTML = '';
@@ -245,7 +263,7 @@ function cycleView({ displayOptions, activeOption, displayData, clockModel }) {
 
     case 'satsperdollar':
       if (clockModel === 'mini') {
-        setTopSections([]);
+        setTopSections(['Value of one US', 'Dollar,', 'expressed in', 'Satoshis']);
         document.getElementById('blockclock-cell-0').innerHTML = MINI_SATSPERDOLLAR_HTML;
       } else if (clockModel === 'micro') {
         // document.getElementById('blockclock-display').style.backgroundImage =
