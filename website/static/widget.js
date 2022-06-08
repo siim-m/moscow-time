@@ -329,6 +329,7 @@ function mountBlockClock({ value, baseUrl = 'https://moscowtime.xyz' } = {}) {
   let clockSizeObserver;
   let clockClassObserver;
   let cssFilePath;
+  let backgroundImage;
 
   if (clockContainer.classList.contains('model-mini')) {
     clockModel = 'mini';
@@ -344,10 +345,12 @@ function mountBlockClock({ value, baseUrl = 'https://moscowtime.xyz' } = {}) {
     case 'mini':
       clockContainer.innerHTML = MINI_HTML;
       cssFilePath = noFrame ? `${baseUrl}/widget-no-frame.css` : `${baseUrl}/widget-with-frame.css`;
+      backgroundImage = noFrame ? 'blockclock-no-frame.webp' : 'blockclock-with-frame.webp';
       break;
     case 'micro':
       clockContainer.innerHTML = MICRO_HTML;
       cssFilePath = `${baseUrl}/widget-micro.css`;
+      backgroundImage = 'bcmm-face-1280.webp';
       break;
     default:
       break;
@@ -374,6 +377,10 @@ function mountBlockClock({ value, baseUrl = 'https://moscowtime.xyz' } = {}) {
       src: url('${baseUrl}/courier_prime_bold.woff2') format('woff2'),
         url('${baseUrl}/courier_prime_bold.woff') format('woff'),
         url('${baseUrl}/courier_prime_bold.ttf') format('truetype');
+    }
+
+    #blockclock {
+      background-image: url('${baseUrl}/${backgroundImage}');
     }
   `;
 

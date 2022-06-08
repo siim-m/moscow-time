@@ -8,7 +8,6 @@
 
 #blockclock {
   background-size: contain;
-  background-image: url('https://moscowtime.xyz/blockclock-no-frame.webp');
   position: absolute;
   width: 100%;
   border-radius: 1.5%/4.5%;
