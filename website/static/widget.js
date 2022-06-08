@@ -300,6 +300,7 @@ function cycleView({ displayOptions, activeOption, displayData, clockModel }) {
         // document.getElementById('blockclock-display').style.backgroundImage =
         //   "url('/z_blockheight.jpg')";
         setBottomSection('Number of blocks in the blockchain');
+        document.getElementById('blockclock-display-main-section-0').innerHTML = '';
         document.getElementById('blockclock-display-main-section-1').innerHTML = `${blockHeight}`;
       }
 
