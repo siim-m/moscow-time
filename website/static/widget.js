@@ -17,7 +17,7 @@ function setDimensions({ noFrame = false, clockModel = 'mini' } = {}) {
 
   // MICRO ONLY - For calculating various font sizes based on clock height.
   const MAIN_FONT_SIZE_TO_HEIGHT_RATIO = 0.3125;
-  const BOTTOM_FONT_SIZE_TO_HEIGHT_RATIO = 0.038;
+  const BOTTOM_FONT_SIZE_TO_HEIGHT_RATIO = 0.04975;
   const SPECIAL_FONT_SIZE_TO_HEIGHT_RATIO = 0.11;
 
   switch (clockModel) {
@@ -103,7 +103,7 @@ function cycleView({ displayOptions, activeOption, displayData, clockModel }) {
   `;
 
   const MICRO_USDPRICE_HTML = `
-  <div class="blockclock-special">
+  <div class="blockclock-special blockclock-special-usdprice">
     <div id="blockclock-cell-0-special-upper">BTC</div>
     <div id="blockclock-cell-0-special-separator"></div>
     <div id="blockclock-cell-0-special-lower">USD</div>
@@ -119,7 +119,7 @@ function cycleView({ displayOptions, activeOption, displayData, clockModel }) {
   `;
 
   const MICRO_SATSPERDOLLAR_HTML = `
-  <div class="blockclock-special">
+  <div class="blockclock-special blockclock-special-satsperdollar">
     <div id="blockclock-cell-0-special-upper">SATS</div>
     <div id="blockclock-cell-0-special-separator"></div>
     <div id="blockclock-cell-0-special-lower">1USD</div>
@@ -135,7 +135,7 @@ function cycleView({ displayOptions, activeOption, displayData, clockModel }) {
   `;
 
   const MICRO_MOSCOWTIME_HTML = `
-  <div class="blockclock-special">
+  <div class="blockclock-special blockclock-special-moscowtime">
     <div id="blockclock-cell-0-special-upper">MSCW</div>
     <div id="blockclock-cell-0-special-separator"></div>
     <div id="blockclock-cell-0-special-lower">TIME</div>
@@ -154,7 +154,7 @@ function cycleView({ displayOptions, activeOption, displayData, clockModel }) {
       } else if (clockModel === 'micro') {
         setBottomSection('Market price of Bitcoin');
         // document.getElementById('blockclock-display').style.backgroundImage =
-        // 	"url('/z_usdprice.jpg')";
+        //   "url('/z_usdprice.jpg')";
         document.getElementById('blockclock-cell-0').innerHTML = MICRO_USDPRICE_HTML;
       }
 
@@ -192,7 +192,7 @@ function cycleView({ displayOptions, activeOption, displayData, clockModel }) {
         document.getElementById('blockclock-cell-0').innerHTML = MINI_SATSPERDOLLAR_HTML;
       } else if (clockModel === 'micro') {
         // document.getElementById('blockclock-display').style.backgroundImage =
-        // 	"url('/z_satsperdollar.jpg')";
+        //   "url('/z_satsperdollar.jpg')";
         document.getElementById('blockclock-cell-0').innerHTML = MICRO_SATSPERDOLLAR_HTML;
         setBottomSection('Value of one US Dollar, expressed in Satoshis');
       }
@@ -216,7 +216,7 @@ function cycleView({ displayOptions, activeOption, displayData, clockModel }) {
       } else if (clockModel === 'micro') {
         setBottomSection('Number of blocks in the blockchain');
         // document.getElementById('blockclock-display').style.backgroundImage =
-        // 	"url('/z_blockheight.jpg')";
+        //   "url('/z_blockheight.jpg')";
       }
 
       break;
@@ -227,7 +227,7 @@ function cycleView({ displayOptions, activeOption, displayData, clockModel }) {
         document.getElementById('blockclock-cell-0').innerHTML = MINI_MOSCOWTIME_HTML;
       } else if (clockModel === 'micro') {
         // document.getElementById('blockclock-display').style.backgroundImage =
-        // 	"url('/z_moscowtime.jpg')";
+        //   "url('/z_moscowtime.jpg')";
         document.getElementById('blockclock-cell-0').innerHTML = MICRO_MOSCOWTIME_HTML;
         setBottomSection('');
       }

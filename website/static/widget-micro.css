@@ -3,6 +3,27 @@
   --clock-display-text-color: #b0b0b0;
 }
 
+@font-face {
+  font-family: 'Steelfish Rounded Bold';
+  src: url('https://moscowtime.xyz/steelfish_rounded_bold.woff2') format('woff2'),
+    url('https://moscowtime.xyz/steelfish_rounded_bold.woff') format('woff'),
+    url('https://moscowtime.xyz/steelfish_rounded_bold.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Courier Prime Bold';
+  src: url('https://moscowtime.xyz/courier_prime_bold.woff2') format('woff2'),
+    url('https://moscowtime.xyz/courier_prime_bold.woff') format('woff'),
+    url('https://moscowtime.xyz/courier_prime_bold.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Peep';
+  src: url('https://moscowtime.xyz/peep.woff2') format('woff2'),
+    url('https://moscowtime.xyz/peep.woff') format('woff'),
+    url('https://moscowtime.xyz/peep.ttf') format('truetype');
+}
+
 #blockclock-container {
   display: flex;
   margin-left: auto;
@@ -35,22 +56,35 @@
 #blockclock-display-main-section {
   display: flex;
   justify-content: center;
-  letter-spacing: 0.02em;
+  letter-spacing: 0.015em;
   height: 85%;
   padding-top: 10.8%;
   font-family: 'Steelfish Rounded Bold';
 }
 
 #blockclock-display-bottom-section {
-  letter-spacing: 0.035rem;
-  text-align: center;
-  font-family: monospace;
+  line-height: 1.25;
+  font-family: 'Peep';
   overflow: hidden;
   white-space: nowrap;
 }
 
 .blockclock-special {
-  padding-top: 0.15em;
+  padding-top: 0.2em;
+}
+
+.blockclock-special-usdprice {
+  padding-left: 0.25em;
+}
+
+.blockclock-special-satsperdollar {
+  letter-spacing: -0.015em;
+  padding-right: 0.25em;
+}
+
+.blockclock-special-moscowtime {
+  letter-spacing: -0.03em;
+  padding-right: 0.3em;
 }
 
 #blockclock-cell-0-special-separator {
@@ -67,10 +101,5 @@
 }
 
 .blockclock-cell {
-  text-align: center;
   line-height: 0.85;
-}
-
-.blockclock-special {
-  letter-spacing: 0.02ch;
 }
