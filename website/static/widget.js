@@ -354,11 +354,38 @@ function mountBlockClock({ value, baseUrl = 'https://moscowtime.xyz' } = {}) {
   }
 
   // Load CSS
+  const fontFaceCss = `
+    @font-face {
+      font-family: 'Steelfish Rounded Bold';
+      src: url('${baseUrl}/steelfish_rounded_bold.woff2') format('woff2'),
+        url('${baseUrl}/steelfish_rounded_bold.woff') format('woff'),
+        url('${baseUrl}/steelfish_rounded_bold.ttf') format('truetype');
+    }
+    
+    @font-face {
+      font-family: 'Peep';
+      src: url('${baseUrl}/peep.woff2') format('woff2'),
+        url('${baseUrl}/peep.woff') format('woff'),
+        url('${baseUrl}/peep.ttf') format('truetype');
+    }
+
+    @font-face {
+      font-family: 'Courier Prime Bold';
+      src: url('${baseUrl}/courier_prime_bold.woff2') format('woff2'),
+        url('${baseUrl}/courier_prime_bold.woff') format('woff'),
+        url('${baseUrl}/courier_prime_bold.ttf') format('truetype');
+    }
+  `;
+
+  const fontFaceStyleTag = document.createElement('style');
+  fontFaceStyleTag.appendChild(document.createTextNode(fontFaceCss));
+  document.head.appendChild(fontFaceStyleTag);
+
   const stylesheetLinkElement = document.createElement('link');
   stylesheetLinkElement.href = cssFilePath;
   stylesheetLinkElement.type = 'text/css';
   stylesheetLinkElement.rel = 'stylesheet';
-  document.getElementsByTagName('head')[0].appendChild(stylesheetLinkElement);
+  document.head.appendChild(stylesheetLinkElement);
 
   let displayOptions = Array.from(clockContainer.classList).filter((className) => {
     return VALID_DISPLAY_OPTIONS.includes(className);
@@ -477,6 +504,7 @@ function mountBlockClock({ value, baseUrl = 'https://moscowtime.xyz' } = {}) {
       clockClassObserver.disconnect();
       clockContainer.innerHTML = '';
       stylesheetLinkElement.remove();
+      fontFaceStyleTag.remove();
     },
   };
 }
