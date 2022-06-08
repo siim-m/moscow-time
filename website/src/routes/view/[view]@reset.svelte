@@ -13,7 +13,7 @@
   const { view } = $page.params;
   const value = $page.url.searchParams.get('value');
   const model = $page.url.searchParams.get('model') || 'mini';
-  const noFrame = $page.url.searchParams.get('noframe') === 'true' ? true : false
+  const noFrame = $page.url.searchParams.get('noframe') === 'true' ? true : false;
   const timestamp = `${format(utcDate, 'MMMM do, y @ HH:mm')} UTC`;
 
   $clockViews = [
@@ -28,7 +28,7 @@
   <title>Moscow Time | Snapshot</title>
 </svelte:head>
 
-<div class="px-6 pt-[189px]">
+<div class={`px-6 ${model === 'micro' ? 'mx-72 pt-[100px]' : 'pt-[189px]'}`}>
   <!-- <Clock views={[view, 'blockheight']} interval={60000} {value} /> -->
   <Clock interval={60000} {value} {model} {noFrame} />
   <p class="pt-16 text-center font-mono text-3xl text-neutral-600">
