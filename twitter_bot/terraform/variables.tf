@@ -21,3 +21,7 @@ variable "twitter_oauth_token_secret" {
   type      = string
   sensitive = true
 }
+
+variable "users_to_follow" {
+  type = string
+}
