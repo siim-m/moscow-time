@@ -1,7 +1,9 @@
 import { client, getBlocks, getPrice, getScreenshot, getBlockIssuance } from './lib/helpers.js';
 import { EUploadMimeType } from 'twitter-api-v2';
 
-const log_level = process.env.LOG_LEVEL ? process.env.LOG_LEVEL.toLowerCase() : undefined;
+const logLevel = process.env.LOG_LEVEL ? process.env.LOG_LEVEL.toLowerCase() : undefined;
+
+console.log('Starting scheduled Moscow Time Twitter Bot...');
 
 async function sendScheduledTweet() {
   const now = Date.now();
@@ -61,15 +63,15 @@ function getMillisecondsToNextRun() {
 }
 
 const first = getMillisecondsToNextRun();
-if (log_level === 'verbose') {
-  console.log('Scheduling first tweet in', first / (1000 * 60), 'minutes');
+if (logLevel === 'verbose') {
+  console.log('Scheduling first tweet in', first / (1000 * 60), 'minutes.');
 }
 
 setTimeout(function schedule() {
   sendScheduledTweet();
   const next = getMillisecondsToNextRun();
-  if (log_level === 'verbose') {
-    console.log('Scheduling next tweet in', next / (1000 * 60), 'minutes');
+  if (logLevel === 'verbose') {
+    console.log('Scheduling next tweet in', next / (1000 * 60), 'minutes.');
   }
   setTimeout(schedule, next);
 }, first);

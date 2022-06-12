@@ -9,7 +9,7 @@ if (!process.env.USERS_TO_FOLLOW) {
 const USERS_TO_FOLLOW = process.env.USERS_TO_FOLLOW.replace(/ /g, '').split(',');
 
 async function main() {
-  const log_level = process.env.LOG_LEVEL ? process.env.LOG_LEVEL.toLowerCase() : undefined;
+  const logLevel = process.env.LOG_LEVEL ? process.env.LOG_LEVEL.toLowerCase() : undefined;
   console.log('Starting interactive Moscow Time Twitter Bot...');
 
   const stream = await client.v1.filterStream({
@@ -21,33 +21,19 @@ async function main() {
 
   stream.autoReconnect = true;
 
-  stream.on(ETwitterStreamEvent.Reconnected, () => console.log(new Date(), 'Stream reconnected!'));
+  stream.on(ETwitterStreamEvent.Reconnected, () => console.log('Stream reconnected!'));
 
-  stream.on(ETwitterStreamEvent.ConnectionLost, (err) =>
-    console.error(new Date(), 'Stream connection lost!\n', err)
+  stream.on(ETwitterStreamEvent.Error, (err) =>
+    console.error('Connection or parse error:', JSON.stringify(err))
   );
 
-  stream.on(
-    // Emitted when Node.js {response} emits a 'error' event (contains its payload).
-    ETwitterStreamEvent.Error,
-    (err) => console.error(new Date(), 'Connection or parse error!\n', err)
-  );
+  stream.on(ETwitterStreamEvent.ConnectionClosed, () => console.log('Connection has been closed.'));
 
-  stream.on(
-    // Emitted when Node.js {response} is closed by remote or using .close().
-    ETwitterStreamEvent.ConnectionClosed,
-    () => console.log(new Date(), 'Connection has been closed.')
-  );
-
-  stream.on(
-    // Emitted when a Twitter sent a signal to maintain connection active
-    ETwitterStreamEvent.DataKeepAlive,
-    () => {
-      if (log_level === 'verbose') {
-        console.log(new Date(), 'Twitter sent a keep-alive packet.');
-      }
+  stream.on(ETwitterStreamEvent.DataKeepAlive, () => {
+    if (logLevel === 'verbose') {
+      console.log('Twitter sent a keep-alive packet.');
     }
-  );
+  });
 
   stream.on(ETwitterStreamEvent.Data, async (eventData) => {
     if (
@@ -57,7 +43,6 @@ async function main() {
         eventData.extended_tweet?.full_text?.toLowerCase().includes('bitcoin'))
     ) {
       console.log(
-        new Date(),
         'Received tweet matching filter:',
         `https://twitter.com/${eventData.user.screen_name}/status/${eventData.id_str}`
       );
@@ -87,7 +72,6 @@ async function main() {
         });
 
         console.log(
-          new Date(),
           'Tweeted quote tweet:',
           `https://twitter.com/moscowtime_xyz/status/${quoteTweet.id_str}`
         );
@@ -103,7 +87,8 @@ async function main() {
           `https://twitter.com/moscowtime_xyz/status/${reply.id_str}`
         );
       } catch (err) {
-        console.log(new Date(), 'Caught error:', err);
+        console.error('Caught error when parsing Twitter stream data:', JSON.stringify(err));
+        console.error('Received data:', JSON.stringify(eventData));
       }
     }
   });
