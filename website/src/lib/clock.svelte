@@ -12,7 +12,7 @@
   };
 
   onMount(() => {
-    clock = mountBlockClock({ value, baseUrl: '/' });
+    clock = mountBlockClock({ value, baseUrl: window.location.origin });
   });
 
   onDestroy(() => {
