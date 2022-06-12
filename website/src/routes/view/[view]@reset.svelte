@@ -12,6 +12,8 @@
 
   const { view } = $page.params;
   const value = $page.url.searchParams.get('value');
+  const model = $page.url.searchParams.get('model') || 'mini';
+  const noFrame = $page.url.searchParams.get('noframe') === 'true' ? true : false
   const timestamp = `${format(utcDate, 'MMMM do, y @ HH:mm')} UTC`;
 
   $clockViews = [
@@ -28,7 +30,7 @@
 
 <div class="px-6 pt-[189px]">
   <!-- <Clock views={[view, 'blockheight']} interval={60000} {value} /> -->
-  <Clock interval={60000} {value} />
+  <Clock interval={60000} {value} {model} {noFrame} />
   <p class="pt-16 text-center font-mono text-3xl text-neutral-600">
     {timestamp} | BLOCKCLOCK is a registered trademark of Coinkite Inc.
   </p>

@@ -1,31 +1,13 @@
-@font-face {
-  font-family: "Steelfish Rounded Bold";
-  src: url("https://moscowtime.xyz/steelfish_rounded_bold.woff2")
-      format("woff2"),
-    url("https://moscowtime.xyz/steelfish_rounded_bold.woff") format("woff"),
-    url("https://moscowtime.xyz/steelfish_rounded_bold.ttf") format("truetype");
-}
-
-@font-face {
-  font-family: "Courier Prime Bold";
-  src: url("https://moscowtime.xyz/courier_prime_bold.woff2")
-      format("woff2"),
-    url("https://moscowtime.xyz/courier_prime_bold.woff") format("woff"),
-    url("https://moscowtime.xyz/courier_prime_bold.ttf") format("truetype");
-}
-
 #blockclock-container {
   display: flex;
   margin: 0;
   text-align: center;
   position: relative;
-  cursor: default;
-  pointer-events: none;
+  user-select: none;
 }
 
 #blockclock {
   background-size: contain;
-  background-image: url("https://moscowtime.xyz/blockclock-no-frame.webp");
   position: absolute;
   width: 100%;
   border-radius: 1.5%/4.5%;
@@ -51,27 +33,17 @@
   justify-content: flex-start;
 }
 
-.blockclock-digit-content {
-  width: 100%;
-  padding-left: 10%;
-  flex-grow: 1;
-}
-
-.blockclock-special-content {
-  padding-top: 7.5%;
+.blockclock-special {
+  padding-top: 0.2em;
   flex-grow: 1;
   width: 100%;
   text-align: center;
-}
-
-.blockclock-special-content,
-.blockclock-digit-content {
-  font-family: "Steelfish Rounded Bold", monospace;
-  line-height: 0.85;
-}
-
-.blockclock-special-content {
   line-height: 0.925;
+}
+
+.blockclock-content {
+  font-family: 'Steelfish Rounded Bold', monospace;
+  line-height: 0.85;
 }
 
 .blockclock-top-section {
@@ -79,11 +51,12 @@
   display: flex;
   justify-content: space-around;
   align-items: center;
-  font-weight: 600;
-  letter-spacing: 0.15em;
+  letter-spacing: 0.125em;
   min-height: 12%;
   height: 12%;
   font-family: 'Courier Prime Bold', monospace;
+  overflow: hidden;
+  white-space: nowrap;
 }
 
 .blockclock-special-upper {

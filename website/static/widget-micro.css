@@ -1,0 +1,80 @@
+:root {
+  --clock-display-background-color: #2d2d2d;
+  --clock-display-text-color: #b0b0b0;
+}
+
+#blockclock-container {
+  display: flex;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  position: relative;
+  user-select: none;
+}
+
+#blockclock {
+  background-size: contain;
+  position: absolute;
+  width: 100%;
+  border-radius: 4.95%/9%;
+}
+
+#blockclock-display {
+  background-size: cover;
+  width: 59%;
+  height: 50.25%;
+  margin-top: 9.55%;
+  margin-left: 20.65%;
+  border-radius: 2%/3.5%;
+  background-color: var(--clock-display-background-color);
+  color: var(--clock-display-text-color);
+}
+
+#blockclock-display-main-section {
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  letter-spacing: 0.015em;
+  height: 85%;
+  padding-top: 10.25%;
+  font-family: 'Steelfish Rounded Bold';
+  line-height: 0.85;
+}
+
+#blockclock-display-bottom-section {
+  line-height: 1.25;
+  font-family: 'Peep';
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.blockclock-special {
+  padding-top: 0.2em;
+}
+
+.blockclock-special-usdprice {
+  padding-left: 0.25em;
+}
+
+.blockclock-special-satsperdollar {
+  letter-spacing: -0.015em;
+  padding-right: 0.25em;
+}
+
+.blockclock-special-moscowtime {
+  letter-spacing: -0.03em;
+  padding-right: 0.3em;
+}
+
+.blockclock-special-separator {
+  background-color: var(--clock-display-text-color);
+  border-radius: 1rem;
+  margin-top: 0.75ch;
+  min-height: 1px;
+  height: 0.1em;
+  margin-bottom: 0.7ch;
+  max-width: 85%;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+}
