@@ -99,6 +99,10 @@ resource "azapi_resource" "container_app" {
                 name      = "TWITTER_OAUTH_TOKEN_SECRET"
                 secretRef = "twitter-oauth-token-secret"
               },
+              {
+                name  = "USERS_TO_FOLLOW"
+                value = var.users_to_follow
+              },
             ]
 
             resources = {

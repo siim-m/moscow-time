@@ -1,10 +1,12 @@
 import { ETwitterStreamEvent, EUploadMimeType } from 'twitter-api-v2';
 import { client, getPrice, getScreenshot } from './lib/helpers.js';
 
-const USERS_TO_FOLLOW = [
-  '56562803', // @PeterSchiff
-  '863527548', // @steve_hanke
-];
+if (!process.env.USERS_TO_FOLLOW) {
+  console.error('No USERS_TO_FOLLOW environment variable set! Exiting...');
+  process.exit(1);
+}
+
+const USERS_TO_FOLLOW = process.env.USERS_TO_FOLLOW.replace(/ /g, '').split(',');
 
 async function main() {
   const log_level = process.env.LOG_LEVEL ? process.env.LOG_LEVEL.toLowerCase() : undefined;
