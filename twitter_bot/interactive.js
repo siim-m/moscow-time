@@ -37,7 +37,8 @@ async function main() {
 
   stream.on(ETwitterStreamEvent.Data, async (eventData) => {
     if (
-      !eventData.retweeted_status &&
+      !eventData.retweeted_status && // ignore retweets
+      !eventData.in_reply_to_status_id_str && // ignore replies
       USERS_TO_FOLLOW.includes(eventData.user?.id_str) &&
       (eventData.text.toLowerCase().includes('bitcoin') ||
         eventData.extended_tweet?.full_text?.toLowerCase().includes('bitcoin'))
