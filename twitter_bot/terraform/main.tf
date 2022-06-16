@@ -103,6 +103,10 @@ resource "azapi_resource" "container_app" {
                 name  = "USERS_TO_FOLLOW"
                 value = var.users_to_follow
               },
+              {
+                name  = "NODE_OPTIONS"
+                value = "--max-old-space-size=20"
+              },
             ]
 
             resources = {
