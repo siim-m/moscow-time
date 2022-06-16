@@ -1,0 +1,9 @@
+The current block height is __block_height__.
+For $1, you can buy __sats_per_dollar__ satoshis.
+The price of 1 #BTC is $__price__.
+
+Stats for the last hour:
+
+- Number of blocks mined: __number_of_blocks__
+- Newly created coins: __new_coins_created__ BTC
+- Number of transactions confirmed: __transaction_count__

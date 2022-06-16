@@ -1,0 +1,9 @@
+The current block height is __block_height__.
+The price of 1 #BTC is $__price__.
+Moscow time is __moscow_time__.
+
+Stats for the last hour:
+
+- Number of blocks mined: __number_of_blocks__
+- Newly created coins: __new_coins_created__ BTC
+- Number of transactions confirmed: __transaction_count__
