@@ -1,3 +1,4 @@
+import { readdirSync, readFileSync } from 'fs';
 import { ETwitterStreamEvent, EUploadMimeType } from 'twitter-api-v2';
 import { client, getPrice, getScreenshot } from './lib/helpers.js';
 
@@ -11,6 +12,12 @@ const USERS_TO_FOLLOW = process.env.USERS_TO_FOLLOW.replace(/ /g, '').split(',')
 async function main() {
   const logLevel = process.env.LOG_LEVEL ? process.env.LOG_LEVEL.toLowerCase() : undefined;
   console.log('Starting interactive Moscow Time Twitter Bot...');
+
+  const templates = readdirSync('./templates')
+    .filter((fileName) => fileName.includes('quote_tweet'))
+    .map((fileName) => readFileSync(`./templates/${fileName}`, { encoding: 'utf8' }));
+
+  console.log(`Loaded ${templates.length} quote tweet templates.`);
 
   const stream = await client.v1.filterStream({
     follow: USERS_TO_FOLLOW,
@@ -57,9 +64,11 @@ async function main() {
           timestamp: Date.now() / 1000,
         });
 
-        const text = `🚨 @${
-          eventData.user.screen_name
-        } just tweeted about #bitcoin. The current price is $${price.toLocaleString()}.\n\nIf the past is any indicator of the future, it might be a good time to buy.`;
+        const template = templates[Math.floor(Math.random() * templates.length)];
+
+        const text = template
+          .replace('__screen_name__', eventData.user.screen_name)
+          .replace('__price__', price.toLocaleString());
 
         const quoteTweet = await client.v1.tweet(text, {
           media_ids: [
@@ -77,10 +86,10 @@ async function main() {
           `https://twitter.com/moscowtime_xyz/status/${quoteTweet.id_str}`
         );
 
-        const reply = await client.v1.reply(`Let's see how well this ages...`, eventData.id_str, {
-          // Attach the quote tweet as a reply to the original without showing the URL in the text.
-          attachment_url: `https://twitter.com/${quoteTweet.user.screen_name}/status/${quoteTweet.id_str}`,
-        });
+        const reply = await client.v1.reply(
+          `https://twitter.com/${quoteTweet.user.screen_name}/status/${quoteTweet.id_str}`,
+          eventData.id_str
+        );
 
         console.log(
           new Date(),
