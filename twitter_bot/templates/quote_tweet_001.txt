@@ -1,0 +1,4 @@
+🚨
+__screen_name__ just tweeted about #bitcoin. The price is $__price__.
+
+Time to stack!
