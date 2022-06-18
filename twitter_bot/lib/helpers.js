@@ -73,7 +73,7 @@ export async function getPrice() {
   const res = await fetch('https://api.coingecko.com/api/v3/coins/bitcoin');
   const data = await res.json();
 
-  return data.market_data.current_price.usd;
+  return Math.floor(data.market_data.current_price.usd);
 }
 
 export async function getScreenshot({ view, value, timestamp }) {
