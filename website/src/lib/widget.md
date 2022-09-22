@@ -38,7 +38,7 @@ This should get you up and running quickly with most HTML sites that are server-
     <script src="https://moscowtime.xyz/widget.js"></script>
     <!-- When the window has finished loading, mount the widget in its appropriate place. -->
     <script>
-      const blockClock;
+      let blockClock;
       window.onload = function() {
         blockClock = mountBlockClock();
       }
