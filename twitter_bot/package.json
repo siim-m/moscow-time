@@ -4,14 +4,14 @@
   "license": "MIT",
   "scripts": {},
   "devDependencies": {
-    "eslint": "^7.32.0",
-    "eslint-config-prettier": "^8.3.0",
-    "prettier": "^2.5.1"
+    "eslint": "^8.26.0",
+    "eslint-config-prettier": "^8.5.0",
+    "prettier": "^2.7.1"
   },
   "type": "module",
   "dependencies": {
     "@mempool/mempool.js": "^2.3.0",
-    "puppeteer": "^14.1.1",
-    "twitter-api-v2": "^1.12.1"
+    "puppeteer": "^19.1.0",
+    "twitter-api-v2": "^1.12.8"
   }
 }
