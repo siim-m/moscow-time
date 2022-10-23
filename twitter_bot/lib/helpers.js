@@ -112,7 +112,7 @@ export async function getScreenshot({ view, value, timestamp }) {
   while (!waitForFunction) {
     try {
       waitForFunction = await page.waitForFunction(
-        'document.getElementById("blockclock-container").clientHeight > 0',
+        'document.getElementById("blockclock-container").clientHeight > 0 && document.fonts.check("127.5px Steelfish Rounded Bold")',
         {
           timeout: 30000,
         }
