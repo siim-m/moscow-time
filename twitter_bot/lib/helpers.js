@@ -78,9 +78,7 @@ export async function getPrice() {
 
 export async function getScreenshot({ view, value, timestamp }) {
   const browser = await puppeteer.launch({
-    // args: chromium.args,
-    // defaultViewport: chromium.defaultViewport,
-    // executablePath: await chromium.executablePath,
+    executablePath: '/usr/bin/google-chrome',
     headless: true,
     ignoreHTTPSErrors: false,
   });

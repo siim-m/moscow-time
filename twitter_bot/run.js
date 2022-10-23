@@ -34,12 +34,14 @@ async function interactive() {
   console.log('Connected to Twitter streaming API. Waiting for tweets from:', USERS_TO_FOLLOW);
 
   stream.autoReconnect = true;
+  stream.autoReconnectRetries = 50;
 
   stream.on(ETwitterStreamEvent.Reconnected, () => console.log('Stream reconnected!'));
 
-  stream.on(ETwitterStreamEvent.Error, (err) =>
-    console.error('Connection or parse error:', JSON.stringify(err))
-  );
+  stream.on(ETwitterStreamEvent.Error, (err) => {
+    console.error('Connection or parse error:');
+    console.error(JSON.stringify(err, null, 2));
+  });
 
   stream.on(ETwitterStreamEvent.ConnectionClosed, () => console.log('Connection has been closed.'));
 
