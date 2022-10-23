@@ -114,7 +114,7 @@ export async function getScreenshot({ view, value, timestamp }) {
       waitForFunction = await page.waitForFunction(
         'document.getElementById("blockclock-container").clientHeight > 0',
         {
-          timeout: 3200,
+          timeout: 30000,
         }
       );
     } catch (err) {
