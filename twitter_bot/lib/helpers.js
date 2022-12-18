@@ -76,7 +76,12 @@ export async function getPrice() {
   return Math.floor(data.market_data.current_price.usd);
 }
 
-export async function getScreenshot({ view, value, timestamp }) {
+export async function getScreenshot({ view, value, timestamp, model }) {
+  if (!model || (model !== 'mini' && model !== 'micro')) {
+    // Randomly choose micro or mini
+    model = Math.random() > 0.5 ? 'micro' : 'mini';
+  }
+
   const browser = await puppeteer.launch({
     executablePath: '/usr/bin/google-chrome',
     headless: true,
@@ -97,18 +102,16 @@ export async function getScreenshot({ view, value, timestamp }) {
       console.log('puppeteer', `${request.failure().errorText} ${request.url()}`)
     );
 
-  if (!value && !timestamp) {
-    await page.goto(`https://moscowtime.xyz/view/${view}`);
-  } else if (!value) {
-    await page.goto(`https://moscowtime.xyz/view/${view}?timestamp=${timestamp}`);
-  } else if (!timestamp) {
-    await page.goto(`https://moscowtime.xyz/view/${view}?value=${value}`);
-  } else {
-    await page.goto(`https://moscowtime.xyz/view/${view}?value=${value}&timestamp=${timestamp}`);
+  let url = `https://moscowtime.xyz/view/${view}?model=${model}`;
+  if (value) {
+    url += `&value=${value}`;
   }
+  if (timestamp) {
+    url += `&timestamp=${timestamp}`;
+  }
+  await page.goto(url);
 
   let waitForFunction;
-
   while (!waitForFunction) {
     try {
       waitForFunction = await page.waitForFunction(
